@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Equipes - Top Heroes</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>⚔️ TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Início</a></li>
+                <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="equipes.html" class="nav-link active">Equipes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="page-header">
+            <h1 class="page-title">Guia de Equipes</h1>
+            <p class="page-subtitle">Estratégias e combinações para formar as melhores equipes</p>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <!-- Filtros de estratégia -->
+                <div class="strategy-filter-section">
+                    <h2>Escolha uma Estratégia</h2>
+                    <div class="strategy-selector">
+                        <button class="strategy-btn active" data-strategy="balanced">
+                            <div class="strategy-icon">⚖️</div>
+                            <span>Equilibrada</span>
+                        </button>
+                        <button class="strategy-btn" data-strategy="offensive">
+                            <div class="strategy-icon">⚔️</div>
+                            <span>Ofensiva</span>
+                        </button>
+                        <button class="strategy-btn" data-strategy="defensive">
+                            <div class="strategy-icon">🛡️</div>
+                            <span>Defensiva</span>
+                        </button>
+                        <button class="strategy-btn" data-strategy="magic">
+                            <div class="strategy-icon">🔮</div>
+                            <span>Mágica</span>
+                        </button>
+                        <button class="strategy-btn" data-strategy="speed">
+                            <div class="strategy-icon">💨</div>
+                            <span>Velocidade</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Estratégia Equilibrada -->
+                <div class="team-guide active" id="balanced">
+                    <div class="team-overview">
+                        <h2>⚖️ Estratégia Equilibrada</h2>
+                        <p>Combinação balanceada de tanques, DPS e suporte para máxima versatilidade.</p>
+                    </div>
+
+                    <div class="team-compositions">
+                        <div class="team-composition">
+                            <h3>🏆 Formação Principal - Clássica</h3>
+                            <div class="team-formation">
+                                <div class="formation-row front-row">
+                                    <div class="hero-slot tank-slot">
+                                        <div class="hero-avatar">🛡️</div>
+                                        <div class="hero-info">
+                                            <h4>Guardião de Ferro</h4>
+                                            <span class="role">Tanque</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot empty-slot">
+                                        <div class="empty-text">Vazio</div>
+                                    </div>
+                                </div>
+                                <div class="formation-row back-row">
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">⚡</div>
+                                        <div class="hero-info">
+                                            <h4>Mago do Trovão</h4>
+                                            <span class="role">DPS Mágico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🏹</div>
+                                        <div class="hero-info">
+                                            <h4>Arqueira Élfica</h4>
+                                            <span class="role">DPS Físico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot support-slot">
+                                        <div class="hero-avatar">💎</div>
+                                        <div class="hero-info">
+                                            <h4>Sacerdotisa Cristalina</h4>
+                                            <span class="role">Suporte</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-analysis">
+                                <h4>Análise da Formação:</h4>
+                                <div class="analysis-grid">
+                                    <div class="analysis-item">
+                                        <h5>✅ Vantagens</h5>
+                                        <ul>
+                                            <li>Tanque protege toda a equipe</li>
+                                            <li>DPS mágico e físico para cobertura total</li>
+                                            <li>Suporte mantém a equipe viva</li>
+                                            <li>Versátil contra diferentes tipos de inimigos</li>
+                                        </ul>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <h5>⚠️ Desvantagens</h5>
+                                        <ul>
+                                            <li>Velocidade moderada</li>
+                                            <li>Depende do tanque para sobreviver</li>
+                                            <li>Pode ser vulnerável a ataques em área</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="team-strategy">
+                                <h4>Estratégia de Combate:</h4>
+                                <ol>
+                                    <li>Guardião de Ferro absorve dano e atordoa inimigos</li>
+                                    <li>Mago do Trovão causa dano em área com raios</li>
+                                    <li>Arqueira Élfica ataca alvos prioritários com precisão</li>
+                                    <li>Sacerdotisa Cristalina cura e protege a equipe</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="team-composition">
+                            <h3>🔄 Formação Alternativa - Duplo Tanque</h3>
+                            <div class="team-formation">
+                                <div class="formation-row front-row">
+                                    <div class="hero-slot tank-slot">
+                                        <div class="hero-avatar">🛡️</div>
+                                        <div class="hero-info">
+                                            <h4>Guardião de Ferro</h4>
+                                            <span class="role">Tanque Principal</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot tank-slot">
+                                        <div class="hero-avatar">🔥</div>
+                                        <div class="hero-info">
+                                            <h4>Berserker Flamejante</h4>
+                                            <span class="role">Tanque Ofensivo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formation-row back-row">
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">⚡</div>
+                                        <div class="hero-info">
+                                            <h4>Mago do Trovão</h4>
+                                            <span class="role">DPS Mágico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot support-slot">
+                                        <div class="hero-avatar">💎</div>
+                                        <div class="hero-info">
+                                            <h4>Sacerdotisa Cristalina</h4>
+                                            <span class="role">Suporte</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot empty-slot">
+                                        <div class="empty-text">Vazio</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-analysis">
+                                <h4>Análise da Formação:</h4>
+                                <div class="analysis-grid">
+                                    <div class="analysis-item">
+                                        <h5>✅ Vantagens</h5>
+                                        <ul>
+                                            <li>Dupla proteção na linha de frente</li>
+                                            <li>Berserker causa dano massivo</li>
+                                            <li>Muito resistente a ataques físicos</li>
+                                            <li>Boa para dungeons difíceis</li>
+                                        </ul>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <h5>⚠️ Desvantagens</h5>
+                                        <ul>
+                                            <li>Menos DPS total</li>
+                                            <li>Vulnerável a ataques mágicos</li>
+                                            <li>Velocidade baixa</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estratégia Ofensiva -->
+                <div class="team-guide" id="offensive">
+                    <div class="team-overview">
+                        <h2>⚔️ Estratégia Ofensiva</h2>
+                        <p>Foco em causar dano máximo rapidamente, sacrificando defesa por poder de ataque.</p>
+                    </div>
+
+                    <div class="team-compositions">
+                        <div class="team-composition">
+                            <h3>🔥 Formação Principal - DPS Puro</h3>
+                            <div class="team-formation">
+                                <div class="formation-row front-row">
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🔥</div>
+                                        <div class="hero-info">
+                                            <h4>Berserker Flamejante</h4>
+                                            <span class="role">DPS Principal</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🌪️</div>
+                                        <div class="hero-info">
+                                            <h4>Ninja do Vento</h4>
+                                            <span class="role">Assassino</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formation-row back-row">
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">⚡</div>
+                                        <div class="hero-info">
+                                            <h4>Mago do Trovão</h4>
+                                            <span class="role">DPS Mágico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🏹</div>
+                                        <div class="hero-info">
+                                            <h4>Arqueira Élfica</h4>
+                                            <span class="role">DPS Físico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot support-slot">
+                                        <div class="hero-avatar">💎</div>
+                                        <div class="hero-info">
+                                            <h4>Sacerdotisa Cristalina</h4>
+                                            <span class="role">Suporte</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-analysis">
+                                <h4>Análise da Formação:</h4>
+                                <div class="analysis-grid">
+                                    <div class="analysis-item">
+                                        <h5>✅ Vantagens</h5>
+                                        <ul>
+                                            <li>Dano massivo em pouco tempo</li>
+                                            <li>Berserker causa estrago na linha de frente</li>
+                                            <li>Ninja elimina alvos prioritários</li>
+                                            <li>Mago e Arqueira cobrem área e precisão</li>
+                                        </ul>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <h5>⚠️ Desvantagens</h5>
+                                        <ul>
+                                            <li>Muito vulnerável a ataques</li>
+                                            <li>Depende de eliminar inimigos rapidamente</li>
+                                            <li>Pode falhar em batalhas longas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="team-strategy">
+                                <h4>Estratégia de Combate:</h4>
+                                <ol>
+                                    <li>Ninja do Vento ataca primeiro, eliminando ameaças</li>
+                                    <li>Berserker Flamejante causa dano massivo</li>
+                                    <li>Mago do Trovão limpa grupos de inimigos</li>
+                                    <li>Arqueira Élfica finaliza alvos restantes</li>
+                                    <li>Sacerdotisa mantém a equipe viva</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estratégia Defensiva -->
+                <div class="team-guide" id="defensive">
+                    <div class="team-overview">
+                        <h2>🛡️ Estratégia Defensiva</h2>
+                        <p>Foco em resistência e sustentabilidade, vencendo por desgaste do inimigo.</p>
+                    </div>
+
+                    <div class="team-compositions">
+                        <div class="team-composition">
+                            <h3>🏰 Formação Principal - Fortaleza</h3>
+                            <div class="team-formation">
+                                <div class="formation-row front-row">
+                                    <div class="hero-slot tank-slot">
+                                        <div class="hero-avatar">🛡️</div>
+                                        <div class="hero-info">
+                                            <h4>Guardião de Ferro</h4>
+                                            <span class="role">Tanque Principal</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot tank-slot">
+                                        <div class="hero-avatar">🔥</div>
+                                        <div class="hero-info">
+                                            <h4>Berserker Flamejante</h4>
+                                            <span class="role">Tanque Secundário</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formation-row back-row">
+                                    <div class="hero-slot support-slot">
+                                        <div class="hero-avatar">💎</div>
+                                        <div class="hero-info">
+                                            <h4>Sacerdotisa Cristalina</h4>
+                                            <span class="role">Suporte Principal</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🏹</div>
+                                        <div class="hero-info">
+                                            <h4>Arqueira Élfica</h4>
+                                            <span class="role">DPS de Suporte</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot support-slot">
+                                        <div class="hero-avatar">⚡</div>
+                                        <div class="hero-info">
+                                            <h4>Mago do Trovão</h4>
+                                            <span class="role">DPS de Controle</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-analysis">
+                                <h4>Análise da Formação:</h4>
+                                <div class="analysis-grid">
+                                    <div class="analysis-item">
+                                        <h5>✅ Vantagens</h5>
+                                        <ul>
+                                            <li>Extremamente resistente</li>
+                                            <li>Dupla proteção na frente</li>
+                                            <li>Suporte duplo para sustentabilidade</li>
+                                            <li>Ideal para batalhas longas</li>
+                                        </ul>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <h5>⚠️ Desvantagens</h5>
+                                        <ul>
+                                            <li>Dano baixo</li>
+                                            <li>Batalhas podem ser longas</li>
+                                            <li>Vulnerável a inimigos com cura</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="team-strategy">
+                                <h4>Estratégia de Combate:</h4>
+                                <ol>
+                                    <li>Guardião de Ferro absorve todo o dano</li>
+                                    <li>Berserker causa dano constante</li>
+                                    <li>Sacerdotisa mantém a equipe curada</li>
+                                    <li>Mago controla inimigos com atordoamento</li>
+                                    <li>Arqueira causa dano consistente</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estratégia Mágica -->
+                <div class="team-guide" id="magic">
+                    <div class="team-overview">
+                        <h2>🔮 Estratégia Mágica</h2>
+                        <p>Foco em poderes mágicos e efeitos especiais para dominar o campo de batalha.</p>
+                    </div>
+
+                    <div class="team-compositions">
+                        <div class="team-composition">
+                            <h3>✨ Formação Principal - Academia Mágica</h3>
+                            <div class="team-formation">
+                                <div class="formation-row front-row">
+                                    <div class="hero-slot tank-slot">
+                                        <div class="hero-avatar">🛡️</div>
+                                        <div class="hero-info">
+                                            <h4>Guardião de Ferro</h4>
+                                            <span class="role">Tanque Mágico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot empty-slot">
+                                        <div class="empty-text">Vazio</div>
+                                    </div>
+                                </div>
+                                <div class="formation-row back-row">
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">⚡</div>
+                                        <div class="hero-info">
+                                            <h4>Mago do Trovão</h4>
+                                            <span class="role">DPS Mágico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot support-slot">
+                                        <div class="hero-avatar">💎</div>
+                                        <div class="hero-info">
+                                            <h4>Sacerdotisa Cristalina</h4>
+                                            <span class="role">Suporte Mágico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🏹</div>
+                                        <div class="hero-info">
+                                            <h4>Arqueira Élfica</h4>
+                                            <span class="role">DPS de Suporte</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-analysis">
+                                <h4>Análise da Formação:</h4>
+                                <div class="analysis-grid">
+                                    <div class="analysis-item">
+                                        <h5>✅ Vantagens</h5>
+                                        <ul>
+                                            <li>Controle total do campo de batalha</li>
+                                            <li>Efeitos mágicos poderosos</li>
+                                            <li>Boa sinergia entre magos</li>
+                                            <li>Eficaz contra grupos de inimigos</li>
+                                        </ul>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <h5>⚠️ Desvantagens</h5>
+                                        <ul>
+                                            <li>Vulnerável a ataques físicos</li>
+                                            <li>Depende de mana</li>
+                                            <li>Pode ser interrompida por silêncio</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="team-strategy">
+                                <h4>Estratégia de Combate:</h4>
+                                <ol>
+                                    <li>Guardião protege os magos</li>
+                                    <li>Mago do Trovão causa dano em área</li>
+                                    <li>Sacerdotisa cura e protege com magia</li>
+                                    <li>Arqueira elimina ameaças específicas</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estratégia de Velocidade -->
+                <div class="team-guide" id="speed">
+                    <div class="team-overview">
+                        <h2>💨 Estratégia de Velocidade</h2>
+                        <p>Foco em agir primeiro e causar dano antes que o inimigo possa reagir.</p>
+                    </div>
+
+                    <div class="team-compositions">
+                        <div class="team-composition">
+                            <h3>⚡ Formação Principal - Relâmpago</h3>
+                            <div class="team-formation">
+                                <div class="formation-row front-row">
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🌪️</div>
+                                        <div class="hero-info">
+                                            <h4>Ninja do Vento</h4>
+                                            <span class="role">Assassino</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🔥</div>
+                                        <div class="hero-info">
+                                            <h4>Berserker Flamejante</h4>
+                                            <span class="role">DPS Veloz</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formation-row back-row">
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">🏹</div>
+                                        <div class="hero-info">
+                                            <h4>Arqueira Élfica</h4>
+                                            <span class="role">DPS de Precisão</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot dps-slot">
+                                        <div class="hero-avatar">⚡</div>
+                                        <div class="hero-info">
+                                            <h4>Mago do Trovão</h4>
+                                            <span class="role">DPS Mágico</span>
+                                        </div>
+                                    </div>
+                                    <div class="hero-slot support-slot">
+                                        <div class="hero-avatar">💎</div>
+                                        <div class="hero-info">
+                                            <h4>Sacerdotisa Cristalina</h4>
+                                            <span class="role">Suporte</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="team-analysis">
+                                <h4>Análise da Formação:</h4>
+                                <div class="analysis-grid">
+                                    <div class="analysis-item">
+                                        <h5>✅ Vantagens</h5>
+                                        <ul>
+                                            <li>Agir primeiro em todos os turnos</li>
+                                            <li>Eliminar ameaças rapidamente</li>
+                                            <li>Ninja causa dano crítico garantido</li>
+                                            <li>Berserker causa estrago com velocidade</li>
+                                        </ul>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <h5>⚠️ Desvantagens</h5>
+                                        <ul>
+                                            <li>Muito vulnerável a ataques</li>
+                                            <li>Depende de eliminar inimigos rapidamente</li>
+                                            <li>Pode falhar se não conseguir agir primeiro</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="team-strategy">
+                                <h4>Estratégia de Combate:</h4>
+                                <ol>
+                                    <li>Ninja ataca primeiro, eliminando ameaças</li>
+                                    <li>Berserker causa dano massivo rapidamente</li>
+                                    <li>Arqueira finaliza alvos restantes</li>
+                                    <li>Mago limpa grupos com magia</li>
+                                    <li>Sacerdotisa mantém a equipe viva</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dicas Gerais -->
+                <div class="general-tips">
+                    <h2>💡 Dicas Gerais para Montagem de Equipes</h2>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <h3>🎯 Sinergia de Habilidades</h3>
+                            <p>Combine heróis cujas habilidades se complementam. Por exemplo, heróis que causam atordoamento com heróis que causam dano extra em inimigos atordoados.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>⚖️ Balanceamento de Stats</h3>
+                            <p>Certifique-se de ter pelo menos um herói com alta defesa, um com alto ataque e um com habilidades de suporte.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>🔄 Adaptação ao Inimigo</h3>
+                            <p>Diferentes inimigos requerem diferentes estratégias. Adapte sua equipe baseado no tipo de inimigo que você está enfrentando.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>📈 Nível e Equipamentos</h3>
+                            <p>Mantenha todos os heróis da equipe em níveis similares e com equipamentos adequados para maximizar a eficácia.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>🎲 Teste e Experimente</h3>
+                            <p>Não tenha medo de experimentar diferentes combinações. Cada jogador tem seu próprio estilo de jogo.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>🏆 Meta do Jogo</h3>
+                            <p>Considere o objetivo da batalha: PvP, PvE, Dungeons ou Eventos podem requerer estratégias diferentes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="wiki/index.html">Wiki</a></li>
+                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="equipes.html">Equipes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+    <script>
+        // Funcionalidade de seleção de estratégias
+        document.querySelectorAll('.strategy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remover classe ativa de todos os botões
+                document.querySelectorAll('.strategy-btn').forEach(b => b.classList.remove('active'));
+                // Adicionar classe ativa ao botão clicado
+                this.classList.add('active');
+                
+                // Ocultar todos os guias
+                document.querySelectorAll('.team-guide').forEach(guide => {
+                    guide.classList.remove('active');
+                });
+                
+                // Mostrar o guia selecionado
+                const strategyId = this.dataset.strategy;
+                const selectedGuide = document.getElementById(strategyId);
+                if (selectedGuide) {
+                    selectedGuide.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

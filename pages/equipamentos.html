@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Equipamentos - Top Heroes</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>⚔️ TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Início</a></li>
+                <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link active">Equipamentos</a></li>
+                <li><a href="equipes.html" class="nav-link">Equipes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="page-header">
+            <h1 class="page-title">Guia de Equipamentos</h1>
+            <p class="page-subtitle">As melhores builds e equipamentos para cada herói</p>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <!-- Filtros de heróis -->
+                <div class="hero-filter-section">
+                    <h2>Selecione um Herói</h2>
+                    <div class="hero-selector">
+                        <button class="hero-btn active" data-hero="guardaio-ferro">
+                            <div class="hero-icon">🛡️</div>
+                            <span>Guardião de Ferro</span>
+                        </button>
+                        <button class="hero-btn" data-hero="mago-trovao">
+                            <div class="hero-icon">⚡</div>
+                            <span>Mago do Trovão</span>
+                        </button>
+                        <button class="hero-btn" data-hero="arqueira-elfica">
+                            <div class="hero-icon">🏹</div>
+                            <span>Arqueira Élfica</span>
+                        </button>
+                        <button class="hero-btn" data-hero="berserker-flamejante">
+                            <div class="hero-icon">🔥</div>
+                            <span>Berserker Flamejante</span>
+                        </button>
+                        <button class="hero-btn" data-hero="sacerdotisa-cristalina">
+                            <div class="hero-icon">💎</div>
+                            <span>Sacerdotisa Cristalina</span>
+                        </button>
+                        <button class="hero-btn" data-hero="ninja-vento">
+                            <div class="hero-icon">🌪️</div>
+                            <span>Ninja do Vento</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Guia do Guardião de Ferro -->
+                <div class="equipment-guide active" id="guardaio-ferro">
+                    <div class="hero-overview">
+                        <div class="hero-avatar-large">🛡️</div>
+                        <div class="hero-details">
+                            <h2>Guardião de Ferro</h2>
+                            <span class="badge badge-legendary">Lendário - Tanque</span>
+                            <p>Especialista em defesa e proteção da equipe. Foque em maximizar defesa, vida e resistência.</p>
+                        </div>
+                    </div>
+
+                    <div class="build-sections">
+                        <div class="build-section">
+                            <h3>🏆 Build Principal - Tanque Defensivo</h3>
+                            <div class="equipment-grid">
+                                <div class="equipment-slot">
+                                    <h4>Arma</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">⚔️</div>
+                                        <div class="item-details">
+                                            <h5>Martelo de Guerra</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +150 Ataque, +200 Defesa</p>
+                                            <p><strong>Efeito:</strong> Chance de atordoar inimigos</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Armadura</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🛡️</div>
+                                        <div class="item-details">
+                                            <h5>Armadura de Platina</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +300 Defesa, +100 Vida</p>
+                                            <p><strong>Efeito:</strong> Reduz dano recebido em 15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Elmo</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">⛑️</div>
+                                        <div class="item-details">
+                                            <h5>Elmo do Dragão</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +180 Defesa, +50 Vida</p>
+                                            <p><strong>Efeito:</strong> Resistência a efeitos de status</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Luvas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🧤</div>
+                                        <div class="item-details">
+                                            <h5>Manoplas de Ferro</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +120 Defesa, +80 Ataque</p>
+                                            <p><strong>Efeito:</strong> Aumenta chance de contra-ataque</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Botas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🥾</div>
+                                        <div class="item-details">
+                                            <h5>Botas de Aço</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +100 Defesa, +30 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Resistência a knockback</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Acessório</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">💍</div>
+                                        <div class="item-details">
+                                            <h5>Anel da Proteção</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +150 Defesa, +200 Vida</p>
+                                            <p><strong>Efeito:</strong> Escudo automático quando vida < 30%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="build-stats">
+                                <h4>Stats Totais da Build:</h4>
+                                <div class="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ataque:</span>
+                                        <span class="stat-value">+350</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Defesa:</span>
+                                        <span class="stat-value">+950</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Vida:</span>
+                                        <span class="stat-value">+380</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Velocidade:</span>
+                                        <span class="stat-value">+30</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="build-section">
+                            <h3>⚔️ Build Alternativa - Tanque Ofensivo</h3>
+                            <div class="equipment-grid">
+                                <div class="equipment-slot">
+                                    <h4>Arma</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">⚔️</div>
+                                        <div class="item-details">
+                                            <h5>Espada de Dragão</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +200 Ataque, +50 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Ataques causam queimadura</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Armadura</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🛡️</div>
+                                        <div class="item-details">
+                                            <h5>Armadura de Guerra</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +200 Defesa, +150 Ataque</p>
+                                            <p><strong>Efeito:</strong> Aumenta dano de contra-ataque</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Elmo</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">⛑️</div>
+                                        <div class="item-details">
+                                            <h5>Elmo do Berserker</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +120 Defesa, +100 Ataque</p>
+                                            <p><strong>Efeito:</strong> Aumenta ataque quando vida baixa</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Luvas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🧤</div>
+                                        <div class="item-details">
+                                            <h5>Manoplas de Fogo</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +100 Ataque, +80 Defesa</p>
+                                            <p><strong>Efeito:</strong> Ataques causam queimadura</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Botas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🥾</div>
+                                        <div class="item-details">
+                                            <h5>Botas Velozes</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +60 Velocidade, +20 Evasão</p>
+                                            <p><strong>Efeito:</strong> Chance de ataque duplo</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Acessório</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">💍</div>
+                                        <div class="item-details">
+                                            <h5>Anel do Poder</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +100 Ataque, +50 Defesa</p>
+                                            <p><strong>Efeito:</strong> Aumenta crítico em 25%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="build-stats">
+                                <h4>Stats Totais da Build:</h4>
+                                <div class="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ataque:</span>
+                                        <span class="stat-value">+620</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Defesa:</span>
+                                        <span class="stat-value">+500</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Vida:</span>
+                                        <span class="stat-value">+0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Velocidade:</span>
+                                        <span class="stat-value">+110</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="build-tips">
+                        <h3>💡 Dicas de Build</h3>
+                        <ul class="styled-list">
+                            <li>Priorize equipamentos com bônus de defesa para maximizar a durabilidade</li>
+                            <li>Equipamentos com efeitos de escudo são essenciais para tanques</li>
+                            <li>Considere um acessório de cura para aumentar a sustentabilidade</li>
+                            <li>Velocidade moderada é importante para usar habilidades defensivas a tempo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Guia do Mago do Trovão -->
+                <div class="equipment-guide" id="mago-trovao">
+                    <div class="hero-overview">
+                        <div class="hero-avatar-large">⚡</div>
+                        <div class="hero-details">
+                            <h2>Mago do Trovão</h2>
+                            <span class="badge badge-epic">Épico - DPS Mágico</span>
+                            <p>Especialista em dano mágico em área. Foque em maximizar ataque mágico e mana.</p>
+                        </div>
+                    </div>
+
+                    <div class="build-sections">
+                        <div class="build-section">
+                            <h3>⚡ Build Principal - DPS Mágico</h3>
+                            <div class="equipment-grid">
+                                <div class="equipment-slot">
+                                    <h4>Arma</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🔮</div>
+                                        <div class="item-details">
+                                            <h5>Cajado do Trovão</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +250 Ataque Mágico, +100 Mana</p>
+                                            <p><strong>Efeito:</strong> Habilidades de raio causam atordoamento</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Armadura</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">👕</div>
+                                        <div class="item-details">
+                                            <h5>Túnica Mística</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +120 Defesa, +80 Mana</p>
+                                            <p><strong>Efeito:</strong> Reduz custo de mana em 20%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Elmo</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🎩</div>
+                                        <div class="item-details">
+                                            <h5>Chapéu do Mago</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +100 Ataque Mágico, +60 Mana</p>
+                                            <p><strong>Efeito:</strong> Regenera mana por turno</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Luvas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🧤</div>
+                                        <div class="item-details">
+                                            <h5>Luvas Mágicas</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +80 Ataque Mágico, +40 Mana</p>
+                                            <p><strong>Efeito:</strong> Aumenta chance de crítico mágico</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Botas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🥾</div>
+                                        <div class="item-details">
+                                            <h5>Botas do Vento</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +50 Velocidade, +30 Mana</p>
+                                            <p><strong>Efeito:</strong> Primeiro turno é gratuito</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Acessório</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">📿</div>
+                                        <div class="item-details">
+                                            <h5>Amuleto da Sabedoria</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +150 Ataque Mágico, +200 Mana</p>
+                                            <p><strong>Efeito:</strong> Habilidades custam 1 mana a menos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="build-stats">
+                                <h4>Stats Totais da Build:</h4>
+                                <div class="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ataque Mágico:</span>
+                                        <span class="stat-value">+580</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Defesa:</span>
+                                        <span class="stat-value">+120</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Mana:</span>
+                                        <span class="stat-value">+430</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Velocidade:</span>
+                                        <span class="stat-value">+50</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="build-tips">
+                        <h3>💡 Dicas de Build</h3>
+                        <ul class="styled-list">
+                            <li>Priorize ataque mágico e mana para maximizar o dano</li>
+                            <li>Equipamentos que reduzem custo de mana são muito valiosos</li>
+                            <li>Velocidade moderada é importante para agir antes dos inimigos</li>
+                            <li>Considere equipamentos com regeneração de mana</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Guia da Arqueira Élfica -->
+                <div class="equipment-guide" id="arqueira-elfica">
+                    <div class="hero-overview">
+                        <div class="hero-avatar-large">🏹</div>
+                        <div class="hero-details">
+                            <h2>Arqueira Élfica</h2>
+                            <span class="badge badge-rare">Raro - DPS Físico</span>
+                            <p>Especialista em ataques de longa distância. Foque em precisão, velocidade e dano crítico.</p>
+                        </div>
+                    </div>
+
+                    <div class="build-sections">
+                        <div class="build-section">
+                            <h3>🏹 Build Principal - DPS de Precisão</h3>
+                            <div class="equipment-grid">
+                                <div class="equipment-slot">
+                                    <h4>Arma</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🏹</div>
+                                        <div class="item-details">
+                                            <h5>Arco Élfico</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +150 Ataque, +30 Precisão</p>
+                                            <p><strong>Efeito:</strong> Ataques ignoram 30% da defesa</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Armadura</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">👕</div>
+                                        <div class="item-details">
+                                            <h5>Armadura de Couro</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +80 Defesa, +40 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Aumenta evasão em 15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Elmo</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🎩</div>
+                                        <div class="item-details">
+                                            <h5>Capuz do Caçador</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +60 Ataque, +50 Precisão</p>
+                                            <p><strong>Efeito:</strong> Aumenta chance de crítico</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Luvas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🧤</div>
+                                        <div class="item-details">
+                                            <h5>Luvas de Tiro</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +70 Ataque, +30 Precisão</p>
+                                            <p><strong>Efeito:</strong> Ataques não podem ser bloqueados</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Botas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🥾</div>
+                                        <div class="item-details">
+                                            <h5>Botas Velozes</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +60 Velocidade, +20 Evasão</p>
+                                            <p><strong>Efeito:</strong> Chance de ataque duplo</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Acessório</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">💍</div>
+                                        <div class="item-details">
+                                            <h5>Anel da Precisão</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +100 Ataque, +50 Precisão</p>
+                                            <p><strong>Efeito:</strong> Críticos causam sangramento</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="build-stats">
+                                <h4>Stats Totais da Build:</h4>
+                                <div class="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ataque:</span>
+                                        <span class="stat-value">+380</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Defesa:</span>
+                                        <span class="stat-value">+80</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Precisão:</span>
+                                        <span class="stat-value">+160</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Velocidade:</span>
+                                        <span class="stat-value">+100</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="build-tips">
+                        <h3>💡 Dicas de Build</h3>
+                        <ul class="styled-list">
+                            <li>Priorize precisão e velocidade para ataques consistentes</li>
+                            <li>Equipamentos que ignoram defesa são muito eficazes</li>
+                            <li>Velocidade alta é essencial para agir primeiro</li>
+                            <li>Foque em dano crítico para maximizar o DPS</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Guia do Berserker Flamejante -->
+                <div class="equipment-guide" id="berserker-flamejante">
+                    <div class="hero-overview">
+                        <div class="hero-avatar-large">🔥</div>
+                        <div class="hero-details">
+                            <h2>Berserker Flamejante</h2>
+                            <span class="badge badge-epic">Épico - DPS Físico</span>
+                            <p>Especialista em dano físico com efeitos de fogo. Foque em ataque, velocidade e efeitos de queimadura.</p>
+                        </div>
+                    </div>
+
+                    <div class="build-sections">
+                        <div class="build-section">
+                            <h3>🔥 Build Principal - DPS de Fogo</h3>
+                            <div class="equipment-grid">
+                                <div class="equipment-slot">
+                                    <h4>Arma</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">⚔️</div>
+                                        <div class="item-details">
+                                            <h5>Espada Flamejante</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +200 Ataque, +50 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Todos os ataques causam queimadura</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Armadura</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🛡️</div>
+                                        <div class="item-details">
+                                            <h5>Armadura de Fogo</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +150 Ataque, +100 Defesa</p>
+                                            <p><strong>Efeito:</strong> Imune a queimadura, aumenta dano de fogo</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Elmo</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">⛑️</div>
+                                        <div class="item-details">
+                                            <h5>Elmo do Berserker</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +120 Ataque, +80 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Aumenta ataque quando vida baixa</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Luvas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🧤</div>
+                                        <div class="item-details">
+                                            <h5>Manoplas de Fogo</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +100 Ataque, +60 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Ataques causam queimadura</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Botas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🥾</div>
+                                        <div class="item-details">
+                                            <h5>Botas do Inferno</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +80 Velocidade, +40 Ataque</p>
+                                            <p><strong>Efeito:</strong> Deixa rastro de fogo ao se mover</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Acessório</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">💍</div>
+                                        <div class="item-details">
+                                            <h5>Anel do Inferno</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +150 Ataque, +100 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Queimadura causa dano crescente</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="build-stats">
+                                <h4>Stats Totais da Build:</h4>
+                                <div class="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ataque:</span>
+                                        <span class="stat-value">+670</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Defesa:</span>
+                                        <span class="stat-value">+100</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Velocidade:</span>
+                                        <span class="stat-value">+270</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Efeitos de Fogo:</span>
+                                        <span class="stat-value">+300%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="build-tips">
+                        <h3>💡 Dicas de Build</h3>
+                        <ul class="styled-list">
+                            <li>Priorize ataque e velocidade para causar dano máximo</li>
+                            <li>Equipamentos com efeitos de fogo são essenciais</li>
+                            <li>Velocidade alta é crucial para usar habilidades de fúria</li>
+                            <li>Considere equipamentos que aumentam dano quando vida baixa</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Guia da Sacerdotisa Cristalina -->
+                <div class="equipment-guide" id="sacerdotisa-cristalina">
+                    <div class="hero-overview">
+                        <div class="hero-avatar-large">💎</div>
+                        <div class="hero-details">
+                            <h2>Sacerdotisa Cristalina</h2>
+                            <span class="badge badge-legendary">Lendário - Suporte</span>
+                            <p>Especialista em cura e suporte. Foque em mana, regeneração e efeitos de cura.</p>
+                        </div>
+                    </div>
+
+                    <div class="build-sections">
+                        <div class="build-section">
+                            <h3>💎 Build Principal - Suporte de Cura</h3>
+                            <div class="equipment-grid">
+                                <div class="equipment-slot">
+                                    <h4>Arma</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🔮</div>
+                                        <div class="item-details">
+                                            <h5>Cajado da Cura</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +100 Ataque Mágico, +200 Mana</p>
+                                            <p><strong>Efeito:</strong> Habilidades de cura são 50% mais eficazes</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Armadura</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">👕</div>
+                                        <div class="item-details">
+                                            <h5>Vestes Sagradas</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +100 Defesa, +150 Mana</p>
+                                            <p><strong>Efeito:</strong> Regenera mana por turno</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Elmo</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">👑</div>
+                                        <div class="item-details">
+                                            <h5>Tiara Divina</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +80 Ataque Mágico, +100 Mana</p>
+                                            <p><strong>Efeito:</strong> Habilidades de cura afetam todos os aliados</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Luvas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🧤</div>
+                                        <div class="item-details">
+                                            <h5>Luvas da Cura</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +60 Ataque Mágico, +80 Mana</p>
+                                            <p><strong>Efeito:</strong> Cura automática quando aliados estão com vida baixa</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Botas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🥾</div>
+                                        <div class="item-details">
+                                            <h5>Sandálias Sagradas</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +40 Velocidade, +60 Mana</p>
+                                            <p><strong>Efeito:</strong> Movimento não consome turno</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Acessório</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">📿</div>
+                                        <div class="item-details">
+                                            <h5>Amuleto da Vida</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +200 Vida, +100 Mana</p>
+                                            <p><strong>Efeito:</strong> Habilidades de cura têm chance de não consumir mana</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="build-stats">
+                                <h4>Stats Totais da Build:</h4>
+                                <div class="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ataque Mágico:</span>
+                                        <span class="stat-value">+240</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Defesa:</span>
+                                        <span class="stat-value">+100</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Mana:</span>
+                                        <span class="stat-value">+590</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Eficácia de Cura:</span>
+                                        <span class="stat-value">+150%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="build-tips">
+                        <h3>💡 Dicas de Build</h3>
+                        <ul class="styled-list">
+                            <li>Priorize mana e regeneração para usar habilidades constantemente</li>
+                            <li>Equipamentos que aumentam eficácia de cura são essenciais</li>
+                            <li>Velocidade moderada é importante para curar a tempo</li>
+                            <li>Considere equipamentos com efeitos de cura automática</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Guia do Ninja do Vento -->
+                <div class="equipment-guide" id="ninja-vento">
+                    <div class="hero-overview">
+                        <div class="hero-avatar-large">🌪️</div>
+                        <div class="hero-details">
+                            <h2>Ninja do Vento</h2>
+                            <span class="badge badge-rare">Raro - Assassino</span>
+                            <p>Especialista em ataques furtivos e mobilidade. Foque em velocidade, evasão e dano crítico.</p>
+                        </div>
+                    </div>
+
+                    <div class="build-sections">
+                        <div class="build-section">
+                            <h3>🌪️ Build Principal - Assassino Furtivo</h3>
+                            <div class="equipment-grid">
+                                <div class="equipment-slot">
+                                    <h4>Arma</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🗡️</div>
+                                        <div class="item-details">
+                                            <h5>Adagas do Vento</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +180 Ataque, +80 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Ataques furtivos causam dano crítico</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Armadura</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">👕</div>
+                                        <div class="item-details">
+                                            <h5>Armadura de Sombra</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +100 Defesa, +120 Evasão</p>
+                                            <p><strong>Efeito:</strong> Aumenta chance de evasão em 25%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Elmo</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🎭</div>
+                                        <div class="item-details">
+                                            <h5>Máscara do Ninja</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +80 Ataque, +100 Evasão</p>
+                                            <p><strong>Efeito:</strong> Primeiro ataque é sempre crítico</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Luvas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🧤</div>
+                                        <div class="item-details">
+                                            <h5>Luvas de Sombra</h5>
+                                            <span class="badge badge-rare">Raro</span>
+                                            <p><strong>Stats:</strong> +90 Ataque, +60 Velocidade</p>
+                                            <p><strong>Efeito:</strong> Ataques não podem ser bloqueados</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Botas</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">🥾</div>
+                                        <div class="item-details">
+                                            <h5>Botas do Vento</h5>
+                                            <span class="badge badge-epic">Épico</span>
+                                            <p><strong>Stats:</strong> +100 Velocidade, +80 Evasão</p>
+                                            <p><strong>Efeito:</strong> Pode se mover duas vezes por turno</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="equipment-slot">
+                                    <h4>Acessório</h4>
+                                    <div class="equipment-item">
+                                        <div class="item-icon">💍</div>
+                                        <div class="item-details">
+                                            <h5>Anel da Sombra</h5>
+                                            <span class="badge badge-legendary">Lendário</span>
+                                            <p><strong>Stats:</strong> +120 Ataque, +100 Evasão</p>
+                                            <p><strong>Efeito:</strong> Críticos causam invisibilidade por 1 turno</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="build-stats">
+                                <h4>Stats Totais da Build:</h4>
+                                <div class="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ataque:</span>
+                                        <span class="stat-value">+470</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Defesa:</span>
+                                        <span class="stat-value">+100</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Velocidade:</span>
+                                        <span class="stat-value">+260</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Evasão:</span>
+                                        <span class="stat-value">+300</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="build-tips">
+                        <h3>💡 Dicas de Build</h3>
+                        <ul class="styled-list">
+                            <li>Priorize velocidade e evasão para ataques furtivos</li>
+                            <li>Equipamentos que aumentam dano crítico são essenciais</li>
+                            <li>Velocidade máxima é crucial para agir primeiro</li>
+                            <li>Considere equipamentos com efeitos de invisibilidade</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="wiki/index.html">Wiki</a></li>
+                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="equipes.html">Equipes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+    <script>
+        // Funcionalidade de seleção de heróis
+        document.querySelectorAll('.hero-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remover classe ativa de todos os botões
+                document.querySelectorAll('.hero-btn').forEach(b => b.classList.remove('active'));
+                // Adicionar classe ativa ao botão clicado
+                this.classList.add('active');
+                
+                // Ocultar todos os guias
+                document.querySelectorAll('.equipment-guide').forEach(guide => {
+                    guide.classList.remove('active');
+                });
+                
+                // Mostrar o guia selecionado
+                const heroId = this.dataset.hero;
+                const selectedGuide = document.getElementById(heroId);
+                if (selectedGuide) {
+                    selectedGuide.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

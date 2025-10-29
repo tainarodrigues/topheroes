@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heróis - Wiki Top Heroes</title>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .heroes-page { padding: 2rem; }
+
+        .heroes-intro {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .heroes-intro h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .heroes-intro p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .heroes-grid-compact {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-card-compact {
+            background: var(--gradient-card);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-medium);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .hero-card-compact:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-large);
+            border-color: var(--accent-color);
+        }
+
+        .hero-avatar-compact {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .hero-avatar-compact img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-card-compact h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-card-compact .badges-container {
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .hero-card-compact .faction-badge {
+            display: inline-block;
+            text-align: center;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 0.2rem;
+        }
+
+         .hero-card-compact .hero-stats-compact {
+             display: none;
+         }
+         
+         .hero-card-compact .hero-roles {
+             display: flex;
+             gap: 0.3rem;
+             justify-content: center;
+             align-items: center;
+             margin: 0.5rem 0;
+             flex-wrap: wrap;
+         }
+         
+         .hero-card-compact .role-icon-small {
+             width: 24px;
+             height: 24px;
+             object-fit: contain;
+         }
+         
+         .hero-card-compact .badges-container {
+             margin-top: 0.5rem;
+         }
+         
+         .rarity-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 0.2rem;
+        }
+
+        /* Faction colors */
+        .faction-badge.league {
+            background: #4169E1;
+            color: white;
+        }
+
+        .faction-badge.nature {
+            background: #228B22;
+            color: white;
+        }
+
+        .faction-badge.horde {
+            background: #DC143C;
+            color: white;
+        }
+
+        /* Rarity colors */
+        .rarity-mythic { background: #DC143C; color: white; }
+        .rarity-legendary { background: #FFD700; color: #000; }
+        .rarity-epic { background: #9370DB; color: white; }
+        .rarity-rare { background: #4169E1; color: white; }
+
+        .filter-section {
+            background: var(--gradient-card);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--darker-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition-medium);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-color);
+            color: var(--dark-bg);
+            border-color: var(--accent-color);
+        }
+
+        .faction-title {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin: 3rem 0 1rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .rarity-section {
+            margin-bottom: 2rem;
+        }
+
+        .rarity-title {
+            font-family: 'Orbitron', monospace;
+            color: var(--secondary-accent);
+            margin: 1.5rem 0 1rem;
+            padding-left: 1rem;
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .heroes-intro h1 { font-size: 2rem; }
+            .heroes-grid-compact { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand"><h1>⚔️ TOP HEROES</h1></div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html" class="nav-link">Início</a></li>
+                <li><a href="index.html" class="nav-link active">Wiki</a></li>
+                <li><a href="../equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="../equipes.html" class="nav-link">Equipes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="heroes-page">
+            <div class="heroes-intro">
+                <h1>🛡️ Todos os Heróis</h1>
+                <p>Explore os 36 heróis de Top Heroes. Cada herói pertence a uma facção e possui habilidades únicas.</p>
+            </div>
+
+            <div id="heroes-grid">
+                <!-- LEAGUE FACTION -->
+                <h2 class="faction-title">🏰 League</h2>
+                
+                <div class="heroes-grid-compact" data-faction="league">
+                <!-- Místicos -->
+                <a href="heroes/league.html#paragon" class="hero-card-compact" data-faction="league" data-rarity="mythic">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Paragon.webp" alt="Paragon"></div>
+                    <h3>Paragon</h3>
+                    <div class="hero-roles">
+                        <img src="../../assets/roles/DPS.webp" alt="Damage Dealer" class="role-icon-small" title="Damage Dealer">
+                        <img src="../../assets/roles/Burst.webp" alt="Burst" class="role-icon-small" title="Burst Striker">
+                        <img src="../../assets/roles/Multi_Target.webp" alt="Multi Target" class="role-icon-small" title="Area Damage Dealer">
+                    </div>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-mythic">Mítico</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#bishop" class="hero-card-compact" data-faction="league" data-rarity="mythic">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Bishop.webp" alt="Bishop"></div>
+                    <h3>Bishop</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-mythic">Mítico</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#rose_princess" class="hero-card-compact" data-faction="league" data-rarity="mythic">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Rose_Princess.webp" alt="Rose Princess"></div>
+                    <h3>Rose Princess</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-mythic">Mítico</span>
+                    </div>
+                </a>
+
+                <!-- Lendários -->
+                <a href="heroes/league.html#pyromancer" class="hero-card-compact" data-faction="league" data-rarity="legendary">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Pyromancer.webp" alt="Pyromancer"></div>
+                    <h3>Pyromancer</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-legendary">Lendário</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#adjudicator" class="hero-card-compact" data-faction="league" data-rarity="legendary">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Adjudicator.webp" alt="Adjudicator"></div>
+                    <h3>Adjudicator</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-legendary">Lendário</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#hostess" class="hero-card-compact" data-faction="league" data-rarity="legendary">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Hostess.webp" alt="Hostess"></div>
+                    <h3>Hostess</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-legendary">Lendário</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#nun" class="hero-card-compact" data-faction="league" data-rarity="legendary">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Nun.webp" alt="Nun"></div>
+                    <h3>Nun</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-legendary">Lendário</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#bard" class="hero-card-compact" data-faction="league" data-rarity="legendary">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Bard.webp" alt="Bard"></div>
+                    <h3>Bard</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-legendary">Lendário</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#secret_keeper" class="hero-card-compact" data-faction="league" data-rarity="legendary">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Secret_Keeper.webp" alt="Secret Keeper"></div>
+                    <h3>Secret Keeper</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-legendary">Lendário</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#astrologer" class="hero-card-compact" data-faction="league" data-rarity="legendary">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Astrologer.webp" alt="Astrologer"></div>
+                    <h3>Astrologer</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-legendary">Lendário</span>
+                    </div>
+                </a>
+
+                <!-- Épicos -->
+                <a href="heroes/league.html#knight" class="hero-card-compact" data-faction="league" data-rarity="epic">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Knight.webp" alt="Knight"></div>
+                    <h3>Knight</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-epic">Épico</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#minister" class="hero-card-compact" data-faction="league" data-rarity="epic">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Minister.webp" alt="Minister"></div>
+                    <h3>Minister</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-epic">Épico</span>
+                    </div>
+                </a>
+
+                <a href="heroes/league.html#ranger" class="hero-card-compact" data-faction="league" data-rarity="epic">
+                    <div class="hero-avatar-compact"><img src="../../assets/heroes/Ranger.webp" alt="Ranger"></div>
+                    <h3>Ranger</h3>
+                    <div class="badges-container">
+                        <span class="faction-badge league">League</span>
+                        <span class="rarity-badge rarity-epic">Épico</span>
+                    </div>
+                </a>
+                </div>
+
+                <!-- NATURE FACTION -->
+                <h2 class="faction-title">🌳 Nature</h2>
+                
+                 <div class="heroes-grid-compact" data-faction="nature">
+                     <!-- Místicos -->
+                     <a href="heroes/nature.html#monk" class="hero-card-compact" data-faction="nature" data-rarity="mythic">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Monk.webp" alt="Monk"></div>
+                         <h3>Monk</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-mythic">Mítico</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#tidecaller" class="hero-card-compact" data-faction="nature" data-rarity="mythic">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Tidecaller.webp" alt="Tidecaller"></div>
+                         <h3>Tidecaller</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-mythic">Mítico</span>
+                     </div>
+                     </a>
+
+                     <!-- Lendários -->
+                     <a href="heroes/nature.html#treeguard" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Treeguard.webp" alt="Treeguard"></div>
+                         <h3>Treeguard</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#windwalker" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Windwalker.webp" alt="Windwalker"></div>
+                         <h3>Windwalker</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#watcher" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Watcher.webp" alt="Watcher"></div>
+                         <h3>Watcher</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#sage" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Sage.webp" alt="Sage"></div>
+                         <h3>Sage</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#forest_maiden" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Forest_Maiden.webp" alt="Forest Maiden"></div>
+                         <h3>Forest Maiden</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#druid" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Druid.webp" alt="Druid"></div>
+                         <h3>Druid</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#stonemason" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Stonemanson.webp" alt="Stonemason"></div>
+                         <h3>Stonemason</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#pixie" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Pixie.webp" alt="Pixie"></div>
+                         <h3>Pixie</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/nature.html#pathfinder" class="hero-card-compact" data-faction="nature" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Pathfinder.webp" alt="Pathfinder"></div>
+                         <h3>Pathfinder</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge nature">Nature</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+                 </div>
+
+                <!-- HORDE FACTION -->
+                <h2 class="faction-title">⚔️ Horde</h2>
+                
+                 <div class="heroes-grid-compact" data-faction="horde">
+                     <!-- Místicos -->
+                     <a href="heroes/horde.html#wukong" class="hero-card-compact" data-faction="horde" data-rarity="mythic">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Wukong.webp" alt="Wukong"></div>
+                         <h3>Wukong</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-mythic">Mítico</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#beastmaster" class="hero-card-compact" data-faction="horde" data-rarity="mythic">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Beastmaster.webp" alt="Beastmaster"></div>
+                         <h3>Beastmaster</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-mythic">Mítico</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#storm_maiden" class="hero-card-compact" data-faction="horde" data-rarity="mythic">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Storm_Maiden.webp" alt="Storm Maiden"></div>
+                         <h3>Storm Maiden</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-mythic">Mítico</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#desert_prince" class="hero-card-compact" data-faction="horde" data-rarity="mythic">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Desert_Prince.webp" alt="Desert Prince"></div>
+                         <h3>Desert Prince</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-mythic">Mítico</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#witch" class="hero-card-compact" data-faction="horde" data-rarity="mythic">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Witch.webp" alt="Witch"></div>
+                         <h3>Witch</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-mythic">Mítico</span>
+                     </div>
+                     </a>
+
+                     <!-- Lendários -->
+                     <a href="heroes/horde.html#soulmancer" class="hero-card-compact" data-faction="horde" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Soulmancer.webp" alt="Soulmancer"></div>
+                         <h3>Soulmancer</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#swordmaster" class="hero-card-compact" data-faction="horde" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Swordmaster.webp" alt="Swordmaster"></div>
+                         <h3>Swordmaster</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#warlock" class="hero-card-compact" data-faction="horde" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Warlock.webp" alt="Warlock"></div>
+                         <h3>Warlock</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#shaman" class="hero-card-compact" data-faction="horde" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Shaman.webp" alt="Shaman"></div>
+                         <h3>Shaman</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#headhunter" class="hero-card-compact" data-faction="horde" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Headhunter.webp" alt="Headhunter"></div>
+                         <h3>Headhunter</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#barbarian" class="hero-card-compact" data-faction="horde" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Barbarian.webp" alt="Barbarian"></div>
+                         <h3>Barbarian</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+
+                     <a href="heroes/horde.html#wilderness_hunter" class="hero-card-compact" data-faction="horde" data-rarity="legendary">
+                         <div class="hero-avatar-compact"><img src="../../assets/heroes/Wilderness_Hunter.webp" alt="Wilderness Hunter"></div>
+                         <h3>Wilderness Hunter</h3>
+                     <div class="badges-container">
+                         <span class="faction-badge horde">Horde</span>
+                         <span class="rarity-badge rarity-legendary">Lendário</span>
+                     </div>
+                     </a>
+                 </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Wiki</a></li>
+                        <li><a href="../equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../equipes.html">Equipes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../scripts/script.js"></script>
+</body>
+</html>

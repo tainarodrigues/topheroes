@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horde - Wiki Top Heroes</title>
+    <link rel="stylesheet" href="../../../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .heroes-page { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: var(--transition-medium);
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--secondary-accent);
+        }
+        
+        .faction-header {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .faction-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #DC143C, #FF6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .faction-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .hero-detail {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .hero-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .hero-detail-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+        }
+        
+        .hero-detail-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .hero-detail-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .hero-detail-info h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-detail-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .hero-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .hero-section {
+            background: var(--gradient-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        
+        .hero-section h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .hero-section p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .hero-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .hero-section ul li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .hero-section ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .faction-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        
+        .faction-badge.horde {
+            background: #DC143C;
+            color: white;
+        }
+        
+        .rarity-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        
+        .rarity-mythic { background: #DC143C; color: white; }
+        .rarity-legendary { background: #FFD700; color: #000; }
+        
+        @media (max-width: 768px) {
+            .hero-detail-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .faction-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand"><h1>⚔️ TOP HEROES</h1></div>
+            <ul class="nav-menu">
+                <li><a href="../../../index.html" class="nav-link">Início</a></li>
+                <li><a href="../index.html" class="nav-link active">Wiki</a></li>
+                <li><a href="../../equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="../../equipes.html" class="nav-link">Equipes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="heroes-page">
+            <a href="../heroes.html" class="back-link">← Voltar para Heróis</a>
+            
+            <div class="faction-header">
+                <h1>⚔️ Horde</h1>
+                <p>A facção selvagem, focada em ataque e dano</p>
+            </div>
+            
+            <!-- WUKONG -->
+            <div class="hero-detail" id="wukong">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Wukong.webp" alt="Wukong">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Wukong</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói mítico da facção Horde, rei macaco com poderes lendários.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BEASTMASTER -->
+            <div class="hero-detail" id="beastmaster">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Beastmaster.webp" alt="Beastmaster">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Beastmaster</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói mítico da facção Horde, mestre das feras que controla animais selvagens.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STORM MAIDEN -->
+            <div class="hero-detail" id="storm_maiden">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Storm_Maiden.webp" alt="Storm Maiden">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Storm Maiden</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói mítico da facção Horde, donzela da tempestade com poderes de trovão.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DESERT PRINCE -->
+            <div class="hero-detail" id="desert_prince">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Desert_Prince.webp" alt="Desert Prince">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Desert Prince</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói mítico da facção Horde, príncipe do deserto com poderes de areia.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WITCH -->
+            <div class="hero-detail" id="witch">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Witch.webp" alt="Witch">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Witch</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói mítico da facção Horde, bruxa com magia negra poderosa.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SOULMANCER -->
+            <div class="hero-detail" id="soulmancer">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Soulmancer.webp" alt="Soulmancer">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Soulmancer</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Horde, manipulator de almas com poderes sombrios.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SWORDMASTER -->
+            <div class="hero-detail" id="swordmaster">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Swordmaster.webp" alt="Swordmaster">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Swordmaster</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Horde, mestre espadachim com técnicas mortais.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WARLOCK -->
+            <div class="hero-detail" id="warlock">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Warlock.webp" alt="Warlock">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Warlock</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Horde, feiticeiro com magia demoníaca.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SHAMAN -->
+            <div class="hero-detail" id="shaman">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Shaman.webp" alt="Shaman">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Shaman</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Horde, xamã tribal com poderes ancestrais.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HEADHUNTER -->
+            <div class="hero-detail" id="headhunter">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Headhunter.webp" alt="Headhunter">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Headhunter</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Horde, caçador implacável com alta precisão.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BARBARIAN -->
+            <div class="hero-detail" id="barbarian">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Barbarian.webp" alt="Barbarian">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Barbarian</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Horde, guerreiro selvagem com fúria incontrolável.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WILDERNESS HUNTER -->
+            <div class="hero-detail" id="wilderness_hunter">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Wilderness_Hunter.webp" alt="Wilderness Hunter">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Wilderness Hunter</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge horde">Horde</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Horde, caçador da natureza selvagem com habilidades de sobrevivência.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="../index.html">Wiki</a></li>
+                        <li><a href="../../equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../../equipes.html">Equipes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/script.js"></script>
+</body>
+</html>
+

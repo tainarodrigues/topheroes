@@ -1,0 +1,41 @@
+Esta é uma reorganização para organização por facção e raridade. Devido ao tamanho do arquivo, preciso listar os heróis que temos e suas raridades para organizar corretamente.
+
+Lista dos heróis com imagens disponíveis:
+- Paragon (League) - Lendário
+- Knight (League) - Lendário
+- Astrologer (League) - ?
+- Pyromancer (League) - Épico
+- Bishop (League) - Épico
+- Adjudicator (League) - Épico
+- Hostess (League) - Raro
+- Nun (League) - Raro
+- Bard (League) - Raro
+- Ranger (League) - Raro
+- Minister (League) - Épico
+- Rose Princess (League) - Épico
+- Secret Keeper (League) - Raro
+
+- Wukong (Horde) - Lendário/Místico
+- Beastmaster (Horde) - Místico
+- Barbarian (Horde) - Raro
+- Soulmancer (Horde) - Lendário
+- Storm Maiden (Horde) - Épico
+- Swordmaster (Horde) - Épico
+- Warlock (Horde) - Épico
+- Shaman (Horde) - Épico
+- Headhunter (Horde) - Épico
+- Desert Prince (Horde) - Épico
+- Wilderness Hunter (Horde) - Raro
+- Witch (Horde) - Raro
+
+- Treeguard (Nature) - Lendário
+- Monk (Nature) - Épico
+- Windwalker (Nature) - Épico
+- Watcher (Nature) - Épico
+- Tidecaller (Nature) - Épico
+- Stonemason (Nature) - Raro
+- Sage (Nature) - Épico
+- Pixie (Nature) - Raro
+- Pathfinder (Nature) - Raro
+- Forest Maiden (Nature) - Épico
+- Druid (Nature) - Épico

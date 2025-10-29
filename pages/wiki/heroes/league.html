@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League - Wiki Top Heroes</title>
+    <link rel="stylesheet" href="../../../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .heroes-page { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: var(--transition-medium);
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--secondary-accent);
+        }
+        
+        .faction-header {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .faction-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #4169E1, #6B8EFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .faction-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .hero-detail {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .hero-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .hero-detail-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+        }
+        
+        .hero-detail-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .hero-detail-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .hero-detail-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .hero-name-with-roles {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .hero-detail-info h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin: 0;
+        }
+        
+        .hero-detail-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .hero-name-with-roles .roles-container {
+            margin: 0;
+        }
+        
+        .hero-main-section {
+            margin-bottom: 2rem;
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        
+        .hero-main-section h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .hero-main-section > p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .skill-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--darker-bg);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .skill-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .skill-item h4 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .skill-item .skill-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--secondary-accent);
+            color: var(--dark-bg);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+        
+        .skill-item p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-item .improvements {
+            margin-top: 1rem;
+        }
+        
+        .skill-item .improvements ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+        
+        .skill-item .improvements ul li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            line-height: 1.6;
+        }
+        
+        .skill-item .improvements ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .bond-item {
+            padding: 1rem;
+            background: var(--darker-bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-accent);
+        }
+        
+        .bond-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .bond-item strong {
+            color: var(--accent-color);
+        }
+        
+        .bond-item {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        
+        .gear-skill-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--darker-bg);
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .gear-skill-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .gear-skill-item h4 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .gear-skill-item p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+        
+        .gear-skill-levels {
+            margin-top: 1rem;
+        }
+        
+        .gear-skill-levels strong {
+            color: var(--secondary-accent);
+        }
+        
+        .gear-skill-levels ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+        
+        .gear-skill-levels ul li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            line-height: 1.6;
+        }
+        
+        .gear-skill-levels ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .roles-container {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 0.5rem auto 0;
+            flex-wrap: wrap;
+            width: fit-content;
+        }
+        
+        .hero-detail-info .roles-container {
+            width: 100%;
+            margin: 0.5rem auto 0;
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .role-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        
+        .faction-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        
+        .faction-badge.league {
+            background: #4169E1;
+            color: white;
+        }
+        
+        .rarity-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        
+        .rarity-mythic { background: #DC143C; color: white; }
+        .rarity-legendary { background: #FFD700; color: #000; }
+        .rarity-epic { background: #9370DB; color: white; }
+        
+        @media (max-width: 768px) {
+            .hero-detail-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .faction-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand"><h1>⚔️ TOP HEROES</h1></div>
+            <ul class="nav-menu">
+                <li><a href="../../../index.html" class="nav-link">Início</a></li>
+                <li><a href="../index.html" class="nav-link active">Wiki</a></li>
+                <li><a href="../../equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="../../equipes.html" class="nav-link">Equipes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="heroes-page">
+            <a href="../heroes.html" class="back-link">← Voltar para Heróis</a>
+            
+            <div class="faction-header">
+                <h1>🏰 League</h1>
+                <p>A facção do Reino Unido, focada em defesa e curas</p>
+            </div>
+            
+            <!-- PARAGON -->
+            <div class="hero-detail" id="paragon">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Paragon.webp" alt="Paragon">
+                    </div>
+                     <div class="hero-detail-info">
+                         <div class="hero-name-with-roles">
+                             <h2>Paragon</h2>
+                             <div class="roles-container">
+                                 <img src="../../../assets/roles/DPS.webp" alt="Damage Dealer" class="role-icon" title="Damage Dealer">
+                                 <img src="../../../assets/roles/Burst.webp" alt="Burst" class="role-icon" title="Burst Striker">
+                                 <img src="../../../assets/roles/Multi_Target.webp" alt="Multi Target" class="role-icon" title="Area Damage Dealer">
+                             </div>
+                         </div>
+                         <div class="hero-detail-badges">
+                             <span class="faction-badge league">League</span>
+                             <span class="rarity-badge rarity-mythic">Mítico</span>
+                         </div>
+                     </div>
+                </div>
+                
+                <!-- 1. Descrição -->
+                <div class="hero-main-section">
+                    <h3>📋 Descrição</h3>
+                    <p>Paragon é um dos primeiros heróis míticos da League obtidos no jogo. Ela se especializa em causar dano, dano explosivo e dano em múltiplos alvos. Normalmente substitui Bard em formações League de meio de jogo.</p>
+                </div>
+                
+                <!-- 2. Habilidades -->
+                <div class="hero-main-section">
+                    <h3>⚔️ Habilidades</h3>
+                    
+                    <div class="skill-item">
+                        <h4>Commanding Call</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Invoca uma onda de flechas, causando [x]% de dano aos inimigos em uma área retangular na frente. Paragon e aliados ganham um escudo igual a [x]% do Ataque por 5 segundos. O escudo absorve 40% do dano recebido. Cooldown: 10 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta absorção do escudo em 15%, dano da habilidade em 40% e área de dano em 25%.</li>
+                                <li><strong>⭐⭐:</strong> Valor de absorção do escudo aumenta em 15% e dano da habilidade aumenta em 40%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta absorção do escudo em 15%, dano da habilidade em 40%. Após conjurar, Paragon ganha redução de 20% de dano de habilidade por 5 segundos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Celestial Blade</h4>
+                        <span class="skill-type">Ultimate Skill</span>
+                        <p>Paragon empunha uma espada sagrada, ganhando imunidade a controles de massa por 1 segundo. A espada ataca todos os inimigos em uma grande área 3 vezes, causando um total de [x]% de dano e aplicando 3 pilhas de Burn. Concede 50% de redução de dano à Paragon por 1 segundo. Cooldown: 21 segundos. Burn: Causa 30% de dano por segundo por 8 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Dano da habilidade aumenta adicionalmente em 65%. Imunidade a efeitos de controle e duração dos efeitos de redução de dano aumentam em 1 segundo.</li>
+                                <li><strong>⭐⭐:</strong> Dano da habilidade aumenta em 65%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Dano da habilidade aumenta adicionalmente em 65%. Quando Celestial Blade derrota um alvo, seu cooldown é reduzido em 2 segundos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Final Verdict</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Todos os ataques da Paragon contra inimigos com HP maior que 70% causam um aumento no dano de [x]%.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta dano causado em 5%.</li>
+                                <li><strong>⭐⭐:</strong> Aumenta dano causado em 5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Bônus de dano aumenta adicionalmente em 5%. Quando há 4 ou mais heróis League na formação, o dano de Celestial Blade aumenta em 35%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Moral Fury</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Banner da Unidade: Aumenta o Ataque de todos os aliados em [x]% e causa [x]% de dano por segundo aos 3 inimigos mais próximos por 5 segundos. Cooldown: 15 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta bônus de dano da habilidade em 18.75% e efeito de buff em 2.5%.</li>
+                                <li><strong>⭐⭐:</strong> Aumenta bônus de dano da habilidade em 18.75% e efeito de buff em 2.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Dano da habilidade aumenta em 56.25%, efeito de bônus aumenta em 7.5%. Após conjurar, concede a todas as suas unidades um escudo de habilidade igual a 240% do Ataque da Paragon, que absorve 100% do dano de habilidade por 8 segundos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Ultimate Execution</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Encanta a espada longa com chamas, estendendo o alcance de ataque normal da Paragon e permitindo um ataque adicional em outro alvo. Aumenta o dano de ataque normal da Paragon em [x]%.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Bônus de dano de ataque normal aumenta em 2.5%.</li>
+                                <li><strong>⭐⭐:</strong> Bônus de dano de ataque normal aumenta em 2.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Bônus de dano de ataque normal aumenta em 2.5%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Conqueror</h4>
+                        <span class="skill-type">Habilidade Passiva de Campo</span>
+                        <p>Quando implantada, cada herói League lendário ou superior na equipe aumenta a efetividade de ataque do castelo em 12%. Se a formação tiver 6 heróis League, concede um adicional de 10% de taxa crítica de habilidade a toda a equipe.</p>
+                    </div>
+                </div>
+                
+                <!-- 3. Gear Skills -->
+                <div class="hero-main-section">
+                    <h3>⚙️ Gear Skills</h3>
+                    
+                    <div class="gear-skill-item">
+                        <h4>Everlasting Justice</h4>
+                        <p>Cada ataque regular tem 30% de chance de causar dano extra igual a 100% do Ataque máximo da Paragon, com o dano ricocheteando 2 vezes. (Heróis são priorizados como alvos)</p>
+                        <div class="gear-skill-levels">
+                            <strong>Níveis:</strong>
+                            <ul>
+                                <li><strong>Lv. 5:</strong> Dano da habilidade aumenta em 10%.</li>
+                                <li><strong>Lv. 10:</strong> Aumenta a chance de ativar em 10%, impulsiona o coeficiente de dano da habilidade em 50% e reduz a cura do alvo em 45% por 3 segundos.</li>
+                                <li><strong>Lv. 15:</strong> No início da batalha, impulsiona o Ataque de todos os seus heróis League em 10%</li>
+                                <li><strong>Lv. 20:</strong> Qualquer ataque da Paragon pode ativar este efeito (excluindo efeito de queima). Aumenta a chance de ativar em 10%, impulsiona o coeficiente de dano da habilidade em 70%, o dano pode ricochetear 2 vezes mais</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4. Heroes Bond -->
+                <div class="hero-main-section">
+                    <h3>💎 Heroes Bond</h3>
+                    <div class="bond-item">
+                        <strong>Astrologer + Adjudicator + Paragon</strong> → A equipe atual ganha Dano +10%
+                    </div>
+                    <div class="bond-item">
+                        <strong>Paragon + Rose Princess + Bishop</strong> → A equipe atual ganha Redução de Dano +15%
+                    </div>
+                    <div class="bond-item">
+                        <strong>Paragon + Pixie + Desert Prince</strong> → A equipe atual ganha Dano +15%
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BISHOP -->
+            <div class="hero-detail" id="bishop">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Bishop.webp" alt="Bishop">
+                    </div>
+                    <div class="hero-detail-info">
+                        <div class="hero-name-with-roles">
+                            <h2>Bishop</h2>
+                            <div class="roles-container">
+                                <img src="../../../assets/roles/DPS.webp" alt="Damage Dealer" class="role-icon" title="Damage Dealer">
+                                <img src="../../../assets/roles/Burst.webp" alt="Burst" class="role-icon" title="Burst Striker">
+                                <img src="../../../assets/roles/Controller.webp" alt="Control" class="role-icon" title="Controller">
+                            </div>
+                        </div>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1. Descrição -->
+                <div class="hero-main-section">
+                    <h3>📋 Descrição</h3>
+                    <p>Herói mítico da facção League, especializado em dano e controle de área com habilidades divinas poderosas.</p>
+                </div>
+                
+                <!-- 2. Habilidades -->
+                <div class="hero-main-section">
+                    <h3>⚔️ Habilidades</h3>
+                    
+                    <div class="skill-item">
+                        <h4>Fair Strike</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Invoca uma Espada da Justiça para atingir 3 inimigos aleatórios, causando % de dano igual ao Ataque e infligindo dano adicional de 200% a unidades invocadas. Cooldown: 8 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta dano da habilidade em 25%. O cooldown de Fair Strike é reduzido em 50% quando mata qualquer alvo. (Requer 1 estrela dourada)</li>
+                                <li><strong>⭐⭐:</strong> Dano da habilidade aumenta em 25% (Requer 1 estrela vermelha)</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta dano da habilidade em 25%. Fair Strike atinge +2 alvos adicionais. (Requer 1 estrela branca)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Solar Shield</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Ganha % Crítico e % Resistência Crítica. Quando implantado, o mesmo bônus se aplica a todos os heróis League (incluindo este herói).</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Ganha um adicional de 5% de Amplificação de Dano da Habilidade (Requer 3 estrelas douradas)</li>
+                                <li><strong>⭐⭐:</strong> Ganha um adicional de 10% de Amplificação de Dano da Habilidade (Requer 3 estrelas vermelhas)</li>
+                                <li><strong>⭐⭐⭐:</strong> Ganha um adicional de 10% de Amplificação de Dano da Habilidade (Requer 3 estrelas brancas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Sacred Burst</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Em batalhas com jogadores, sempre que uma unidade inimiga dentro de um determinado alcance morre, o herói desencadeia um ataque de área ampla que pode atingir até 4 alvos, causando dano igual a % do Ataque Máximo. Cooldown: 0.5 segundos.</p>
+                        <p><strong>Ataque Máximo:</strong> Durante as batalhas, quando um herói perde HP, levando a uma redução em suas tropas, seu Ataque diminui proporcionalmente. Ataque Máximo refere-se ao valor antes desse efeito.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta dano da habilidade em 27.5%. Cada Sacred Burst concede um escudo igual a 3.5% do HP máximo e absorve 60% do dano recebido por 6 segundos. Os efeitos podem empilhar. (Requer 5 estrelas douradas)</li>
+                                <li><strong>⭐⭐:</strong> Dano da habilidade aumenta em 27.5% (Requer 5 estrelas vermelhas)</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta dano da habilidade em 27.5%. Sacred Burst atinge +4 alvos adicionais. (Requer 3 estrelas brancas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Divine Descent</h4>
+                        <span class="skill-type">Ultimate Skill</span>
+                        <p>Causa dano igual a % do Ataque aos inimigos em uma área ampla, então entra no modo Possessão. O Ataque aumenta em %, e os ataques normais se tornam ataques de área. Dura 10 segundos. Cooldown: 21 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta dano da habilidade em 35%. Impulsiona dano da habilidade no modo Possessão em 30% (Requer 2 estrelas douradas)</li>
+                                <li><strong>⭐⭐:</strong> Dano da habilidade aumenta em 35%. (Requer 2 estrelas vermelhas)</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta dano da habilidade em 35%. No modo Possessão, o limite de cooldown de Fair Strike e Confession é reduzido em 50%. (Requer 5 estrelas brancas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Confession</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Inflige dano igual a % do Ataque em 1 inimigo aleatório e aplica um efeito Vulnerável por 3 segundos. Enquanto vulnerável, a Amplificação de Dano de Habilidade do alvo é reduzida em 50%. Cooldown: 13 segundos. Se o alvo for uma unidade invocada, o dano é aumentado em 1000% e 70% do cooldown é retornado.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta dano da habilidade em 40%. Também remove os efeitos de redução de dano do alvo. (Requer 4 estrelas douradas)</li>
+                                <li><strong>⭐⭐:</strong> Dano da habilidade aumenta em 40%. (Requer 4 estrelas vermelhas)</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta dano da habilidade em 40%. Atordoa o alvo por 2 segundos após Vulnerável terminar. (Requer 4 estrelas brancas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>War Messenger</h4>
+                        <span class="skill-type">Habilidade Passiva de Campo</span>
+                        <p>Aumenta o ataque dos soldados em % para cada 1000 soldados implantados. *Apenas um War Messenger funciona por equipe, seus efeitos não se acumulam.</p>
+                    </div>
+                </div>
+                
+                <!-- 3. Gear Skills -->
+                <div class="hero-main-section">
+                    <h3>⚙️ Gear Skills</h3>
+                    
+                    <div class="gear-skill-item">
+                        <h4>Libram of Light</h4>
+                        <p>Os ataques do Bishop aplicam uma marca de Luz Divina ao inimigo, reduzindo a defesa em 2% (até 600 por pilha), durando 8 segundos e empilhando até 10 vezes.</p>
+                        <div class="gear-skill-levels">
+                            <strong>Níveis:</strong>
+                            <ul>
+                                <li><strong>Lv. 5:</strong> Aumenta dano da habilidade para 10%</li>
+                                <li><strong>Lv. 10:</strong> Impulsiona redução de defesa em 2% (até 1500 por pilha). Todos os ataques do Bishop agora aplicam a marca de Luz Divina.</li>
+                                <li><strong>Lv. 15:</strong> No início da batalha, impulsiona o Ataque de todos os seus heróis League em 10%</li>
+                                <li><strong>Lv. 20:</strong> Impulsiona redução de defesa em 2% (até 2500 por pilha). Cada pilha de Luz Divina também reduz o atributo "aumento de dano" do inimigo em 2%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4. Heroes Bond -->
+                <div class="hero-main-section">
+                    <h3>💎 Heroes Bond</h3>
+                    <div class="bond-item">
+                        <strong>Paragon + Rose Princess + Bishop</strong> → A equipe atual ganha Redução de Dano +15%
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ROSE PRINCESS -->
+            <div class="hero-detail" id="rose_princess">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Rose_Princess.webp" alt="Rose Princess">
+                    </div>
+                    <div class="hero-detail-info">
+                        <div class="hero-name-with-roles">
+                            <h2>Rose Princess</h2>
+                            <div class="roles-container">
+                                <img src="../../../assets/roles/Tank.webp" alt="Tank" class="role-icon" title="Guardian">
+                                <img src="../../../assets/roles/Burst.webp" alt="Burst" class="role-icon" title="Burst Striker">
+                                <img src="../../../assets/roles/Controller.webp" alt="Control" class="role-icon" title="Controller">
+                            </div>
+                        </div>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1. Descrição -->
+                <div class="hero-main-section">
+                    <h3>📋 Descrição</h3>
+                    <p>Herói mítico da facção League, especializado em defesa e suporte com habilidades de coragem e ressentimento.</p>
+                </div>
+                
+                <!-- 2. Habilidades -->
+                <div class="hero-main-section">
+                    <h3>⚔️ Habilidades</h3>
+                    
+                    <div class="skill-item">
+                        <h4>Be Brave</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Rose Princess ganha 6 pilhas de 'Courage', cada pilha fornecendo 5% de redução de dano. Receber dano reduz 1 pilha de 'Courage' e ganha 1 pilha de 'Resentment', cooldown: 6 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Ganha 1 pilha(s) de 'Courage'. Cada vez que 'Courage' é deduzido, recupera 3% do HP máximo.</li>
+                                <li><strong>⭐⭐:</strong> Ganha 1 pilha(s) de 'Courage'.</li>
+                                <li><strong>⭐⭐⭐:</strong> Ganha 2 pilha(s) de 'Courage'. Ao liberar, ganha imediatamente 2 pilha(s) de 'Resentment'.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Thorns</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>A cada 2 segundos, causa dano igual a 3% do HP máximo da Rose Princess aos inimigos ao redor. Cada pilha de 'Resentment' aumenta este dano em 6%.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta a proporção de HP máximo em 0.5%.</li>
+                                <li><strong>⭐⭐:</strong> Aumenta a proporção de HP máximo em 0.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta o próprio HP em 25%. No início da batalha, concede 20% de Redução de Dano de Queima a 2 heróis aliados aleatórios. Se houver 6 heróis League na equipe, todos os heróis recebem Redução de Dano de Queima.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Roses</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Em batalha, ganha 1 pilha(s) de "Courage" para cada unidade inimiga que morre. Aumenta HP em 15%.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Ganha 1 pilha(s) de "Courage".</li>
+                                <li><strong>⭐⭐:</strong> Ganha 1 pilha(s) de "Courage".</li>
+                                <li><strong>⭐⭐⭐:</strong> Para cada unidade inimiga que morre, aumenta o próprio Ataque em 10%, durando 6 segundos, empilhável até 3 vezes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Bloom</h4>
+                        <span class="skill-type">Ultimate Skill</span>
+                        <p>Consome todas as pilhas de 'Resentment' para liberar uma onda de choque com uma espada grande, causando 35% de dano de ataque multiplicado pelo número de pilhas de 'Resentment' e aplicando um debuff de proibição de cura de 3 segundos, com cooldown de 15 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Após liberar, o HP máximo e Ataque da Rose Princess aumentam em 30%, durando 8 segundos.</li>
+                                <li><strong>⭐⭐:</strong> Após liberar, retém um certo número de pilhas de "Resentment", até no máximo 6 pilhas.</li>
+                                <li><strong>⭐⭐⭐:</strong> Quando o HP está abaixo de 40%, o ataque da ultimate skill ganha um bônus de 100% de dano para esta vez.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Weapon Up!</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Ao receber dano, uma porção do dano é reduzido, até no máximo de 14% do Ataque da Rose Princess cada vez.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta o coeficiente de Ataque de redução de dano em 1%. Para cada 5 acertos recebidos, Rose Princess causa dano de área igual a 200% de seu Ataque na frente dela.</li>
+                                <li><strong>⭐⭐:</strong> Aumenta o coeficiente de Ataque de redução de dano em 1%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta o coeficiente de Ataque de redução de dano em 3%, e receber dano adicionalmente inflige um efeito de silêncio por 1 segundo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Guardian Messenger</h4>
+                        <span class="skill-type">Habilidade Passiva de Campo</span>
+                        <p>Aumenta o HP dos soldados em 12% para cada 1000 soldados implantados. *Apenas um Guardian Messenger funciona por equipe, seus efeitos não se acumulam.</p>
+                    </div>
+                </div>
+                
+                <!-- 3. Gear Skills -->
+                <div class="hero-main-section">
+                    <h3>⚙️ Gear Skills</h3>
+                    
+                    <div class="gear-skill-item">
+                        <h4>Royalthorn Blade</h4>
+                        <p>Exclusivo para Rose Princess</p>
+                        <div class="gear-skill-levels">
+                            <strong>Resolute Shield:</strong> Lança um escudo igual a 5% do HP máximo para todos os companheiros. Ele absorve 65% de cada golpe, dura 8 segundos, empilha até 3 vezes, os heróis League ganham o dobro do valor do escudo e tem cooldown de 12 segundos.
+                            <ul>
+                                <li><strong>Lv. 5:</strong> O Dano Crítico de Habilidade deste herói é aumentado em 15%</li>
+                                <li><strong>Lv. 10:</strong> Quando um herói ou unidade invocada inimiga morre por perto, [Resolute Shield] é acionado instantaneamente.</li>
+                                <li><strong>Lv. 15:</strong> No início da batalha, impulsiona o HP de todos os seus heróis League em 20%</li>
+                                <li><strong>Lv. 20:</strong> Impulsiona o valor do escudo em 5%. Enquanto ativo, concede 20% de resistência crítica e 15% de redução de dano crítico.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4. Heroes Bond -->
+                <div class="hero-main-section">
+                    <h3>💎 Heroes Bond</h3>
+                    <div class="bond-item">
+                        <strong>Paragon + Rose Princess + Bishop</strong> → A equipe atual ganha Redução de Dano +15%
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PYROMANCER -->
+            <div class="hero-detail" id="pyromancer">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Pyromancer.webp" alt="Pyromancer">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Pyromancer</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção League, especializado em dano mágico de fogo.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ADJUDICATOR -->
+            <div class="hero-detail" id="adjudicator">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Adjudicator.webp" alt="Adjudicator">
+                    </div>
+                    <div class="hero-detail-info">
+                        <div class="hero-name-with-roles">
+                            <h2>Adjudicator</h2>
+                            <div class="roles-container">
+                                <img src="../../../assets/roles/Tank.webp" alt="Tank" class="role-icon" title="Guardian">
+                                <img src="../../../assets/roles/Sustain.webp" alt="Sustainer" class="role-icon" title="Sustainer">
+                                <img src="../../../assets/roles/Buff.webp" alt="Buff" class="role-icon" title="Buffer">
+                            </div>
+                        </div>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1. Descrição -->
+                <div class="hero-main-section">
+                    <h3>📋 Descrição</h3>
+                    <p>Adjudicator é o herói tank lendário na facção League, especializado em tankar, combate sustentado e buffs. Fragmentos de Herói desbloqueiam na Taverna no recrutamento Lv. 17.</p>
+                </div>
+                
+                <!-- 2. Habilidades -->
+                <div class="hero-main-section">
+                    <h3>⚔️ Habilidades</h3>
+                    
+                    <div class="skill-item">
+                        <h4>Guardian Discipline</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Realiza um canto, causando 93% de dano em área e atordoando inimigos próximos por 0.5s. Concede 39.5% de Redução de Dano e imunidade a efeitos de controle por 5s. Cooldown: 8s.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> +15% Dano da Habilidade, +1.5% de Redução de Dano, e adiciona um Escudo = 120% do ATK absorvendo 50% do dano.</li>
+                                <li><strong>⭐⭐:</strong> +15% Dano da Habilidade / +1.5% Redução de Dano (Requer Herói ★★)</li>
+                                <li><strong>⭐⭐⭐:</strong> Dobra a efetividade do escudo. (Requer Herói ★★★)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Shield of Faith</h4>
+                        <span class="skill-type">Ultimate Skill</span>
+                        <p>Invoca um escudo massivo que cobre o herói e aliados próximos, absorvendo 315% do HP máximo por 7 segundos. Cada vez que o herói recebe dano, 70% dele é absorvido pelo escudo. Quando o escudo expira, causa 140% de dano em área. Cooldown: 15s.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta a absorção em +35% e concede +15% de dano às unidades aliadas dentro do alcance.</li>
+                                <li><strong>⭐⭐:</strong> Absorção +35%. (Requer Herói ★★★)</li>
+                                <li><strong>⭐⭐⭐:</strong> Absorção +35% e reduz dano de habilidade inimiga em 15% dentro do alcance. (Requer Herói ★★★★)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Indomitable</h4>
+                        <span class="skill-type">Habilidade Passiva de Entrada</span>
+                        <p>Quando Adjudicator entra em batalha, toda a fila ganha 6% de Redução de Dano.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> +2% de efeito bônus</li>
+                                <li><strong>⭐⭐:</strong> +3% de efeito bônus (Requer Herói ★★★)</li>
+                                <li><strong>⭐⭐⭐:</strong> +3% de efeito bônus (Requer Herói ★★★)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Judgment</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Ataca inimigos à frente, causando 132.5% de dano, atordoando-os por 0.5s e curando 5% do HP máximo. Cooldown: 12s.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> +22.5% Dano da Habilidade e dobra os efeitos de cura das habilidades.</li>
+                                <li><strong>⭐⭐:</strong> +22.5% Dano da Habilidade (Requer Herói ★★★★)</li>
+                                <li><strong>⭐⭐⭐:</strong> +22.5% Dano da Habilidade e adiciona um Escudo = 180% do ATK que dura 10s e absorve 50% do dano. (Requer Herói ★★★☆)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Eternal</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Concede 2 segundos de Invencibilidade quando próximo da morte. Durante a invencibilidade: HP não cai abaixo de 1, imune a efeitos de controle, todo dano recebido se torna 1. Cooldown: 300s.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta duração em +0.5s</li>
+                                <li><strong>⭐⭐:</strong> Adicional +0.5s de duração (Requer Herói ★★★★★)</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta duração em +1s e redefine o cooldown de Guardian Discipline e Judgment quando HP cai abaixo de 30%. (Dispara uma vez a cada 60s) (Requer Herói ★★★☆)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3. Gear Skills -->
+                <div class="hero-main-section">
+                    <h3>⚙️ Gear Skills</h3>
+                    
+                    <div class="gear-skill-item">
+                        <h4>Judgment</h4>
+                        <p>Exclusivo para Adjudicator</p>
+                        <div class="gear-skill-levels">
+                            <strong>Justice Field:</strong> Quando o Adjudicator ataca, uma aura se forma ao redor deste herói, reduzindo o dano recebido para seus heróis no alcance em 6% do Ataque, durando 3 segundos com cooldown de 10 segundos.
+                            <ul>
+                                <li><strong>Lv. 5:</strong> Reduz Dano de Ataques Normais em 15%.</li>
+                                <li><strong>Lv. 10:</strong> Justice Field dura 2 segundos a mais, impulsiona redução de dano em 6%.</li>
+                                <li><strong>Lv. 15:</strong> No início da batalha, impulsiona a Redução de Dano de todos os seus heróis League em 4% e HP em 10%.</li>
+                                <li><strong>Lv. 20:</strong> Reduz cooldown de Justice Field em 1 segundo, expande seu alcance e causa dano igual a 120% do Ataque por segundo aos inimigos dentro do alcance.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4. Heroes Bond -->
+                <div class="hero-main-section">
+                    <h3>💎 Heroes Bond</h3>
+                    <div class="bond-item">
+                        <strong>Astrologer + Adjudicator + Paragon</strong> → A equipe atual ganha Dano +10%
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HOSTESS -->
+            <div class="hero-detail" id="hostess">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Hostess.webp" alt="Hostess">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Hostess</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção League, especializada em controle e debuff de inimigos.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NUN -->
+            <div class="hero-detail" id="nun">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Nun.webp" alt="Nun">
+                    </div>
+                    <div class="hero-detail-info">
+                        <div class="hero-name-with-roles">
+                            <h2>Nun</h2>
+                            <div class="roles-container">
+                                <img src="../../../assets/roles/Healer.webp" alt="Healer" class="role-icon" title="Healer">
+                                <img src="../../../assets/roles/Buff.webp" alt="Buff" class="role-icon" title="Buffer">
+                                <img src="../../../assets/roles/Single_target.webp" alt="Single Target" class="role-icon" title="Precision Striker">
+                            </div>
+                        </div>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1. Descrição -->
+                <div class="hero-main-section">
+                    <h3>📋 Descrição</h3>
+                    <p>Nun é o herói curandeiro da categoria Lendária na facção League, especializada em cura, buffs e dano/cura em alvo único. Desbloqueia fragmentos na Taverna no recrutamento Lv. 16.</p>
+                </div>
+                
+                <!-- 2. Habilidades -->
+                <div class="hero-main-section">
+                    <h3>⚔️ Habilidades</h3>
+                    
+                    <div class="skill-item">
+                        <h4>Therapy</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Cura um único aliado, restaurando o HP do alvo igual a [x]% do Ataque da Nun e aumentando a cura recebida do alvo em 20% pelos próximos 5 segundos. Cooldown: 8 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta a recuperação de HP em 67.5% e concede ao alvo um escudo igual a 200% do Ataque da Nun. O escudo absorve 50% de cada dano recebido e dura 4 segundos.</li>
+                                <li><strong>⭐⭐:</strong> Recuperação de HP aumenta em 67.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Recuperação de HP aumentada em 67.5%. Aumenta o número de alvos da habilidade em 1.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Holy Grace</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Concede [x]% de redução de dano a este herói.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta o bônus de efeito em 1.5%.</li>
+                                <li><strong>⭐⭐:</strong> Aumenta o bônus de efeito em 1.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Melhora os efeitos de impulso em 1.5%, a Nun cura todos os seus heróis a cada 2 segundos, restaurando HP igual a 80% de seu Ataque.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Sacred Union</h4>
+                        <span class="skill-type">Habilidade Passiva</span>
+                        <p>Quando implantada, aumenta o HP máximo para personagens League na Fila em [x]%.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Aumenta o bônus de efeito em 2.5%.</li>
+                                <li><strong>⭐⭐:</strong> Aumenta o bônus de efeito em 2.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Melhora os efeitos de impulso em 2.5%, quando implantada, concede um adicional de 10% de aumento de dano aos seus heróis League.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Radiant Song</h4>
+                        <span class="skill-type">Ultimate Skill</span>
+                        <p>Aumenta o HP Máximo de todos os aliados em [x]% e redução de dano final em 12% por 8 segundos. Cooldown: 24 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Bônus de HP Máximo aumentado em 2.5% e adicional de 5% de Redução de Dano por 5 segundos.</li>
+                                <li><strong>⭐⭐:</strong> Bônus de HP Máximo aumentado em 2.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Aumenta bônus de HP Máximo em 2.5%, adiciona um Escudo igual a 20% do HP da Nun por 6 segundos. O escudo absorve 50% do dano recebido cada vez.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <h4>Prayer of Healing</h4>
+                        <span class="skill-type">Habilidade Normal</span>
+                        <p>Libera enquanto move, cura o HP de todos os aliados igual a [x]% do Ataque da Nun. Cooldown: 15 segundos.</p>
+                        <div class="improvements">
+                            <strong>Melhorias:</strong>
+                            <ul>
+                                <li><strong>⭐:</strong> Recuperação de HP aumenta em 87.5%.</li>
+                                <li><strong>⭐⭐:</strong> Recuperação de HP aumenta em 87.5%.</li>
+                                <li><strong>⭐⭐⭐:</strong> Recuperação de HP aumenta em 87.5%, adicionalmente aumenta a Redução de Dano do alvo em 12% por 5 segundos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3. Gear Skills -->
+                <div class="hero-main-section">
+                    <h3>⚙️ Gear Skills</h3>
+                    
+                    <div class="gear-skill-item">
+                        <h4>Blessing</h4>
+                        <p>Exclusivo para Nun</p>
+                        <div class="gear-skill-levels">
+                            <strong>Protective Blessing:</strong> A cada 8 segundos, os 1 aliados com maior ataque recebem um escudo igual a 15% do HP máximo da Nun, absorvendo 100% do dano de habilidade. Quando reaplicado, o escudo é atualizado, e permanece indefinidamente se não for quebrado.
+                            <ul>
+                                <li><strong>Lv. 5:</strong> No início da batalha, impulsiona o HP deste herói em 20%</li>
+                                <li><strong>Lv. 10:</strong> Adiciona mais 1 herói à bênção e impulsiona a absorção do escudo em 5%</li>
+                                <li><strong>Lv. 15:</strong> No início da batalha, impulsiona o Ataque de todos os seus heróis League em 5% e HP em 10%</li>
+                                <li><strong>Lv. 20:</strong> Escudo "Blessing" absorve 10% mais dano e aumenta o dano de habilidade do herói em 25% enquanto ativo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4. Heroes Bond -->
+                <div class="hero-main-section">
+                    <h3>💎 Heroes Bond</h3>
+                    <div class="bond-item">
+                        <strong>Pyromancer + Secret Keeper + Nun</strong> → A equipe atual ganha Redução de Dano +10%
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BARD -->
+            <div class="hero-detail" id="bard">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Bard.webp" alt="Bard">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Bard</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção League, especializado em buff e suporte através de música.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECRET KEEPER -->
+            <div class="hero-detail" id="secret_keeper">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Secret_Keeper.webp" alt="Secret Keeper">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Secret Keeper</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção League, guardião dos segredos com poderes místicos.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ASTROLOGER -->
+            <div class="hero-detail" id="astrologer">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Astrologer.webp" alt="Astrologer">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Astrologer</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção League, especializado em magia estelar e previsões.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- KNIGHT -->
+            <div class="hero-detail" id="knight">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Knight.webp" alt="Knight">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Knight</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-epic">Épico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói épico da facção League, cavaleiro corajoso especializado em defesa.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MINISTER -->
+            <div class="hero-detail" id="minister">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Minister.webp" alt="Minister">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Minister</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-epic">Épico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói épico da facção League, ministro real com poderes de suporte.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RANGER -->
+            <div class="hero-detail" id="ranger">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Ranger.webp" alt="Ranger">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Ranger</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge league">League</span>
+                            <span class="rarity-badge rarity-epic">Épico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói épico da facção League, guardião das florestas com habilidades de longa distância.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="../index.html">Wiki</a></li>
+                        <li><a href="../../equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../../equipes.html">Equipes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/script.js"></script>
+</body>
+</html>
+

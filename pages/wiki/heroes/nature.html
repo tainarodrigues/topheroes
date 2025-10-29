@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature - Wiki Top Heroes</title>
+    <link rel="stylesheet" href="../../../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .heroes-page { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: var(--transition-medium);
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--secondary-accent);
+        }
+        
+        .faction-header {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .faction-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .faction-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .hero-detail {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .hero-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .hero-detail-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: var(--gradient-card);
+            border-radius: 15px;
+        }
+        
+        .hero-detail-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .hero-detail-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .hero-detail-info h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-detail-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .hero-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .hero-section {
+            background: var(--gradient-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        
+        .hero-section h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .hero-section p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .hero-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .hero-section ul li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .hero-section ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .faction-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        
+        .faction-badge.nature {
+            background: #228B22;
+            color: white;
+        }
+        
+        .rarity-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        
+        .rarity-mythic { background: #DC143C; color: white; }
+        .rarity-legendary { background: #FFD700; color: #000; }
+        
+        @media (max-width: 768px) {
+            .hero-detail-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .faction-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand"><h1>⚔️ TOP HEROES</h1></div>
+            <ul class="nav-menu">
+                <li><a href="../../../index.html" class="nav-link">Início</a></li>
+                <li><a href="../index.html" class="nav-link active">Wiki</a></li>
+                <li><a href="../../equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="../../equipes.html" class="nav-link">Equipes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="heroes-page">
+            <a href="../heroes.html" class="back-link">← Voltar para Heróis</a>
+            
+            <div class="faction-header">
+                <h1>🌳 Nature</h1>
+                <p>A facção da natureza, focada em cura e regeneração</p>
+            </div>
+            
+            <!-- MONK -->
+            <div class="hero-detail" id="monk">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Monk.webp" alt="Monk">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Monk</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói mítico da facção Nature, monge sábio especializado em cura e suporte espiritual.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TIDECALLER -->
+            <div class="hero-detail" id="tidecaller">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Tidecaller.webp" alt="Tidecaller">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Tidecaller</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-mythic">Mítico</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói mítico da facção Nature, controlador das marés com poderes aquáticos.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TREEGUARD -->
+            <div class="hero-detail" id="treeguard">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Treeguard.webp" alt="Treeguard">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Treeguard</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, guardião da floresta com poderes naturais.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WINDWALKER -->
+            <div class="hero-detail" id="windwalker">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Windwalker.webp" alt="Windwalker">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Windwalker</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, guerreiro do vento com alta mobilidade.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WATCHER -->
+            <div class="hero-detail" id="watcher">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Watcher.webp" alt="Watcher">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Watcher</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, observador atento com visão aguçada.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SAGE -->
+            <div class="hero-detail" id="sage">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Sage.webp" alt="Sage">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Sage</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, sábio ancião com conhecimentos ancestrais.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOREST MAIDEN -->
+            <div class="hero-detail" id="forest_maiden">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Forest_Maiden.webp" alt="Forest Maiden">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Forest Maiden</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, donzela da floresta com poderes de cura.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DRUID -->
+            <div class="hero-detail" id="druid">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Druid.webp" alt="Druid">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Druid</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, druida com conexão profunda com a natureza.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- STONEMASON -->
+            <div class="hero-detail" id="stonemason">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Stonemanson.webp" alt="Stonemason">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Stonemason</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, construtor com habilidades de controle de terra.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PIXIE -->
+            <div class="hero-detail" id="pixie">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Pixie.webp" alt="Pixie">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Pixie</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, fada mágica com poderes naturais encantados.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PATHFINDER -->
+            <div class="hero-detail" id="pathfinder">
+                <div class="hero-detail-header">
+                    <div class="hero-detail-avatar">
+                        <img src="../../../assets/heroes/Pathfinder.webp" alt="Pathfinder">
+                    </div>
+                    <div class="hero-detail-info">
+                        <h2>Pathfinder</h2>
+                        <div class="hero-detail-badges">
+                            <span class="faction-badge nature">Nature</span>
+                            <span class="rarity-badge rarity-legendary">Lendário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-detail-content">
+                    <div class="hero-section">
+                        <h3>📋 Descrição</h3>
+                        <p>Herói lendário da facção Nature, explorador habilidoso com conhecimento das florestas.</p>
+                    </div>
+                    <div class="hero-section">
+                        <h3>⚔️ Habilidades</h3>
+                        <ul>
+                            <li><strong>Ataque:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Especial:</strong> [Descrição da habilidade]</li>
+                            <li><strong>Passiva:</strong> [Descrição da habilidade]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="../index.html">Wiki</a></li>
+                        <li><a href="../../equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../../equipes.html">Equipes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../../scripts/script.js"></script>
+</body>
+</html>
+

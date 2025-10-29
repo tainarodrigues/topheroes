@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Top Heroes</title>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .wiki-home {
+            padding: 2rem;
+        }
+
+        .wiki-hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--gradient-card);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .wiki-hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .wiki-hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .wiki-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .wiki-category {
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .wiki-category:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-large);
+            border-color: var(--accent-color);
+        }
+
+        .wiki-category-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .wiki-category h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .wiki-category p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .wiki-category-topics {
+            list-style: none;
+            padding: 0;
+        }
+
+        .wiki-category-topics li {
+            padding: 0.8rem;
+            background: var(--darker-bg);
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            transition: var(--transition-medium);
+        }
+
+        .wiki-category-topics li:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-left-color: var(--secondary-accent);
+        }
+
+        .wiki-category-topics a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wiki-category-topics a:hover {
+            color: var(--accent-color);
+        }
+
+        .topic-arrow {
+            color: var(--accent-color);
+        }
+
+        .quick-links {
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .quick-links h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-link-card {
+            background: var(--darker-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-medium);
+            text-decoration: none;
+            color: var(--text-light);
+            display: block;
+        }
+
+        .quick-link-card:hover {
+            border-color: var(--accent-color);
+            transform: translateX(10px);
+        }
+
+        .quick-link-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .quick-link-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .search-section {
+            background: var(--gradient-card);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            background: var(--darker-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .search-box button {
+            padding: 1rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .wiki-hero h1 {
+                font-size: 2rem;
+            }
+
+            .wiki-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>⚔️ TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html" class="nav-link">Início</a></li>
+                <li><a href="index.html" class="nav-link active">Wiki</a></li>
+                <li><a href="../equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="../equipes.html" class="nav-link">Equipes</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="wiki-home">
+            <!-- Hero Section -->
+            <div class="wiki-hero">
+                <h1>📚 Wiki de Top Heroes</h1>
+                <p>Bem-vindo à enciclopédia completa de Top Heroes! Aqui você encontra todas as informações sobre heróis, itens, habilidades, facções e muito mais.</p>
+            </div>
+
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="wiki-search" placeholder="Buscar na wiki...">
+                    <button class="btn btn-primary">🔍 Buscar</button>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <h2>⚡ Acesso Rápido</h2>
+                <div class="quick-links-grid">
+                    <a href="heroes.html" class="quick-link-card">
+                        <h3>🛡️ Todos os Heróis</h3>
+                        <p>Lista completa de todos os 46 heróis do jogo</p>
+                    </a>
+                    <a href="factions.html" class="quick-link-card">
+                        <h3>⚔️ Sistema de Facções</h3>
+                        <p>Entenda League, Nature e Horde</p>
+                    </a>
+                    <a href="rarities.html" class="quick-link-card">
+                        <h3>💎 Níveis de Raridade</h3>
+                        <p>Mítico, Lendário, Épico e Raro</p>
+                    </a>
+                    <a href="items.html" class="quick-link-card">
+                        <h3>⚔️ Itens e Equipamentos</h3>
+                        <p>Armas, armaduras e acessórios</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="wiki-categories">
+                <!-- Heroes Category -->
+                <div class="wiki-category">
+                    <div class="wiki-category-icon">🛡️</div>
+                    <h2>Heróis</h2>
+                    <p>Explore todos os heróis do jogo, suas habilidades, estatísticas e informações detalhadas.</p>
+                    <ul class="wiki-category-topics">
+                        <li><a href="heroes/league.html">League (15 heróis) <span class="topic-arrow">→</span></a></li>
+                        <li><a href="heroes/nature.html">Nature (15 heróis) <span class="topic-arrow">→</span></a></li>
+                        <li><a href="heroes/horde.html">Horde (16 heróis) <span class="topic-arrow">→</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Factions Category -->
+                <div class="wiki-category">
+                    <div class="wiki-category-icon">⚔️</div>
+                    <h2>Facções</h2>
+                    <p>Entenda o sistema de facções e suas vantagens e desvantagens no combate.</p>
+                    <ul class="wiki-category-topics">
+                        <li><a href="factions.html">Sistema de Facções <span class="topic-arrow">→</span></a></li>
+                        <li><a href="factions.html#advantages">Tabela de Vantagens <span class="topic-arrow">→</span></a></li>
+                        <li><a href="strategies.html">Estratégias por Facção <span class="topic-arrow">→</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Items Category -->
+                <div class="wiki-category">
+                    <div class="wiki-category-icon">⚔️</div>
+                    <h2>Itens</h2>
+                    <p>Descubra armas, armaduras, acessórios e materiais de crafting disponíveis no jogo.</p>
+                    <ul class="wiki-category-topics">
+                        <li><a href="items.html#weapons">Armas <span class="topic-arrow">→</span></a></li>
+                        <li><a href="items.html#armor">Armaduras <span class="topic-arrow">→</span></a></li>
+                        <li><a href="items.html#accessories">Acessórios <span class="topic-arrow">→</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Game Mechanics Category -->
+                <div class="wiki-category">
+                    <div class="wiki-category-icon">🎮</div>
+                    <h2>Mecânicas do Jogo</h2>
+                    <p>Aprenda sobre habilidades, combate, progressão e outros aspectos do jogo.</p>
+                    <ul class="wiki-category-topics">
+                        <li><a href="mechanics.html">Como Jogar <span class="topic-arrow">→</span></a></li>
+                        <li><a href="combat.html">Sistema de Combate <span class="topic-arrow">→</span></a></li>
+                        <li><a href="progression.html">Progressão e Levels <span class="topic-arrow">→</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Wiki</a></li>
+                        <li><a href="../equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../equipes.html">Equipes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../scripts/script.js"></script>
+</body>
+</html>
