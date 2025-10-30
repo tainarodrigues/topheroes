@@ -9,7 +9,7 @@ topheroes/
 ├── index.html              # Página inicial
 ├── pages/                  # Páginas do site
 │   ├── equipamentos.html  # Guia de equipamentos
-│   └── equipes.html       # Guia de equipes
+│   └── filas.html         # Guia de filas
 ├── styles/                # Arquivos de estilo CSS
 ├── scripts/               # Arquivos JavaScript
 └── assets/                # Imagens e recursos

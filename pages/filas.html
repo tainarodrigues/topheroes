@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Filas - Top Heroes</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .queue-builder {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .queue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .queue-header h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin: 0;
+        }
+
+        .queue-power {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .faction-aura {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faction-aura-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .faction-aura-info h4 {
+            margin: 0;
+            color: var(--accent-color);
+        }
+
+        .faction-aura-info p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .heroes-formation {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .formation-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .formation-row.front-row {
+            grid-column: 1 / -1;
+            justify-content: flex-start;
+        }
+
+        .formation-row.mid-row {
+            grid-column: 1 / -1;
+            justify-content: flex-start;
+        }
+
+        .formation-row.back-row {
+            grid-column: 1 / -1;
+            justify-content: flex-start;
+        }
+
+        .hero-slot {
+            width: 120px;
+            height: 120px;
+            background: var(--darker-bg);
+            border: 3px solid var(--border-color);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+
+        .hero-slot:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .hero-slot .hero-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            background: var(--gradient-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .hero-slot .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-slot .hero-name {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--darker-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            max-width: 110px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .row-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .relics-section {
+            margin-bottom: 2rem;
+        }
+
+        .relics-section h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .relics-grid {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .relic-slot {
+            flex: 1;
+            height: 100px;
+            background: var(--darker-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+
+        .relic-slot:hover {
+            border-color: var(--accent-color);
+        }
+
+        .relic-slot .relic-icon {
+            font-size: 3rem;
+        }
+
+        .relic-slot .relic-name {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .relic-type {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: var(--accent-color);
+            color: var(--darker-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            font-size: 0.6rem;
+            font-weight: bold;
+        }
+
+        .other-components {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .component-slot {
+            background: var(--darker-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+
+        .component-slot:hover {
+            border-color: var(--accent-color);
+        }
+
+        .component-label {
+            background: rgba(220, 38, 38, 0.9);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .component-image {
+            width: 100%;
+            height: 120px;
+            background: var(--gradient-card);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .component-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .edit-icon {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .faction-bonuses {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .faction-bonuses h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .bonus-tier {
+            background: var(--darker-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .bonus-tier h3 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .tier-badge.tier-1 {
+            background: linear-gradient(135deg, #8b4513 0%, #cd853f 100%);
+            color: white;
+        }
+
+        .tier-badge.tier-2 {
+            background: linear-gradient(135deg, #696969 0%, #a9a9a9 100%);
+            color: white;
+        }
+
+        .tier-badge.tier-3 {
+            background: linear-gradient(135deg, #4a90e2 0%, #7bb3f0 100%);
+            color: white;
+        }
+
+        .bonus-tier p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .bonus-tier ul {
+            margin: 0.5rem 0 0 1.5rem;
+            color: var(--text-light);
+        }
+
+        .queue-examples {
+            margin-top: 3rem;
+        }
+
+        .queue-examples h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        .example-queue {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .example-queue h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .example-queue p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .heroes-formation {
+                grid-template-columns: 1fr;
+            }
+
+            .formation-row {
+                justify-content: center;
+            }
+
+            .other-components {
+                grid-template-columns: 1fr;
+            }
+
+            .relics-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>⚔️ TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Início</a></li>
+                <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="filas.html" class="nav-link active">Filas</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="page-header">
+            <h1 class="page-title">Guia de Filas</h1>
+            <p class="page-subtitle">Construa suas filas com 6 heróis, 3 relíquias e componentes adicionais</p>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+
+                <!-- Bônus de Facção -->
+                <div class="faction-bonuses">
+                    <h2>💎 Bônus de Facção (Faction Aura)</h2>
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                        Quando você coloca heróis da mesma facção em sua fila, eles recebem bônus especiais. 
+                        Quanto mais heróis da mesma facção (mínimo 4 Lendários ou superior), maiores os benefícios!
+                    </p>
+
+                    <div class="bonus-tier">
+                        <h3>
+                            <span class="tier-badge tier-1">1</span>
+                            <span>Tier 1: 4 Heróis Lendários da Mesma Facção</span>
+                        </h3>
+                        <p><strong>Requisito:</strong> Deploying 4 Legendary heroes (or better rarity) from the same faction</p>
+                        <p><strong>Bônus para todos os aliados:</strong></p>
+                        <ul>
+                            <li>Queue Attack +15%</li>
+                            <li>Queue HP +15%</li>
+                            <li>Faction with the highest hero count reduces counter damage +5%</li>
+                        </ul>
+                    </div>
+
+                    <div class="bonus-tier">
+                        <h3>
+                            <span class="tier-badge tier-2">2</span>
+                            <span>Tier 2: 5 Heróis Lendários da Mesma Facção</span>
+                        </h3>
+                        <p><strong>Requisito:</strong> Deploying 5 Legendary heroes (or better rarity) from the same faction</p>
+                        <p><strong>Bônus para todos os aliados:</strong></p>
+                        <ul>
+                            <li>Queue Attack +25%</li>
+                            <li>Queue HP +25%</li>
+                            <li>Faction with the highest hero count reduces counter damage +10%</li>
+                        </ul>
+                    </div>
+
+                    <div class="bonus-tier">
+                        <h3>
+                            <span class="tier-badge tier-3">3</span>
+                            <span>Tier 3: 6 Heróis Lendários da Mesma Facção</span>
+                        </h3>
+                        <p><strong>Requisito:</strong> Deploying 6 Legendary heroes (or better rarity) from the same faction</p>
+                        <p><strong>Bônus para todos os aliados:</strong></p>
+                        <ul>
+                            <li>Queue Attack +35%</li>
+                            <li>Queue HP +35%</li>
+                            <li>League reduz dano recebido de Nature +20%</li>
+                            <li>Nature reduz dano recebido de Horde +20%</li>
+                            <li>Horde reduz dano recebido de League +20%</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--darker-bg); padding: 1.5rem; border-radius: 15px; margin-top: 2rem;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">⚠️ Nota Importante</h4>
+                        <p style="color: var(--text-light); margin: 0;">
+                            Os bônus de facção também recebem capacidades aprimoradas de countering durante a temporada. 
+                            <strong>Esta aura só afeta heróis na sua fila atual.</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Exemplos de Filas -->
+                <div class="queue-examples">
+                    <h2>📚 Meta Atual - League</h2>
+                    
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                        As composições abaixo mostram a progressão ideal de heróis League durante o jogo. 
+                        Mantenha 6 heróis da mesma facção para ativar os bônus máximos de Tier 3 (+35% Ataque e HP + redução de dano de facções específicas).
+                    </p>
+
+                    <!-- Grid com as 3 formações -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;">
+                        <!-- Early Game -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">🌱 Early Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Bard.webp" alt="Bard" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Nun.webp" alt="Nun" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Pyromancer.webp" alt="Pyromancer" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Astrologer.webp" alt="Astrologer" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Secret_Keeper.webp" alt="Secret Keeper" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Hostess.webp" alt="Hostess" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mid Game -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">⚔️ Mid Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Paragon.webp" alt="Paragon" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Nun.webp" alt="Nun" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Pyromancer.webp" alt="Pyromancer" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Astrologer.webp" alt="Astrologer" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Adjudicator.webp" alt="Adjudicator" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Secret_Keeper.webp" alt="Secret Keeper" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- End Game -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">🏆 End Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Bard.webp" alt="Bard" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Paragon.webp" alt="Paragon" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Bishop.webp" alt="Bishop" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Nun.webp" alt="Nun" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Rose_Princess.webp" alt="Rose Princess" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Adjudicator.webp" alt="Adjudicator" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-queue">
+                        <h3>📊 Progressão da Meta</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;">
+                            <strong>Early → Mid:</strong> Adjudicator entra na frente como tanque, Secret Keeper vai para FRONT, e Paragon substitui Bard no BACK. 
+                            Pyromancer e Astrologer se mantêm no MID.<br><br>
+                            <strong>Mid → End:</strong> Rose Princess substitui Secret Keeper na frente ao lado de Adjudicator (dupla tank). 
+                            Bishop entra no MID com Nun. Bard retorna ao BACK junto com Paragon, formando a composição final meta com todos os heróis míticos e lendários.
+                        </p>
+                    </div>
+
+                    <h2 style="margin-top: 3rem;">📚 Meta Atual - Nature</h2>
+
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                        Composições ideais para progressão com heróis Nature. Mantenha 6 heróis da mesma facção para bônus máximos.
+                    </p>
+
+                    <!-- Grid com as 3 formações Nature -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;">
+                        <!-- Early Game Nature -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">🌱 Early Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Forest_Maiden.webp" alt="Forest Maiden" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Druid.webp" alt="Druid" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Windwalker.webp" alt="Windwalker" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Pixie.webp" alt="Pixie" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Treeguard.webp" alt="Treeguard" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Sage.webp" alt="Sage" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mid Game Nature -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">⚔️ Mid Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Pixie.webp" alt="Pixie" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Forest_Maiden.webp" alt="Forest Maiden" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Sage.webp" alt="Sage" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Tidecaller.webp" alt="Tidecaller" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/nezha.webp" alt="Nezha" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Monk.webp" alt="Monk" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- End Game Nature -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">🏆 End Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Petalis.webp" alt="Petalis" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Forest_Maiden.webp" alt="Forest Maiden" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Tidecaller.webp" alt="Tidecaller" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Pixie.webp" alt="Pixie" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/nezha.webp" alt="Nezha" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Monk.webp" alt="Monk" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-queue">
+                        <h3>📊 Progressão da Meta Nature</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;">
+                            <strong>Early → Mid:</strong> Ne Zah e Monk entram na frente substituindo Treeguard e Sage. 
+                            Sage e Tidecaller vão para o MID substituindo Windwalker e Pixie. Pixie vai para BACK com Forest Maiden substituindo Druid.<br><br>
+                            <strong>Mid → End:</strong> Petalis substitui Pixie no BACK. Tidecaller e Pixie ficam no MID (Sage sai).
+                        </p>
+                    </div>
+
+                    <h2 style="margin-top: 3rem;">📚 Meta Atual - Horde</h2>
+
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                        Composições ideais para progressão com heróis Horde. Mantenha 6 heróis da mesma facção para bônus máximos.
+                    </p>
+
+                    <!-- Grid com as 3 formações Horde -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;">
+                        <!-- Early Game Horde -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">🌱 Early Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Soulmancer.webp" alt="Soulmancer" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Shaman.webp" alt="Shaman" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Warlock.webp" alt="Warlock" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Wilderness_Hunter.webp" alt="Wilderness Hunter" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Barbarian.webp" alt="Barbarian" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Swordmaster.webp" alt="Swordmaster" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mid Game Horde -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">⚔️ Mid Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Soulmancer.webp" alt="Soulmancer" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Shaman.webp" alt="Shaman" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Storm_Maiden.webp" alt="Storm Maiden" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Wilderness_Hunter.webp" alt="Wilderness Hunter" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Desert_Prince.webp" alt="Desert Prince" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Barbarian.webp" alt="Barbarian" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- End Game Horde -->
+                        <div>
+                            <h3 style="text-align: center; color: var(--accent-color); margin-bottom: 1rem;">🏆 End Game</h3>
+                            <div class="example-queue" style="padding: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="display: flex; flex-direction: column; justify-content: center; gap: 52px; font-weight: bold; color: var(--accent-color); margin-right: -0.5rem;">
+                                        <span>BACK</span>
+                                        <span>MID</span>
+                                        <span>FRONT</span>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Soulmancer.webp" alt="Soulmancer" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Witch.webp" alt="Witch" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Wukong.webp" alt="Wukong" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Storm_Maiden.webp" alt="Storm Maiden" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; gap: 0.5rem;">
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Beastmaster.webp" alt="Beastmaster" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                                <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
+                                                        <img src="../assets/heroes/Desert_Prince.webp" alt="Desert Prince" style="object-fit: contain;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-queue">
+                        <h3>📊 Progressão da Meta Horde</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;">
+                            <strong>Early → Mid:</strong> Desert Prince entra na frente substituindo Swordmaster. Storm Maiden substitui Warlock no MID. 
+                            Soulmancer e Shaman se mantêm no BACK.<br><br>
+                            <strong>Mid → End:</strong> Beastmaster substitui Barbarian na frente. Wukong substitui Wilderness Hunter no MID junto com Storm Maiden. 
+                            Witch substitui Shaman no BACK, mantendo Soulmancer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="wiki/index.html">Wiki</a></li>
+                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="filas.html">Filas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>

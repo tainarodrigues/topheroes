@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Equipamentos - Top Heroes</title>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .gear-sets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gear-set-card {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-medium);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .gear-set-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .gear-set-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+            min-height: 6rem;
+        }
+
+        .gear-set-header h2 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            min-height: 3.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .gear-set-bonus {
+            background: var(--darker-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+            flex-shrink: 0;
+        }
+
+        .gear-set-bonus h3 {
+            margin-bottom: 0.8rem;
+        }
+
+
+        .activation-tier {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            padding: 0.4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .activation-tier strong {
+            color: var(--secondary-accent);
+        }
+
+        .activation-tier:last-child {
+            margin-bottom: 0;
+        }
+
+        .gear-set-bonus p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .gear-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            flex-grow: 1;
+            align-content: end;
+        }
+
+        .gear-item {
+            background: var(--darker-bg);
+            border-radius: 15px;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-medium);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 160px;
+        }
+
+        .gear-item:hover {
+            border-color: var(--secondary-accent);
+        }
+
+        .gear-item-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            background: var(--gradient-card);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gear-item-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .gear-item-name {
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-wrap: break-word;
+        }
+
+        .gear-item-stats {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .gear-item-stats strong {
+            color: var(--secondary-accent);
+        }
+
+        .gear-item-levels {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .gear-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gear-detail-modal.active {
+            display: flex;
+        }
+
+        .gear-detail-content {
+            background: var(--darker-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .gear-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .gear-detail-icon {
+            width: 120px;
+            height: 120px;
+            background: var(--darker-bg);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gear-detail-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .gear-detail-info h2 {
+            color: var(--accent-color);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .gear-detail-stats {
+            margin-top: 2rem;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-row strong {
+            color: var(--secondary-accent);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--darker-bg);
+            border: none;
+            color: var(--text-light);
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gear-analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gear-analysis-card {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-medium);
+        }
+
+        .gear-analysis-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .analysis-header h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .analysis-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .analysis-role strong,
+        .analysis-description strong {
+            color: var(--secondary-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .analysis-role ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .analysis-role li {
+            color: var(--text-light);
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .analysis-description p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .gear-sets {
+                grid-template-columns: 1fr;
+            }
+
+            .gear-items {
+                grid-template-columns: 1fr;
+            }
+
+            .gear-detail-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .gear-analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>⚔️ TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html" class="nav-link">Início</a></li>
+                <li><a href="index.html" class="nav-link active">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link active">Equipamentos</a></li>
+                <li><a href="../filas.html" class="nav-link">Filas</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="page-header">
+            <h1 class="page-title">Guia de Equipamentos</h1>
+            <p class="page-subtitle">Sets completos de gear para seus heróis</p>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="gear-sets">
+                    <!-- Titan's Might Set -->
+                    <div class="gear-set-card">
+                        <div class="gear-set-header">
+                            <h2>Titan's Might</h2>
+                        </div>
+                        <div class="gear-set-bonus">
+                            <h3>🎯 Atributo de Ativação do Set</h3>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças:</strong> Ataque do Equipamento +20%, Aumento de Dano +3%
+                            </div>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças no Nível 40:</strong> Ataque do Equipamento +80%, Aumento de Dano +6%
+                            </div>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças Promovido para Mítico:</strong> Ataque do Equipamento +160%, Aumento de Dano +12%
+                            </div>
+                        </div>
+                        <div class="gear-items">
+                            <div class="gear-item" onclick="showGearDetail('titan-helm')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/titans-might-helm.webp" alt="Titan Helm">
+                                </div>
+                                <div class="gear-item-name">Titan Helm</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('titan-armor')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/titans-might-armor.webp" alt="Titan Armor">
+                                </div>
+                                <div class="gear-item-name">Titan Armor</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('titan-boots')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/titans-might-boots.webp" alt="Titan Boots">
+                                </div>
+                                <div class="gear-item-name">Titan Boots</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('titan-hammer')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/titans-might-hammer.webp" alt="Titan Hammer">
+                                </div>
+                                <div class="gear-item-name">Titan Hammer</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fury of Blood Set -->
+                    <div class="gear-set-card">
+                        <div class="gear-set-header">
+                            <h2>Fury of Blood</h2>
+                        </div>
+                        <div class="gear-set-bonus">
+                            <h3>🎯 Atributo de Ativação do Set</h3>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças:</strong> HP do Equipamento +40%, Redução de Dano +3%
+                            </div>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças no Nível 40:</strong> HP do Equipamento +160%, Redução de Dano +6%
+                            </div>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças Promovido para Mítico:</strong> HP do Equipamento +480%, Redução de Dano +12%
+                            </div>
+                        </div>
+                        <div class="gear-items">
+                            <div class="gear-item" onclick="showGearDetail('bloodrage-helm')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/fury-blood-helm.webp" alt="Bloodrage Helm">
+                                </div>
+                                <div class="gear-item-name">Bloodrage Helm</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('bloodrage-armor')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/fury-blood-armor.webp" alt="Bloodrage Armor">
+                                </div>
+                                <div class="gear-item-name">Bloodrage Armor</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('bloodshadow-boots')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/fury-blood-boots.webp" alt="Bloodshadow Boots">
+                                </div>
+                                <div class="gear-item-name">Bloodshadow Boots</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('bloodfury-axe')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/fury-blood-axe.webp" alt="Bloodfury Axe">
+                                </div>
+                                <div class="gear-item-name">Bloodfury Axe</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Glory of the Knight Set -->
+                    <div class="gear-set-card">
+                        <div class="gear-set-header">
+                            <h2>Glory of the Knight</h2>
+                        </div>
+                        <div class="gear-set-bonus">
+                            <h3>🎯 Atributo de Ativação do Set</h3>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças:</strong> Ataque do Equipamento +10%, HP do Equipamento +20%, Amplificar Dano da Habilidade +4%
+                            </div>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças no Nível 40:</strong> Ataque do Equipamento +40%, HP do Equipamento +80%, Amplificar Dano da Habilidade +8%
+                            </div>
+                            <div class="activation-tier">
+                                <strong>Set de 4 Peças Promovido para Mítico:</strong> Ataque do Equipamento +80%, HP do Equipamento +240%, Amplificar Dano da Habilidade +16%
+                            </div>
+                        </div>
+                        <div class="gear-items">
+                            <div class="gear-item" onclick="showGearDetail('knights-glory-helm')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/glory-knight-helm.webp" alt="Knight's Glory Helm">
+                                </div>
+                                <div class="gear-item-name">Knight's Glory Helm</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('knights-radiant-armor')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/glory-knight-armor.webp" alt="Knight's Radiant Armor">
+                                </div>
+                                <div class="gear-item-name">Knight's Radiant Armor</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('knights-spirit-boots')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/glory-knight-boots.webp" alt="Knight's Spirit Boots">
+                                </div>
+                                <div class="gear-item-name">Knight's Spirit Boots</div>
+                            </div>
+                            <div class="gear-item" onclick="showGearDetail('knights-sacred-lance')">
+                                <div class="gear-item-icon">
+                                    <img src="../../assets/gear/glory-knight-lance.webp" alt="Knight's Sacred Lance">
+                                </div>
+                                <div class="gear-item-name">Knight's Sacred Lance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Análise de Equipamentos</h2>
+                
+                <div class="gear-analysis-grid">
+                    <div class="gear-analysis-card">
+                        <div class="analysis-header">
+                            <h3>⚔️ Titan's Might</h3>
+                        </div>
+                        <div class="analysis-content">
+                            <div class="analysis-role">
+                                <strong>Melhor para:</strong>
+                                <ul>
+                                    <li><strong>DPS (Damage Dealers)</strong> - Focados em causar dano</li>
+                                    <li><strong>Burst Damage</strong> - Que precisam de explosão de dano rápida</li>
+                                    <li><strong>Heróis de ataque único</strong> - Que dependem de dano básico</li>
+                                </ul>
+                            </div>
+                            <div class="analysis-description">
+                                <strong>Descrição:</strong>
+                                <p>Este set é ideal para heróis que buscam maximizar o dano de ataque. O bônus de Ataque do Equipamento e Aumento de Dano torna-o perfeito para DPS que precisam causar mais dano em menos tempo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gear-analysis-card">
+                        <div class="analysis-header">
+                            <h3>🩸 Fury of Blood</h3>
+                        </div>
+                        <div class="analysis-content">
+                            <div class="analysis-role">
+                                <strong>Melhor para:</strong>
+                                <ul>
+                                    <li><strong>Tanks</strong> - Que precisam absorver muito dano</li>
+                                    <li><strong>Heróis de sobrevivência</strong> - Que ficam na linha de frente</li>
+                                    <li><strong>Control</strong> - Que precisam aguentar para aplicar suas habilidades</li>
+                                </ul>
+                            </div>
+                            <div class="analysis-description">
+                                <strong>Descrição:</strong>
+                                <p>Focado em resistência e defesa, este set aumenta significativamente o HP e oferece redução de dano. Perfeito para heróis tanque que precisam durar mais tempo no campo de batalha.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gear-analysis-card">
+                        <div class="analysis-header">
+                            <h3>🛡️ Glory of the Knight</h3>
+                        </div>
+                        <div class="analysis-content">
+                            <div class="analysis-role">
+                                <strong>Melhor para:</strong>
+                                <ul>
+                                    <li><strong>Heróis de Habilidade</strong> - Que dependem de skills</li>
+                                    <li><strong>Support/Buff</strong> - Que dão buffs com habilidades</li>
+                                    <li><strong>Healers</strong> - Cujo poder vem das habilidades de cura</li>
+                                    <li><strong>Heróis versáteis</strong> - Que precisam de dano e sobrevivência</li>
+                                </ul>
+                            </div>
+                            <div class="analysis-description">
+                                <strong>Descrição:</strong>
+                                <p>Um set equilibrado que oferece tanto ataque quanto HP, além de amplificar o dano das habilidades. Ideal para heróis que usam suas habilidades como principal fonte de poder, combinando ofensa e defesa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Gear Detail Modal -->
+    <div class="gear-detail-modal" id="gearModal">
+        <button class="close-modal" onclick="closeGearDetail()">&times;</button>
+        <div class="gear-detail-content" id="gearDetailContent">
+            <!-- Content will be loaded by JavaScript -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Wiki</a></li>
+                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../filas.html">Filas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>topheroesguide@email.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../scripts/script.js"></script>
+    <script>
+        // Translation mapping for stats
+        const statTranslations = {
+            'Gear HP': 'HP do Equipamento',
+            'Gear Attack': 'Ataque do Equipamento',
+            'Normal ATK DMG RED.': 'Redução de Dano Ataque Normal',
+            'Block': 'Bloqueio',
+            'Critical Damage': 'Dano Crítico',
+            'Critical Rate': 'Taxa de Crítico',
+            'Skill Amplify Damage': 'Amplificar Dano da Habilidade',
+            'Damage Reduce': 'Redução de Dano',
+            'Healing Power': 'Poder de Cura'
+        };
+
+        // Gear Data
+        const gearData = {
+            // Titan's Might Set
+            'titan-helm': {
+                name: 'Titan Helm',
+                image: '../../assets/gear/titans-might-helm.webp',
+                setBonus: 'Gear Attack +20%, Damage Increase +3%',
+                baseStats: [
+                    { stat: 'Gear HP', value: '5725' },
+                    { stat: 'Gear Attack', value: '275' },
+                    { stat: 'Gear HP', value: '2,50%' },
+                    { stat: 'Normal ATK DMG RED.', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear HP', value: '5725' },
+                    { level: '20', stat: 'Normal ATK DMG RED.', value: '4,00%' },
+                    { level: '30', stat: 'Gear HP', value: '5725' },
+                    { level: '40', stat: 'Normal ATK DMG RED.', value: '4,00%' }
+                ]
+            },
+            'titan-armor': {
+                name: 'Titan Armor',
+                image: '../../assets/gear/titans-might-armor.webp',
+                setBonus: 'Gear Attack +20%, Damage Increase +3%',
+                baseStats: [
+                    { stat: 'Gear HP', value: '5725' },
+                    { stat: 'Gear Attack', value: '275' },
+                    { stat: 'Gear HP', value: '2,50%' },
+                    { stat: 'Block', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear HP', value: '5725' },
+                    { level: '20', stat: 'Block', value: '4,00%' },
+                    { level: '30', stat: 'Gear HP', value: '5725' },
+                    { level: '40', stat: 'Block', value: '4,00%' }
+                ]
+            },
+            'titan-boots': {
+                name: 'Titan Boots',
+                image: '../../assets/gear/titans-might-boots.webp',
+                setBonus: 'Gear Attack +20%, Damage Increase +3%',
+                baseStats: [
+                    { stat: 'Gear Attack', value: '770' },
+                    { stat: 'Gear HP', value: '2455' },
+                    { stat: 'Gear Attack', value: '2,50%' },
+                    { stat: 'Critical Damage', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear Attack', value: '770' },
+                    { level: '20', stat: 'Critical Damage', value: '5,00%' },
+                    { level: '30', stat: 'Gear Attack', value: '770' },
+                    { level: '40', stat: 'Critical Damage', value: '5,00%' }
+                ]
+            },
+            'titan-hammer': {
+                name: 'Titan Hammer',
+                image: '../../assets/gear/titans-might-hammer.webp',
+                setBonus: 'Gear Attack +20%, Damage Increase +3%',
+                baseStats: [
+                    { stat: 'Gear Attack', value: '770' },
+                    { stat: 'Gear HP', value: '2455' },
+                    { stat: 'Gear Attack', value: '2,50%' },
+                    { stat: 'Critical Rate', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear Attack', value: '770' },
+                    { level: '20', stat: 'Critical Rate', value: '5,00%' },
+                    { level: '30', stat: 'Gear Attack', value: '770' },
+                    { level: '40', stat: 'Critical Rate', value: '5,00%' }
+                ]
+            },
+            // Fury of Blood Set
+            'bloodrage-helm': {
+                name: 'Bloodrage Helm',
+                image: '../../assets/gear/fury-blood-helm.webp',
+                setBonus: 'Gear HP +40%, Damage Reduction +3%',
+                baseStats: [
+                    { stat: 'Gear HP', value: '6870' },
+                    { stat: 'Gear Attack', value: '275' },
+                    { stat: 'Gear HP', value: '2,50%' },
+                    { stat: 'Normal ATK DMG RED.', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear HP', value: '6870' },
+                    { level: '20', stat: 'Normal ATK DMG RED.', value: '5,00%' },
+                    { level: '30', stat: 'Gear HP', value: '6870' },
+                    { level: '40', stat: 'Normal ATK DMG RED.', value: '5,00%' }
+                ]
+            },
+            'bloodrage-armor': {
+                name: 'Bloodrage Armor',
+                image: '../../assets/gear/fury-blood-armor.webp',
+                setBonus: 'Gear HP +40%, Damage Reduction +3%',
+                baseStats: [
+                    { stat: 'Gear HP', value: '6870' },
+                    { stat: 'Gear Attack', value: '275' },
+                    { stat: 'Gear HP', value: '2,50%' },
+                    { stat: 'Block', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear HP', value: '6870' },
+                    { level: '20', stat: 'Block', value: '5,00%' },
+                    { level: '30', stat: 'Gear HP', value: '6870' },
+                    { level: '40', stat: 'Block', value: '5,00%' }
+                ]
+            },
+            'bloodshadow-boots': {
+                name: 'Bloodshadow Boots',
+                image: '../../assets/gear/fury-blood-boots.webp',
+                setBonus: 'Gear HP +40%, Damage Reduction +3%',
+                baseStats: [
+                    { stat: 'Gear Attack', value: '640' },
+                    { stat: 'Gear HP', value: '2455' },
+                    { stat: 'Gear Attack', value: '2,50%' },
+                    { stat: 'Critical Damage', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear Attack', value: '640' },
+                    { level: '20', stat: 'Critical Damage', value: '4,00%' },
+                    { level: '30', stat: 'Gear Attack', value: '640' },
+                    { level: '40', stat: 'Critical Damage', value: '4,00%' }
+                ]
+            },
+            'bloodfury-axe': {
+                name: 'Bloodfury Axe',
+                image: '../../assets/gear/fury-blood-axe.webp',
+                setBonus: 'Gear HP +40%, Damage Reduction +3%',
+                baseStats: [
+                    { stat: 'Gear Attack', value: '640' },
+                    { stat: 'Gear HP', value: '2455' },
+                    { stat: 'Gear Attack', value: '2,50%' },
+                    { stat: 'Critical Rate', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear Attack', value: '640' },
+                    { level: '20', stat: 'Critical Rate', value: '4,00%' },
+                    { level: '30', stat: 'Gear Attack', value: '640' },
+                    { level: '40', stat: 'Critical Rate', value: '4,00%' }
+                ]
+            },
+            // Glory of the Knight Set
+            'knights-glory-helm': {
+                name: "Knight's Glory Helm",
+                image: '../../assets/gear/glory-knight-helm.webp',
+                setBonus: 'Gear Attack +10%, Gear HP +20%, Amplify Damage of the Skill +4%',
+                baseStats: [
+                    { stat: 'Gear HP', value: '5725' },
+                    { stat: 'Gear Attack', value: '275' },
+                    { stat: 'Gear HP', value: '2,50%' },
+                    { stat: 'Normal ATK DMG RED.', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear HP', value: '6300' },
+                    { level: '20', stat: 'Normal ATK DMG RED.', value: '4,50%' },
+                    { level: '30', stat: 'Gear HP', value: '6300' },
+                    { level: '40', stat: 'Normal ATK DMG RED.', value: '4,50%' }
+                ]
+            },
+            'knights-radiant-armor': {
+                name: "Knight's Radiant Armor",
+                image: '../../assets/gear/glory-knight-armor.webp',
+                setBonus: 'Gear Attack +10%, Gear HP +20%, Amplify Damage of the Skill +4%',
+                baseStats: [
+                    { stat: 'Gear HP', value: '5725' },
+                    { stat: 'Gear Attack', value: '275' },
+                    { stat: 'Gear HP', value: '2,50%' },
+                    { stat: 'Block', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear HP', value: '6300' },
+                    { level: '20', stat: 'Block', value: '4,50%' },
+                    { level: '30', stat: 'Gear HP', value: '6300' },
+                    { level: '40', stat: 'Block', value: '4,50%' }
+                ]
+            },
+            'knights-spirit-boots': {
+                name: "Knight's Spirit Boots",
+                image: '../../assets/gear/glory-knight-boots.webp',
+                setBonus: 'Gear Attack +10%, Gear HP +20%, Amplify Damage of the Skill +4%',
+                baseStats: [
+                    { stat: 'Gear Attack', value: '640' },
+                    { stat: 'Gear HP', value: '2455' },
+                    { stat: 'Gear Attack', value: '2,50%' },
+                    { stat: 'Critical Damage', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear Attack', value: '705' },
+                    { level: '20', stat: 'Critical Damage', value: '4,50%' },
+                    { level: '30', stat: 'Gear Attack', value: '705' },
+                    { level: '40', stat: 'Critical Damage', value: '4,50%' }
+                ]
+            },
+            'knights-sacred-lance': {
+                name: "Knight's Sacred Lance",
+                image: '../../assets/gear/glory-knight-lance.webp',
+                setBonus: 'Gear Attack +10%, Gear HP +20%, Amplify Damage of the Skill +4%',
+                baseStats: [
+                    { stat: 'Gear Attack', value: '640' },
+                    { stat: 'Gear HP', value: '2455' },
+                    { stat: 'Gear Attack', value: '2,50%' },
+                    { stat: 'Critical Rate', value: '3,00%' }
+                ],
+                levels: [
+                    { level: '10', stat: 'Gear Attack', value: '705' },
+                    { level: '20', stat: 'Critical Rate', value: '4,50%' },
+                    { level: '30', stat: 'Gear Attack', value: '705' },
+                    { level: '40', stat: 'Critical Rate', value: '4,50%' }
+                ]
+            }
+        };
+
+        function showGearDetail(gearId) {
+            const gear = gearData[gearId];
+            const modal = document.getElementById('gearModal');
+            const content = document.getElementById('gearDetailContent');
+
+            let html = `
+                <div class="gear-detail-header">
+                    <div class="gear-detail-icon">
+                        <img src="${gear.image}" alt="${gear.name}">
+                    </div>
+                    <div class="gear-detail-info">
+                        <h2>${gear.name}</h2>
+                        <p><strong>Bônus do Set:</strong> ${gear.setBonus}</p>
+                    </div>
+                </div>
+                <div class="gear-detail-stats">
+                    <h3>Estatísticas Base</h3>
+            `;
+
+            gear.baseStats.forEach(stat => {
+                const translatedStat = statTranslations[stat.stat] || stat.stat;
+                html += `
+                    <div class="stat-row">
+                        <span>${translatedStat}</span>
+                        <strong>${stat.value}</strong>
+                    </div>
+                `;
+            });
+
+            html += `
+                </div>
+                <div class="gear-detail-stats" style="margin-top: 2rem;">
+                    <h3>Bônus por Nível</h3>
+            `;
+
+            gear.levels.forEach(level => {
+                const translatedStat = statTranslations[level.stat] || level.stat;
+                html += `
+                    <div class="stat-row">
+                        <span>Nv.${level.level} ${translatedStat}</span>
+                        <strong>${level.value}</strong>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            content.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        function closeGearDetail() {
+            const modal = document.getElementById('gearModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('gearModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGearDetail();
+            }
+        });
+    </script>
+</body>
+</html>
