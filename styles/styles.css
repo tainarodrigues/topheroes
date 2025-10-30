@@ -69,6 +69,11 @@ body {
     margin: 0 auto;
 }
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+}
+
 .nav-brand h1 {
     font-family: 'Orbitron', monospace;
     font-size: 1.5rem;

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guia de Filas - Top Heroes</title>
+    <link rel="icon" type="image/webp" href="../topheroes-logo.webp">
     <link rel="stylesheet" href="../styles/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -383,13 +384,15 @@
     <header class="header">
         <nav class="navbar">
             <div class="nav-brand">
-                <h1>⚔️ TOP HEROES</h1>
+                <img src="../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
+                <h1>TOP HEROES</h1>
             </div>
             <ul class="nav-menu">
                 <li><a href="../index.html" class="nav-link">Início</a></li>
                 <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
                 <li><a href="equipamentos.html" class="nav-link">Equipamentos</a></li>
                 <li><a href="filas.html" class="nav-link active">Filas</a></li>
+                <li><a href="atualizacoes.html" class="nav-link">Atualizações</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -407,68 +410,6 @@
 
         <section class="content-section">
             <div class="container">
-
-                <!-- Bônus de Facção -->
-                <div class="faction-bonuses">
-                    <h2>💎 Bônus de Facção (Faction Aura)</h2>
-                    <p style="color: var(--text-light); margin-bottom: 2rem;">
-                        Quando você coloca heróis da mesma facção em sua fila, eles recebem bônus especiais. 
-                        Quanto mais heróis da mesma facção (mínimo 4 Lendários ou superior), maiores os benefícios!
-                    </p>
-
-                    <div class="bonus-tier">
-                        <h3>
-                            <span class="tier-badge tier-1">1</span>
-                            <span>Tier 1: 4 Heróis Lendários da Mesma Facção</span>
-                        </h3>
-                        <p><strong>Requisito:</strong> Deploying 4 Legendary heroes (or better rarity) from the same faction</p>
-                        <p><strong>Bônus para todos os aliados:</strong></p>
-                        <ul>
-                            <li>Queue Attack +15%</li>
-                            <li>Queue HP +15%</li>
-                            <li>Faction with the highest hero count reduces counter damage +5%</li>
-                        </ul>
-                    </div>
-
-                    <div class="bonus-tier">
-                        <h3>
-                            <span class="tier-badge tier-2">2</span>
-                            <span>Tier 2: 5 Heróis Lendários da Mesma Facção</span>
-                        </h3>
-                        <p><strong>Requisito:</strong> Deploying 5 Legendary heroes (or better rarity) from the same faction</p>
-                        <p><strong>Bônus para todos os aliados:</strong></p>
-                        <ul>
-                            <li>Queue Attack +25%</li>
-                            <li>Queue HP +25%</li>
-                            <li>Faction with the highest hero count reduces counter damage +10%</li>
-                        </ul>
-                    </div>
-
-                    <div class="bonus-tier">
-                        <h3>
-                            <span class="tier-badge tier-3">3</span>
-                            <span>Tier 3: 6 Heróis Lendários da Mesma Facção</span>
-                        </h3>
-                        <p><strong>Requisito:</strong> Deploying 6 Legendary heroes (or better rarity) from the same faction</p>
-                        <p><strong>Bônus para todos os aliados:</strong></p>
-                        <ul>
-                            <li>Queue Attack +35%</li>
-                            <li>Queue HP +35%</li>
-                            <li>League reduz dano recebido de Nature +20%</li>
-                            <li>Nature reduz dano recebido de Horde +20%</li>
-                            <li>Horde reduz dano recebido de League +20%</li>
-                        </ul>
-                    </div>
-
-                    <div style="background: var(--darker-bg); padding: 1.5rem; border-radius: 15px; margin-top: 2rem;">
-                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">⚠️ Nota Importante</h4>
-                        <p style="color: var(--text-light); margin: 0;">
-                            Os bônus de facção também recebem capacidades aprimoradas de countering durante a temporada. 
-                            <strong>Esta aura só afeta heróis na sua fila atual.</strong>
-                        </p>
-                    </div>
-                </div>
-
                 <!-- Exemplos de Filas -->
                 <div class="queue-examples">
                     <h2>📚 Meta Atual - League</h2>
@@ -1014,6 +955,67 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- Bônus de Facção -->
+                <div class="faction-bonuses">
+                    <h2>💎 Bônus de Facção (Faction Aura)</h2>
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                        Quando você coloca heróis da mesma facção em sua fila, eles recebem bônus especiais. 
+                        Quanto mais heróis da mesma facção (mínimo 4 Lendários ou superior), maiores os benefícios!
+                    </p>
+
+                    <div class="bonus-tier">
+                        <h3>
+                            <span class="tier-badge tier-1">1</span>
+                            <span>Tier 1: 4 Heróis Lendários da Mesma Facção</span>
+                        </h3>
+                        <p><strong>Requisito:</strong> Deploying 4 Legendary heroes (or better rarity) from the same faction</p>
+                        <p><strong>Bônus para todos os aliados:</strong></p>
+                        <ul>
+                            <li>Queue Attack +15%</li>
+                            <li>Queue HP +15%</li>
+                            <li>Faction with the highest hero count reduces counter damage +5%</li>
+                        </ul>
+                    </div>
+
+                    <div class="bonus-tier">
+                        <h3>
+                            <span class="tier-badge tier-2">2</span>
+                            <span>Tier 2: 5 Heróis Lendários da Mesma Facção</span>
+                        </h3>
+                        <p><strong>Requisito:</strong> Deploying 5 Legendary heroes (or better rarity) from the same faction</p>
+                        <p><strong>Bônus para todos os aliados:</strong></p>
+                        <ul>
+                            <li>Queue Attack +25%</li>
+                            <li>Queue HP +25%</li>
+                            <li>Faction with the highest hero count reduces counter damage +10%</li>
+                        </ul>
+                    </div>
+
+                    <div class="bonus-tier">
+                        <h3>
+                            <span class="tier-badge tier-3">3</span>
+                            <span>Tier 3: 6 Heróis Lendários da Mesma Facção</span>
+                        </h3>
+                        <p><strong>Requisito:</strong> Deploying 6 Legendary heroes (or better rarity) from the same faction</p>
+                        <p><strong>Bônus para todos os aliados:</strong></p>
+                        <ul>
+                            <li>Queue Attack +35%</li>
+                            <li>Queue HP +35%</li>
+                            <li>League reduz dano recebido de Nature +20%</li>
+                            <li>Nature reduz dano recebido de Horde +20%</li>
+                            <li>Horde reduz dano recebido de League +20%</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--darker-bg); padding: 1.5rem; border-radius: 15px; margin-top: 2rem;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">⚠️ Nota Importante</h4>
+                        <p style="color: var(--text-light); margin: 0;">
+                            Os bônus de facção também recebem capacidades aprimoradas de countering durante a temporada. 
+                            <strong>Esta aura só afeta heróis na sua fila atual.</strong>
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -1035,11 +1037,11 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contato</h4>
-                    <p>topheroesguide@email.com</p>
+                    <p>tainav.rodrigues@icloud.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Top Heroes Guide. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens - Top Heroes Wiki</title>
+    <link rel="icon" type="image/webp" href="../../topheroes-logo.webp">
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <style>
+        .items-section {
+            margin-bottom: 3rem;
+        }
+        
+        .items-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .item-card {
+            background: var(--gradient-card);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .item-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .item-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--darker-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .item-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 0;
+        }
+        
+        .item-rarity {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .rarity-common { background: #6c757d; color: white; }
+        .rarity-uncommon { background: #28a745; color: white; }
+        .rarity-rare { background: #007bff; color: white; }
+        .rarity-epic { background: #6f42c1; color: white; }
+        .rarity-legendary { background: #ffc107; color: #000; }
+        .rarity-mythic { background: #dc3545; color: white; }
+        
+        .item-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .item-source {
+            background: var(--darker-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .item-source h4 {
+            color: var(--accent-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .item-source p {
+            margin: 0;
+            color: var(--text-color);
+        }
+        
+        .item-stats {
+            background: var(--darker-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .item-stats h4 {
+            color: var(--accent-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .stat-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        .stat-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.5rem;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .search-container {
+            margin-bottom: 2rem;
+        }
+        
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 25px;
+            background: var(--darker-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--accent-color);
+            background: transparent;
+            color: var(--accent-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent-color);
+            color: var(--darker-bg);
+        }
+        
+        .no-results {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="../../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
+                <h1>TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html" class="nav-link">Início</a></li>
+                <li><a href="index.html" class="nav-link active">Wiki</a></li>
+                <li><a href="../equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="../filas.html" class="nav-link">Filas</a></li>
+                <li><a href="../atualizacoes.html" class="nav-link">Atualizações</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>💎 Itens do Jogo</h1>
+                <p>Descrição completa de todos os itens disponíveis e onde conseguir</p>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Buscar itens..." id="searchInput">
+                </div>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="common">Comum</button>
+                <button class="filter-btn" data-filter="uncommon">Incomum</button>
+                <button class="filter-btn" data-filter="rare">Raro</button>
+                <button class="filter-btn" data-filter="epic">Épico</button>
+                <button class="filter-btn" data-filter="legendary">Lendário</button>
+                <button class="filter-btn" data-filter="mythic">Mítico</button>
+            </div>
+
+            <!-- Relíquias -->
+            <div class="items-section">
+                <h2>⚔️ Relíquias</h2>
+                <div class="items-grid" id="relicsGrid">
+                    <!-- Relíquias serão adicionadas aqui -->
+                </div>
+            </div>
+
+            <!-- Pets -->
+            <div class="items-section">
+                <h2>🐾 Pets</h2>
+                <div class="items-grid" id="petsGrid">
+                    <!-- Pets serão adicionados aqui -->
+                </div>
+            </div>
+
+            <!-- Skins de Tropa -->
+            <div class="items-section">
+                <h2>🎨 Skins de Tropa</h2>
+                <div class="items-grid" id="skinsGrid">
+                    <!-- Skins serão adicionadas aqui -->
+                </div>
+            </div>
+
+            <!-- Behemoths Guardiões -->
+            <div class="items-section">
+                <h2>🦕 Behemoths Guardiões</h2>
+                <div class="items-grid" id="behemothsGrid">
+                    <!-- Behemoths serão adicionados aqui -->
+                </div>
+            </div>
+
+            <!-- Outros Itens -->
+            <div class="items-section">
+                <h2>📦 Outros Itens</h2>
+                <div class="items-grid" id="otherItemsGrid">
+                    <!-- Outros itens serão adicionados aqui -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Wiki</a></li>
+                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../filas.html">Filas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>tainav.rodrigues@icloud.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../scripts/script.js"></script>
+    <script>
+        // Dados dos itens (serão preenchidos conforme necessário)
+        const itemsData = {
+            relics: [],
+            pets: [],
+            skins: [],
+            behemoths: [],
+            other: []
+        };
+
+        // Função para criar card de item
+        function createItemCard(item) {
+            return `
+                <div class="item-card" data-rarity="${item.rarity}" data-name="${item.name.toLowerCase()}">
+                    <div class="item-header">
+                        <div class="item-icon">${item.icon}</div>
+                        <h3 class="item-name">${item.name}</h3>
+                    </div>
+                    <span class="item-rarity rarity-${item.rarity}">${item.rarityText}</span>
+                    <p class="item-description">${item.description}</p>
+                    <div class="item-source">
+                        <h4>📍 Onde Conseguir</h4>
+                        <p>${item.source}</p>
+                    </div>
+                    ${item.stats ? `
+                        <div class="item-stats">
+                            <h4>📊 Estatísticas</h4>
+                            <div class="stat-list">
+                                ${item.stats.map(stat => `
+                                    <div class="stat-item">
+                                        <div class="stat-value">${stat.value}</div>
+                                        <div>${stat.name}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // Função para filtrar itens
+        function filterItems() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            const allCards = document.querySelectorAll('.item-card');
+
+            allCards.forEach(card => {
+                const itemName = card.dataset.name;
+                const itemRarity = card.dataset.rarity;
+                
+                const matchesSearch = itemName.includes(searchTerm);
+                const matchesFilter = activeFilter === 'all' || itemRarity === activeFilter;
+                
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterItems);
+        
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterItems();
+            });
+        });
+
+        // Função para renderizar itens
+        function renderItems() {
+            // Renderizar relíquias
+            const relicsGrid = document.getElementById('relicsGrid');
+            relicsGrid.innerHTML = itemsData.relics.map(createItemCard).join('') || 
+                '<div class="no-results">Nenhuma relíquia encontrada.</div>';
+
+            // Renderizar pets
+            const petsGrid = document.getElementById('petsGrid');
+            petsGrid.innerHTML = itemsData.pets.map(createItemCard).join('') || 
+                '<div class="no-results">Nenhum pet encontrado.</div>';
+
+            // Renderizar skins
+            const skinsGrid = document.getElementById('skinsGrid');
+            skinsGrid.innerHTML = itemsData.skins.map(createItemCard).join('') || 
+                '<div class="no-results">Nenhuma skin encontrada.</div>';
+
+            // Renderizar behemoths
+            const behemothsGrid = document.getElementById('behemothsGrid');
+            behemothsGrid.innerHTML = itemsData.behemoths.map(createItemCard).join('') || 
+                '<div class="no-results">Nenhum behemoth encontrado.</div>';
+
+            // Renderizar outros itens
+            const otherItemsGrid = document.getElementById('otherItemsGrid');
+            otherItemsGrid.innerHTML = itemsData.other.map(createItemCard).join('') || 
+                '<div class="no-results">Nenhum item encontrado.</div>';
+        }
+
+        // Inicializar página
+        renderItems();
+    </script>
+</body>
+</html>

@@ -88,19 +88,47 @@ window.addEventListener('scroll', function() {
 
 // Função para destacar o link ativo baseado na página atual
 function setActiveNavLink() {
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Primeiro, remove todos os active
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
     
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath || 
-            (currentPath === 'index.html' && linkPath.includes('index.html')) ||
-            (currentPath.includes('wiki') && linkPath.includes('wiki')) ||
-            (currentPath.includes('equipamentos') && linkPath.includes('equipamentos')) ||
-            (currentPath.includes('equipes') && linkPath.includes('equipes'))) {
+        const linkText = link.textContent.trim();
+        
+        // Verifica se estamos na página inicial (raiz do site)
+        const isIndexPage = (currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/')) && 
+                           !currentPath.includes('/wiki/') && 
+                           !currentPath.includes('/pages/');
+        
+        // Verifica se estamos em páginas da wiki
+        const isWikiPage = currentPath.includes('/wiki/') || currentPath.includes('/wiki/index.html') || 
+                          currentPath.includes('/wiki/heroes.html') || currentPath.includes('/wiki/equipamentos.html') ||
+                          currentPath.includes('/wiki/itens.html') || currentPath.includes('/wiki/heroes/');
+        
+        // Se estamos na página inicial, marca apenas "Início"
+        if (isIndexPage && linkText === 'Início') {
             link.classList.add('active');
-        } else {
-            link.classList.remove('active');
+        }
+        // Se estamos em páginas da wiki, marca apenas "Wiki"
+        else if (isWikiPage && linkText === 'Wiki') {
+            link.classList.add('active');
+        }
+        // Se estamos na página de equipamentos recomendados
+        else if (currentPath.includes('equipamentos.html') && !currentPath.includes('wiki/') && linkText === 'Equipamentos') {
+            link.classList.add('active');
+        }
+        // Se estamos na página de filas
+        else if (currentPath.includes('filas.html') && linkText === 'Filas') {
+            link.classList.add('active');
+        }
+        // Se estamos na página de atualizações
+        else if (currentPath.includes('atualizacoes.html') && linkText === 'Atualizações') {
+            link.classList.add('active');
         }
     });
 }

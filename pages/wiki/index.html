@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki - Top Heroes</title>
+    <link rel="icon" type="image/webp" href="../../topheroes-logo.webp">
     <link rel="stylesheet" href="../../styles/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -11,30 +12,6 @@
             padding: 2rem;
         }
 
-        .wiki-hero {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: var(--gradient-card);
-            border-radius: 20px;
-            margin-bottom: 3rem;
-        }
-
-        .wiki-hero h1 {
-            font-family: 'Orbitron', monospace;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .wiki-hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 800px;
-            margin: 0 auto;
-        }
 
         .wiki-categories {
             display: grid;
@@ -192,10 +169,6 @@
         }
 
         @media (max-width: 768px) {
-            .wiki-hero h1 {
-                font-size: 2rem;
-            }
-
             .wiki-categories {
                 grid-template-columns: 1fr;
             }
@@ -206,13 +179,15 @@
     <header class="header">
         <nav class="navbar">
             <div class="nav-brand">
-                <h1>⚔️ TOP HEROES</h1>
+                <img src="../../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
+                <h1>TOP HEROES</h1>
             </div>
             <ul class="nav-menu">
                 <li><a href="../../index.html" class="nav-link">Início</a></li>
                 <li><a href="index.html" class="nav-link active">Wiki</a></li>
-                <li><a href="equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="../equipamentos.html" class="nav-link">Equipamentos</a></li>
                 <li><a href="../filas.html" class="nav-link">Filas</a></li>
+                <li><a href="../atualizacoes.html" class="nav-link">Atualizações</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -223,12 +198,12 @@
     </header>
 
     <main class="main">
+        <section class="page-header">
+            <h1 class="page-title">📚 Wiki de Top Heroes</h1>
+            <p class="page-subtitle">Bem-vindo à enciclopédia completa de Top Heroes! Aqui você encontra todas as informações sobre heróis, itens, habilidades, facções e muito mais.</p>
+        </section>
+
         <div class="wiki-home">
-            <!-- Hero Section -->
-            <div class="wiki-hero">
-                <h1>📚 Wiki de Top Heroes</h1>
-                <p>Bem-vindo à enciclopédia completa de Top Heroes! Aqui você encontra todas as informações sobre heróis, itens, habilidades, facções e muito mais.</p>
-            </div>
 
             <!-- Search Section -->
             <div class="search-section">
@@ -246,70 +221,14 @@
                         <h3>🛡️ Todos os Heróis</h3>
                         <p>Lista completa de todos os 46 heróis do jogo</p>
                     </a>
-                    <a href="factions.html" class="quick-link-card">
-                        <h3>⚔️ Sistema de Facções</h3>
-                        <p>Entenda League, Nature e Horde</p>
-                    </a>
-                    <a href="rarities.html" class="quick-link-card">
-                        <h3>💎 Níveis de Raridade</h3>
-                        <p>Mítico, Lendário, Épico e Raro</p>
-                    </a>
                     <a href="equipamentos.html" class="quick-link-card">
                         <h3>⚔️ Equipamentos</h3>
                         <p>Sets de gear e equipamentos especiais</p>
                     </a>
-                </div>
-            </div>
-
-            <!-- Categories -->
-            <div class="wiki-categories">
-                <!-- Heroes Category -->
-                <div class="wiki-category">
-                    <div class="wiki-category-icon">🛡️</div>
-                    <h2>Heróis</h2>
-                    <p>Explore todos os heróis do jogo, suas habilidades, estatísticas e informações detalhadas.</p>
-                    <ul class="wiki-category-topics">
-                        <li><a href="heroes/league.html">League (15 heróis) <span class="topic-arrow">→</span></a></li>
-                        <li><a href="heroes/nature.html">Nature (15 heróis) <span class="topic-arrow">→</span></a></li>
-                        <li><a href="heroes/horde.html">Horde (16 heróis) <span class="topic-arrow">→</span></a></li>
-                    </ul>
-                </div>
-
-                <!-- Factions Category -->
-                <div class="wiki-category">
-                    <div class="wiki-category-icon">⚔️</div>
-                    <h2>Facções</h2>
-                    <p>Entenda o sistema de facções e suas vantagens e desvantagens no combate.</p>
-                    <ul class="wiki-category-topics">
-                        <li><a href="factions.html">Sistema de Facções <span class="topic-arrow">→</span></a></li>
-                        <li><a href="factions.html#advantages">Tabela de Vantagens <span class="topic-arrow">→</span></a></li>
-                        <li><a href="strategies.html">Estratégias por Facção <span class="topic-arrow">→</span></a></li>
-                    </ul>
-                </div>
-
-                <!-- Equipment Category -->
-                <div class="wiki-category">
-                    <div class="wiki-category-icon">⚔️</div>
-                    <h2>Equipamentos</h2>
-                    <p>Descubra os sets completos de equipamentos, suas estatísticas e bônus de ativação.</p>
-                    <ul class="wiki-category-topics">
-                        <li><a href="equipamentos.html">Ver Todos os Equipamentos <span class="topic-arrow">→</span></a></li>
-                        <li><a href="equipamentos.html#titan">Titan's Might <span class="topic-arrow">→</span></a></li>
-                        <li><a href="equipamentos.html#blood">Fury of Blood <span class="topic-arrow">→</span></a></li>
-                        <li><a href="equipamentos.html#knight">Glory of the Knight <span class="topic-arrow">→</span></a></li>
-                    </ul>
-                </div>
-
-                <!-- Game Mechanics Category -->
-                <div class="wiki-category">
-                    <div class="wiki-category-icon">🎮</div>
-                    <h2>Mecânicas do Jogo</h2>
-                    <p>Aprenda sobre habilidades, combate, progressão e outros aspectos do jogo.</p>
-                    <ul class="wiki-category-topics">
-                        <li><a href="mechanics.html">Como Jogar <span class="topic-arrow">→</span></a></li>
-                        <li><a href="combat.html">Sistema de Combate <span class="topic-arrow">→</span></a></li>
-                        <li><a href="progression.html">Progressão e Levels <span class="topic-arrow">→</span></a></li>
-                    </ul>
+                    <a href="itens.html" class="quick-link-card">
+                        <h3>💎 Itens</h3>
+                        <p>Descrição dos itens e onde conseguir</p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -326,17 +245,17 @@
                     <h4>Navegação</h4>
                     <ul>
                         <li><a href="index.html">Wiki</a></li>
-                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="../equipamentos.html">Equipamentos</a></li>
                         <li><a href="../filas.html">Filas</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contato</h4>
-                    <p>topheroesguide@email.com</p>
+                    <p>tainav.rodrigues@icloud.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Top Heroes Guide. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Top Heroes Guide. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

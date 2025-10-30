@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizações - Top Heroes</title>
+    <link rel="icon" type="image/webp" href="../topheroes-logo.webp">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .updates-list {
+            padding: 2rem 0;
+        }
+
+        .update-card {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-medium);
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .update-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .update-date {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .update-card h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .update-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
+                <h1>TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Início</a></li>
+                <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link">Equipamentos</a></li>
+                <li><a href="filas.html" class="nav-link">Filas</a></li>
+                <li><a href="atualizacoes.html" class="nav-link active">Atualizações</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="page-header">
+            <h1 class="page-title">📰 Atualizações</h1>
+            <p class="page-subtitle">Fique por dentro das últimas novidades e atualizações do Top Heroes</p>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="updates-list">
+                    <a href="atualizacoes/patch-28-outubro.html" class="update-card">
+                        <div class="update-date">28 Out 2025</div>
+                        <h3>Patch 28/10 - Evento Terra dos Sonhos</h3>
+                        <p>Novo evento Terra dos Sonhos, melhorias nos relatórios de batalha e várias correções importantes. Veja todas as mudanças desta atualização.</p>
+                    </a>
+
+                    <a href="atualizacoes/patch-21-outubro.html" class="update-card">
+                        <div class="update-date">21 Out 2025</div>
+                        <h3>Patch 21/10 - Confronto do Rei da Noite</h3>
+                        <p>Evento final da 3ª Temporada, melhorias no Bispo, novo sistema de ranking no Campo de Batalha e Troca de Equipamento. Veja todas as novidades!</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="wiki/index.html">Wiki</a></li>
+                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="filas.html">Filas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>tainav.rodrigues@icloud.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendações de Equipamentos - Top Heroes</title>
+    <link rel="icon" type="image/webp" href="../topheroes-logo.webp">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .gear-recommendations {
+            padding: 2rem 0;
+        }
+
+        .faction-section {
+            margin-bottom: 4rem;
+        }
+
+        .faction-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faction-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .faction-subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .gear-sets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .gear-set-card {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-medium);
+        }
+
+        .gear-set-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .gear-set-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .gear-set-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--darker-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .gear-set-info h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gear-set-bonuses {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .heroes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .hero-card {
+            background: var(--darker-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-medium);
+            position: relative;
+        }
+
+        .hero-card:hover {
+            border-color: var(--secondary-accent);
+            transform: translateY(-2px);
+        }
+
+        .alternative-badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--secondary-accent);
+            border-radius: 50%;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-card);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-name {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .hero-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .alternative-badge {
+            position: absolute;
+            top: 0.3rem;
+            right: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #1a1a2e;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.2rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+            line-height: 1;
+        }
+
+        .alternative-legend {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--secondary-accent);
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .alternative-legend strong {
+            color: var(--secondary-accent);
+        }
+
+        .special-section {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--secondary-accent);
+        }
+
+        .special-section h3 {
+            font-family: 'Orbitron', monospace;
+            color: var(--secondary-accent);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .disclaimer {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .disclaimer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .gear-sets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heroes-list {
+                grid-template-columns: 1fr;
+            }
+
+            .faction-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
+                <h1>TOP HEROES</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Início</a></li>
+                <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link active">Equipamentos</a></li>
+                <li><a href="filas.html" class="nav-link">Filas</a></li>
+                <li><a href="atualizacoes.html" class="nav-link">Atualizações</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="page-header">
+            <h1 class="page-title">Recomendações de Equipamentos</h1>
+            <p class="page-subtitle">Os melhores sets de equipamentos para cada herói</p>
+        </section>
+
+        <section class="gear-recommendations">
+            <div class="container">
+                <div class="disclaimer">
+                    <p><strong>⚠️ Aviso:</strong> As informações estão sujeitas a alterações a qualquer momento. Os resultados individuais podem diferir. Realize seus próprios testes para confirmar o desempenho sob suas condições pessoais.</p>
+                </div>
+
+                <!-- League Faction -->
+                <div class="faction-section">
+                    <div class="faction-header">
+                        <h2 class="faction-title">🛡️ EQUIPAMENTOS RECOMENDADOS - LEAGUE</h2>
+                        <p class="faction-subtitle">Equipamentos recomendados para heróis da facção League</p>
+                    </div>
+
+                    <div class="alternative-legend">
+                        <strong>ℹ️ Legenda:</strong> Heróis marcados com ⚡ no canto superior direito são <strong>Sugestões Alternativas</strong> para o set
+                    </div>
+
+                    <div class="gear-sets-grid">
+                        <!-- Glory of the Knight -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">🛡️</div>
+                                <div class="gear-set-info">
+                                    <h3>Glory of the Knight</h3>
+                                    <div class="gear-set-bonuses">
+                                        Ataque do Equipamento +40%<br>
+                                        HP do Equipamento +80%<br>
+                                        Amplificar Dano da Habilidade +8%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Artificer.webp" alt="Artificer"></div>
+                                        <div class="hero-name">Artificer</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Bard.webp" alt="Bard"></div>
+                                        <div class="hero-name">Bard</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Paragon.webp" alt="Paragon"></div>
+                                        <div class="hero-name">Paragon</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Rose_Princess.webp" alt="Rose Princess"></div>
+                                        <div class="hero-name">Rose Princess</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Dará DPS extra contra Nature, mas fraco contra Horde e League.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fury of Blood -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">🩸</div>
+                                <div class="gear-set-info">
+                                    <h3>Fury of Blood</h3>
+                                    <div class="gear-set-bonuses">
+                                        HP do Equipamento +160%<br>
+                                        Redução de Dano +6%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Rose_Princess.webp" alt="Rose Princess"></div>
+                                        <div class="hero-name">Rose Princess</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Adjudicator.webp" alt="Adjudicator"></div>
+                                        <div class="hero-name">Adjudicator</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Secret_Keeper.webp" alt="Secret Keeper"></div>
+                                        <div class="hero-name">Secret Keeper</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Hostess.webp" alt="Hostess"></div>
+                                        <div class="hero-name">Hostess</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Nun.webp" alt="Nun"></div>
+                                        <div class="hero-name">Nun</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra, que aumenta a sobrevivência de todos. Bônus de HP fixo aumenta escudos UW.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Bard.webp" alt="Bard"></div>
+                                        <div class="hero-name">Bard</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Titan's Might -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">⚔️</div>
+                                <div class="gear-set-info">
+                                    <h3>Titan's Might</h3>
+                                    <div class="gear-set-bonuses">
+                                        Ataque do Equipamento +80%<br>
+                                        Aumento de Dano +6%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Pyromancer.webp" alt="Pyromancer"></div>
+                                        <div class="hero-name">Pyromancer</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta habilidades de queimadura, que são a maioria do seu dano.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Bishop.webp" alt="Bishop"></div>
+                                        <div class="hero-name">Bishop</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta performance das habilidades. Aumento de dano ajuda com saída de dano.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Paragon.webp" alt="Paragon"></div>
+                                        <div class="hero-name">Paragon</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        UW 20: Com o aumento de lançamento da habilidade, ataque fixo se torna mais importante.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Astrologer.webp" alt="Astrologer"></div>
+                                        <div class="hero-name">Astrologer</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta performance das habilidades. Aumento de dano ajuda com saída de dano.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Nun.webp" alt="Nun"></div>
+                                        <div class="hero-name">Nun</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Bom contra Nature, ou se ela não precisar de sobrevivência extra. Ataque fixo aumenta habilidades de cura.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nature Faction -->
+                <div class="faction-section">
+                    <div class="faction-header">
+                        <h2 class="faction-title">🌿 EQUIPAMENTOS RECOMENDADOS - NATURE</h2>
+                        <p class="faction-subtitle">Equipamentos recomendados para heróis da facção Nature</p>
+                    </div>
+
+                    <div class="alternative-legend">
+                        <strong>ℹ️ Legenda:</strong> Heróis marcados com ⚡ no canto superior direito são <strong>Sugestões Alternativas</strong> para o set
+                    </div>
+
+                    <div class="special-section">
+                        <h3>💡 SUGESTÃO PRINCIPAL</h3>
+                        <p>Para performance PVP otimizada: Coloque toda a equipe em Blood. Isso torna sua equipe mais resistente. A maioria dos heróis Nature usa habilidades que escalam com HP: cura, escudos e estatísticas herdadas. Mais HP aumenta tudo isso de uma vez, que é a ideia principal por trás das equipes Nature: sobreviver mais tempo empilhando saúde.</p>
+                    </div>
+
+                    <div class="gear-sets-grid">
+                        <!-- Glory of the Knight -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">🛡️</div>
+                                <div class="gear-set-info">
+                                    <h3>Glory of the Knight</h3>
+                                    <div class="gear-set-bonuses">
+                                        Ataque do Equipamento +40%<br>
+                                        HP do Equipamento +80%<br>
+                                        Amplificar Dano da Habilidade +8%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/petalis.webp" alt="Petalis"></div>
+                                        <div class="hero-name">Petalis</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Pixie.webp" alt="Pixie"></div>
+                                        <div class="hero-name">Pixie</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fury of Blood -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">🩸</div>
+                                <div class="gear-set-info">
+                                    <h3>Fury of Blood</h3>
+                                    <div class="gear-set-bonuses">
+                                        HP do Equipamento +160%<br>
+                                        Redução de Dano +6%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Sage.webp" alt="Sage"></div>
+                                        <div class="hero-name">Sage</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Monk.webp" alt="Monk"></div>
+                                        <div class="hero-name">Monk</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Treeguard.webp" alt="Treeguard"></div>
+                                        <div class="hero-name">Treeguard</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Druid.webp" alt="Druid"></div>
+                                        <div class="hero-name">Druid</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Forest_Maiden.webp" alt="Forest Maiden"></div>
+                                        <div class="hero-name">Forest Maiden</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra. Fortalece habilidade ultimate criando ovelhas maiores.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Titan's Might -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">⚔️</div>
+                                <div class="gear-set-info">
+                                    <h3>Titan's Might</h3>
+                                    <div class="gear-set-bonuses">
+                                        Ataque do Equipamento +80%<br>
+                                        Aumento de Dano +6%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Watcher.webp" alt="Watcher"></div>
+                                        <div class="hero-name">Watcher</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta performance das habilidades. Aumento de dano ajuda com saída de dano.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Windwalker.webp" alt="Windwalker"></div>
+                                        <div class="hero-name">Windwalker</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta performance das habilidades. Aumento de dano ajuda com saída de dano.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Can Wear Anything - Nature -->
+                    <div class="special-section">
+                        <h3>🔄 PODE USAR QUALQUER COISA</h3>
+                        <div class="heroes-list">
+                            <div class="hero-card">
+                                <div class="hero-header">
+                                    <div class="hero-avatar"><img src="../assets/heroes/Tidecaller.webp" alt="Tidecaller"></div>
+                                    <div class="hero-name">Tidecaller</div>
+                                </div>
+                                <div class="hero-description">
+                                    <p><strong>Titan:</strong> Aumenta tanto sua cura quanto dano pessoal.</p>
+                                    <p><strong>Knight:</strong> Escolha mais segura, forte equilíbrio de defesa e consistência.</p>
+                                    <p><strong>Blood:</strong> Aumenta sobrevivência e fortalece seu escudo Monk, permitindo que ela aguente mais ataques.</p>
+                                </div>
+                            </div>
+                            <div class="hero-card">
+                                <div class="hero-header">
+                                    <div class="hero-avatar"><img src="../assets/heroes/nezha.webp" alt="Ne Zha"></div>
+                                    <div class="hero-name">Ne Zha</div>
+                                </div>
+                                <div class="hero-description">
+                                    <p><strong>Titan:</strong> Pode ter melhor performance em PVE.</p>
+                                    <p><strong>Knight:</strong> Bom quando atuando como tanque de linha média 3º.</p>
+                                    <p><strong>Blood:</strong> Preferível se ele estiver na linha de frente em PVP.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horde Faction -->
+                <div class="faction-section">
+                    <div class="faction-header">
+                        <h2 class="faction-title">🔥 EQUIPAMENTOS RECOMENDADOS - HORDE</h2>
+                        <p class="faction-subtitle">Equipamentos recomendados para heróis da facção Horde</p>
+                    </div>
+
+                    <div class="alternative-legend">
+                        <strong>ℹ️ Legenda:</strong> Heróis marcados com ⚡ no canto superior direito são <strong>Sugestões Alternativas</strong> para o set
+                    </div>
+
+                    <div class="gear-sets-grid">
+                        <!-- Glory of the Knight -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">🛡️</div>
+                                <div class="gear-set-info">
+                                    <h3>Glory of the Knight</h3>
+                                    <div class="gear-set-bonuses">
+                                        Ataque do Equipamento +40%<br>
+                                        HP do Equipamento +80%<br>
+                                        Amplificar Dano da Habilidade +8%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Witch.webp" alt="Witch"></div>
+                                        <div class="hero-name">Witch</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Storm_Maiden.webp" alt="Storm Maiden"></div>
+                                        <div class="hero-name">Storm Maiden</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Soulmancer.webp" alt="Soulmancer"></div>
+                                        <div class="hero-name">Soulmancer</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fury of Blood -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">🩸</div>
+                                <div class="gear-set-info">
+                                    <h3>Fury of Blood</h3>
+                                    <div class="gear-set-bonuses">
+                                        HP do Equipamento +160%<br>
+                                        Redução de Dano +6%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Soulmancer.webp" alt="Soulmancer"></div>
+                                        <div class="hero-name">Soulmancer</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra, que aumenta a sobrevivência de todos os outros.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Barbarian.webp" alt="Barbarian"></div>
+                                        <div class="hero-name">Barbarian</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Shaman.webp" alt="Shaman"></div>
+                                        <div class="hero-name">Shaman</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Warlock.webp" alt="Warlock"></div>
+                                        <div class="hero-name">Warlock</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra se necessário às custas do dano.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Beastmaster.webp" alt="Beastmaster"></div>
+                                        <div class="hero-name">Beastmaster</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Desert_Prince.webp" alt="Desert Prince"></div>
+                                        <div class="hero-name">Desert Prince</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra, mas muitas vezes a melhor defesa é um bom ataque.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Swordmaster.webp" alt="Swordmaster"></div>
+                                        <div class="hero-name">Swordmaster</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Sobrevivência extra.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Titan's Might -->
+                        <div class="gear-set-card">
+                            <div class="gear-set-header">
+                                <div class="gear-set-icon">⚔️</div>
+                                <div class="gear-set-info">
+                                    <h3>Titan's Might</h3>
+                                    <div class="gear-set-bonuses">
+                                        Ataque do Equipamento +80%<br>
+                                        Aumento de Dano +6%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="heroes-list">
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Warlock.webp" alt="Warlock"></div>
+                                        <div class="hero-name">Warlock</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta performance das habilidades. Aumento de dano ajuda com saída de dano.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Storm_Maiden.webp" alt="Storm Maiden"></div>
+                                        <div class="hero-name">Storm Maiden</div>
+                                        <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Aumentará seu dano, mas a deixará vulnerável. Melhor emparelhada com Soulmancer.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Desert_Prince.webp" alt="Desert Prince"></div>
+                                        <div class="hero-name">Desert Prince</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta performance das habilidades. Aumento de dano ajuda com saída de dano. Melhor defesa é um bom ataque.
+                                    </div>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-header">
+                                        <div class="hero-avatar"><img src="../assets/heroes/Wilderness_Hunter.webp" alt="Wilderness Hunter"></div>
+                                        <div class="hero-name">Wilderness Hunter</div>
+                                    </div>
+                                    <div class="hero-description">
+                                        Ataque fixo aumenta performance das habilidades. Aumento de dano ajuda com saída de dano.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Can Wear Anything - Horde -->
+                    <div class="special-section">
+                        <h3>🔄 PODE USAR QUALQUER COISA</h3>
+                        <div class="heroes-list">
+                            <div class="hero-card">
+                                <div class="hero-header">
+                                    <div class="hero-avatar"><img src="../assets/heroes/Wukong.webp" alt="Wukong"></div>
+                                    <div class="hero-name">Wukong</div>
+                                </div>
+                                <div class="hero-description">
+                                    <p><strong>Titan:</strong> Linha de trás ou meio. Linha de frente não é tão recomendada.</p>
+                                    <p><strong>Knight:</strong> Linha de frente recomendada.</p>
+                                    <p><strong>Blood:</strong> Linha de frente se você precisar de sobrevivência extra.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Top Heroes Guide</h3>
+                    <p>O guia mais completo para dominar Top Heroes</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="../index.html">Início</a></li>
+                        <li><a href="wiki/index.html">Wiki</a></li>
+                        <li><a href="equipamentos.html">Equipamentos</a></li>
+                        <li><a href="filas.html">Filas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>tainav.rodrigues@icloud.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Top Heroes Guide. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
