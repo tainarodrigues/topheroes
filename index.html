@@ -15,12 +15,17 @@
                 <img src="topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
                 <h1>TOP HEROES</h1>
             </div>
+            <div class="lang-selector">
+                <button onclick="changeLanguage('pt-br')" class="lang-btn active" id="lang-pt">PT</button>
+                <span style="color: var(--accent-color); margin: 0 5px;">|</span>
+                <button onclick="changeLanguage('en-us')" class="lang-btn" id="lang-en">EN</button>
+            </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">Início</a></li>
-                <li><a href="pages/wiki/index.html" class="nav-link">Wiki</a></li>
-                <li><a href="pages/equipamentos.html" class="nav-link">Equipamentos</a></li>
-                <li><a href="pages/filas.html" class="nav-link">Filas</a></li>
-                <li><a href="pages/atualizacoes.html" class="nav-link">Atualizações</a></li>
+                <li><a href="index.html" class="nav-link active" data-translate="nav-home">Início</a></li>
+                <li><a href="pages/wiki/index.html" class="nav-link" data-translate="nav-wiki">Wiki</a></li>
+                <li><a href="pages/equipamentos.html" class="nav-link" data-translate="nav-equipment">Equipamentos</a></li>
+                <li><a href="pages/filas.html" class="nav-link" data-translate="nav-queues">Filas</a></li>
+                <li><a href="pages/atualizacoes.html" class="nav-link" data-translate="nav-updates">Atualizações</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -33,14 +38,14 @@
     <main class="main">
         <section class="hero-section">
             <div class="hero-content">
-                <h2 class="hero-title">Bem-vindo ao Guia Completo de Top Heroes</h2>
-                <p class="hero-description">
+                <h2 class="hero-title" data-translate="hero-title">Bem-vindo ao Guia Completo de Top Heroes</h2>
+                <p class="hero-description" data-translate="hero-description">
                     Descubra todos os segredos, estratégias e dicas para dominar o mundo de Top Heroes. 
                     Desde informações sobre heróis e itens até as melhores filas.
                 </p>
                 <div class="hero-buttons">
-                    <a href="pages/wiki/index.html" class="btn btn-primary">Explorar Wiki</a>
-                    <a href="pages/filas.html" class="btn btn-secondary">Ver Filas</a>
+                    <a href="pages/wiki/index.html" class="btn btn-primary" data-translate="btn-explore">Explorar Wiki</a>
+                    <a href="pages/filas.html" class="btn btn-secondary" data-translate="btn-queues">Ver Filas</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -50,25 +55,25 @@
 
         <section class="features-section">
             <div class="container">
-                <h2 class="section-title">Recursos do Guia</h2>
+                <h2 class="section-title" data-translate="features-title">Recursos do Guia</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">📚</div>
-                        <h3>Wiki Completa</h3>
-                        <p>Informações detalhadas sobre heróis, itens, habilidades e onde conseguir cada recurso do jogo.</p>
-                        <a href="pages/wiki/index.html" class="feature-link">Acessar Wiki →</a>
+                        <h3 data-translate="feature-wiki-title">Wiki Completa</h3>
+                        <p data-translate="feature-wiki-desc">Informações detalhadas sobre heróis, itens, habilidades e onde conseguir cada recurso do jogo.</p>
+                        <a href="pages/wiki/index.html" class="feature-link" data-translate="feature-wiki-link">Acessar Wiki →</a>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">⚔️</div>
-                        <h3>Guia de Equipamentos</h3>
-                        <p>Descubra as melhores builds e equipamentos para cada herói, otimizando seu poder de combate.</p>
-                        <a href="pages/equipamentos.html" class="feature-link">Ver Equipamentos →</a>
+                        <h3 data-translate="feature-equip-title">Guia de Equipamentos</h3>
+                        <p data-translate="feature-equip-desc">Descubra as melhores builds e equipamentos para cada herói, otimizando seu poder de combate.</p>
+                        <a href="pages/equipamentos.html" class="feature-link" data-translate="feature-equip-link">Ver Equipamentos →</a>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">👥</div>
-                        <h3>Formações de Filas</h3>
-                        <p>Estratégias e combinações de heróis para criar as filas mais poderosas e eficazes.</p>
-                        <a href="pages/filas.html" class="feature-link">Ver Filas →</a>
+                        <h3 data-translate="feature-queues-title">Formações de Filas</h3>
+                        <p data-translate="feature-queues-desc">Estratégias e combinações de heróis para criar as filas mais poderosas e eficazes.</p>
+                        <a href="pages/filas.html" class="feature-link" data-translate="feature-queues-link">Ver Filas →</a>
                     </div>
                 </div>
             </div>
@@ -76,7 +81,7 @@
 
         <section class="news-section">
             <div class="container">
-                <h2 class="section-title">Últimas Atualizações</h2>
+                <h2 class="section-title" data-translate="news-title">Últimas Atualizações</h2>
                 <div class="news-grid">
                     <a href="pages/atualizacoes/patch-28-outubro.html" style="text-decoration: none; color: inherit;">
                         <article class="news-card">
@@ -94,7 +99,7 @@
                     </a>
                 </div>
                 <div style="text-align: center; margin-top: 2rem;">
-                    <a href="pages/atualizacoes.html" class="btn btn-primary">Ver Todas as Atualizações</a>
+                    <a href="pages/atualizacoes.html" class="btn btn-primary" data-translate="btn-all-updates">Ver Todas as Atualizações</a>
                 </div>
             </div>
         </section>
@@ -104,11 +109,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Top Heroes Guide</h3>
-                    <p>O guia mais completo para dominar Top Heroes</p>
+                    <h3 data-translate="footer-brand">Top Heroes Guide</h3>
+                    <p data-translate="footer-tagline">O guia mais completo para dominar Top Heroes</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Navegação</h4>
+                    <h4 data-translate="footer-nav">Navegação</h4>
                     <ul>
                         <li><a href="pages/wiki/index.html">Wiki</a></li>
                         <li><a href="pages/equipamentos.html">Equipamentos</a></li>
@@ -116,12 +121,12 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contato</h4>
+                    <h4 data-translate="footer-contact">Contato</h4>
                     <p>tainav.rodrigues@icloud.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Top Heroes Guide. Todos os direitos reservados.</p>
+                <p data-translate="footer-copyright">&copy; 2025 Top Heroes Guide. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

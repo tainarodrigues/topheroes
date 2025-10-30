@@ -387,12 +387,17 @@
                 <img src="../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
                 <h1>TOP HEROES</h1>
             </div>
+            <div class="lang-selector">
+                <button onclick="changeLanguage('pt-br')" class="lang-btn active" id="lang-pt">PT</button>
+                <span style="color: var(--accent-color); margin: 0 5px;">|</span>
+                <button onclick="changeLanguage('en-us')" class="lang-btn" id="lang-en">EN</button>
+            </div>
             <ul class="nav-menu">
-                <li><a href="../index.html" class="nav-link">Início</a></li>
-                <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
-                <li><a href="equipamentos.html" class="nav-link">Equipamentos</a></li>
-                <li><a href="filas.html" class="nav-link active">Filas</a></li>
-                <li><a href="atualizacoes.html" class="nav-link">Atualizações</a></li>
+                <li><a href="../index.html" class="nav-link" data-translate="nav-home">Início</a></li>
+                <li><a href="wiki/index.html" class="nav-link" data-translate="nav-wiki">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link" data-translate="nav-equipment">Equipamentos</a></li>
+                <li><a href="filas.html" class="nav-link active" data-translate="nav-queues">Filas</a></li>
+                <li><a href="atualizacoes.html" class="nav-link" data-translate="nav-updates">Atualizações</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -404,17 +409,17 @@
 
     <main class="main">
         <section class="page-header">
-            <h1 class="page-title">Guia de Filas</h1>
-            <p class="page-subtitle">Construa suas filas com 6 heróis, 3 relíquias e componentes adicionais</p>
+            <h1 class="page-title" data-translate="queues-page-title">Guia de Filas</h1>
+            <p class="page-subtitle" data-translate="queues-page-subtitle">Construa suas filas com 6 heróis, 3 relíquias e componentes adicionais</p>
         </section>
 
         <section class="content-section">
             <div class="container">
                 <!-- Exemplos de Filas -->
                 <div class="queue-examples">
-                    <h2>📚 Meta Atual - League</h2>
+                    <h2 data-translate="meta-league-title">📚 Meta Atual - League</h2>
                     
-                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                    <p style="color: var(--text-light); margin-bottom: 2rem;" data-translate="meta-league-intro">
                         As composições abaixo mostram a progressão ideal de heróis League durante o jogo. 
                         Mantenha 6 heróis da mesma facção para ativar os bônus máximos de Tier 3 (+35% Ataque e HP + redução de dano de facções específicas).
                     </p>
@@ -585,8 +590,8 @@
                     </div>
 
                     <div class="example-queue">
-                        <h3>📊 Progressão da Meta</h3>
-                        <p style="color: var(--text-light); line-height: 1.6;">
+                        <h3 data-translate="meta-league-progress-title">📊 Progressão da Meta</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;" data-translate="meta-league-progress">
                             <strong>Early → Mid:</strong> Adjudicator entra na frente como tanque, Secret Keeper vai para FRONT, e Paragon substitui Bard no BACK. 
                             Pyromancer e Astrologer se mantêm no MID.<br><br>
                             <strong>Mid → End:</strong> Rose Princess substitui Secret Keeper na frente ao lado de Adjudicator (dupla tank). 
@@ -594,9 +599,9 @@
                         </p>
                     </div>
 
-                    <h2 style="margin-top: 3rem;">📚 Meta Atual - Nature</h2>
+                    <h2 style="margin-top: 3rem;" data-translate="meta-nature-title">📚 Meta Atual - Nature</h2>
 
-                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                    <p style="color: var(--text-light); margin-bottom: 2rem;" data-translate="meta-nature-intro">
                         Composições ideais para progressão com heróis Nature. Mantenha 6 heróis da mesma facção para bônus máximos.
                     </p>
 
@@ -724,38 +729,26 @@
                                         <div class="heroes-formation" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;">
                                             <div style="display: flex; gap: 0.5rem;">
                                                 <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
-                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
-                                                        <img src="../assets/heroes/Petalis.webp" alt="Petalis" style="object-fit: contain;">
-                                                    </div>
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;"></div>
                                                 </div>
                                                 <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
-                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
-                                                        <img src="../assets/heroes/Forest_Maiden.webp" alt="Forest Maiden" style="object-fit: contain;">
-                                                    </div>
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;"></div>
                                                 </div>
                                             </div>
                                             <div style="display: flex; gap: 0.5rem;">
                                                 <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
-                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
-                                                        <img src="../assets/heroes/Tidecaller.webp" alt="Tidecaller" style="object-fit: contain;">
-                                                    </div>
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;"></div>
                                                 </div>
                                                 <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
-                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
-                                                        <img src="../assets/heroes/Pixie.webp" alt="Pixie" style="object-fit: contain;">
-                                                    </div>
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;"></div>
                                                 </div>
                                             </div>
                                             <div style="display: flex; gap: 0.5rem;">
                                                 <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
-                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
-                                                        <img src="../assets/heroes/nezha.webp" alt="Nezha" style="object-fit: contain;">
-                                                    </div>
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;"></div>
                                                 </div>
                                                 <div class="hero-slot" style="width: 80px; height: 80px; flex: 1;">
-                                                    <div class="hero-avatar" style="width: 100%; height: 100%;">
-                                                        <img src="../assets/heroes/Monk.webp" alt="Monk" style="object-fit: contain;">
-                                                    </div>
+                                                    <div class="hero-avatar" style="width: 100%; height: 100%;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -766,17 +759,17 @@
                     </div>
 
                     <div class="example-queue">
-                        <h3>📊 Progressão da Meta Nature</h3>
-                        <p style="color: var(--text-light); line-height: 1.6;">
-                            <strong>Early → Mid:</strong> Ne Zah e Monk entram na frente substituindo Treeguard e Sage. 
+                        <h3 data-translate="meta-nature-progress-title">📊 Progressão da Meta Nature</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;" data-translate="meta-nature-progress">
+                            <strong>Early → Mid:</strong> Ne Zha e Monk entram na frente substituindo Treeguard e Sage. 
                             Sage e Tidecaller vão para o MID substituindo Windwalker e Pixie. Pixie vai para BACK com Forest Maiden substituindo Druid.<br><br>
-                            <strong>Mid → End:</strong> Petalis substitui Pixie no BACK. Tidecaller e Pixie ficam no MID (Sage sai).
+                            <strong>Mid → End:</strong> Em avaliação: a fila End Game de Nature ainda não está definida no momento.
                         </p>
                     </div>
 
-                    <h2 style="margin-top: 3rem;">📚 Meta Atual - Horde</h2>
+                    <h2 style="margin-top: 3rem;" data-translate="meta-horde-title">📚 Meta Atual - Horde</h2>
 
-                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                    <p style="color: var(--text-light); margin-bottom: 2rem;" data-translate="meta-horde-intro">
                         Composições ideais para progressão com heróis Horde. Mantenha 6 heróis da mesma facção para bônus máximos.
                     </p>
 
@@ -946,8 +939,8 @@
                     </div>
 
                     <div class="example-queue">
-                        <h3>📊 Progressão da Meta Horde</h3>
-                        <p style="color: var(--text-light); line-height: 1.6;">
+                        <h3 data-translate="meta-horde-progress-title">📊 Progressão da Meta Horde</h3>
+                        <p style="color: var(--text-light); line-height: 1.6;" data-translate="meta-horde-progress">
                             <strong>Early → Mid:</strong> Desert Prince entra na frente substituindo Swordmaster. Storm Maiden substitui Warlock no MID. 
                             Soulmancer e Shaman se mantêm no BACK.<br><br>
                             <strong>Mid → End:</strong> Beastmaster substitui Barbarian na frente. Wukong substitui Wilderness Hunter no MID junto com Storm Maiden. 
@@ -958,8 +951,8 @@
 
                 <!-- Bônus de Facção -->
                 <div class="faction-bonuses">
-                    <h2>💎 Bônus de Facção (Faction Aura)</h2>
-                    <p style="color: var(--text-light); margin-bottom: 2rem;">
+                    <h2 data-translate="faction-aura-title">💎 Bônus de Facção (Faction Aura)</h2>
+                    <p style="color: var(--text-light); margin-bottom: 2rem;" data-translate="faction-aura-intro">
                         Quando você coloca heróis da mesma facção em sua fila, eles recebem bônus especiais. 
                         Quanto mais heróis da mesma facção (mínimo 4 Lendários ou superior), maiores os benefícios!
                     </p>
@@ -967,41 +960,41 @@
                     <div class="bonus-tier">
                         <h3>
                             <span class="tier-badge tier-1">1</span>
-                            <span>Tier 1: 4 Heróis Lendários da Mesma Facção</span>
+                            <span data-translate="faction-tier1-title">Tier 1: 4 Heróis Lendários da Mesma Facção</span>
                         </h3>
-                        <p><strong>Requisito:</strong> Deploying 4 Legendary heroes (or better rarity) from the same faction</p>
+                        <p data-translate="faction-tier1-requirement"><strong>Requisito:</strong> Implantar 4 heróis Lendários (ou raridade superior) da mesma facção</p>
                         <p><strong>Bônus para todos os aliados:</strong></p>
-                        <ul>
-                            <li>Queue Attack +15%</li>
-                            <li>Queue HP +15%</li>
-                            <li>Faction with the highest hero count reduces counter damage +5%</li>
+                        <ul data-translate="faction-tier1-list">
+                            <li>Ataque da Fila +15%</li>
+                            <li>HP da Fila +15%</li>
+                            <li>A facção com maior número de heróis reduz o dano de counter +5%</li>
                         </ul>
                     </div>
 
                     <div class="bonus-tier">
                         <h3>
                             <span class="tier-badge tier-2">2</span>
-                            <span>Tier 2: 5 Heróis Lendários da Mesma Facção</span>
+                            <span data-translate="faction-tier2-title">Tier 2: 5 Heróis Lendários da Mesma Facção</span>
                         </h3>
-                        <p><strong>Requisito:</strong> Deploying 5 Legendary heroes (or better rarity) from the same faction</p>
+                        <p data-translate="faction-tier2-requirement"><strong>Requisito:</strong> Implantar 5 heróis Lendários (ou raridade superior) da mesma facção</p>
                         <p><strong>Bônus para todos os aliados:</strong></p>
-                        <ul>
-                            <li>Queue Attack +25%</li>
-                            <li>Queue HP +25%</li>
-                            <li>Faction with the highest hero count reduces counter damage +10%</li>
+                        <ul data-translate="faction-tier2-list">
+                            <li>Ataque da Fila +25%</li>
+                            <li>HP da Fila +25%</li>
+                            <li>A facção com maior número de heróis reduz o dano de counter +10%</li>
                         </ul>
                     </div>
 
                     <div class="bonus-tier">
                         <h3>
                             <span class="tier-badge tier-3">3</span>
-                            <span>Tier 3: 6 Heróis Lendários da Mesma Facção</span>
+                            <span data-translate="faction-tier3-title">Tier 3: 6 Heróis Lendários da Mesma Facção</span>
                         </h3>
-                        <p><strong>Requisito:</strong> Deploying 6 Legendary heroes (or better rarity) from the same faction</p>
+                        <p data-translate="faction-tier3-requirement"><strong>Requisito:</strong> Implantar 6 heróis Lendários (ou raridade superior) da mesma facção</p>
                         <p><strong>Bônus para todos os aliados:</strong></p>
-                        <ul>
-                            <li>Queue Attack +35%</li>
-                            <li>Queue HP +35%</li>
+                        <ul data-translate="faction-tier3-list">
+                            <li>Ataque da Fila +35%</li>
+                            <li>HP da Fila +35%</li>
                             <li>League reduz dano recebido de Nature +20%</li>
                             <li>Nature reduz dano recebido de Horde +20%</li>
                             <li>Horde reduz dano recebido de League +20%</li>
@@ -1009,8 +1002,8 @@
                     </div>
 
                     <div style="background: var(--darker-bg); padding: 1.5rem; border-radius: 15px; margin-top: 2rem;">
-                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">⚠️ Nota Importante</h4>
-                        <p style="color: var(--text-light); margin: 0;">
+                        <h4 style="color: var(--accent-color); margin-bottom: 1rem;" data-translate="faction-aura-note-title">⚠️ Nota Importante</h4>
+                        <p style="color: var(--text-light); margin: 0;" data-translate="faction-aura-note">
                             Os bônus de facção também recebem capacidades aprimoradas de countering durante a temporada. 
                             <strong>Esta aura só afeta heróis na sua fila atual.</strong>
                         </p>

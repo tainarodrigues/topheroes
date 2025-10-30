@@ -74,6 +74,33 @@ body {
     align-items: center;
 }
 
+.lang-selector {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.3rem 0.5rem;
+    transition: var(--transition-medium);
+    font-family: 'Orbitron', monospace;
+}
+
+.lang-btn:hover {
+    color: var(--accent-color);
+}
+
+.lang-btn.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
 .nav-brand h1 {
     font-family: 'Orbitron', monospace;
     font-size: 1.5rem;

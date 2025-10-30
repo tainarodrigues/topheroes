@@ -239,12 +239,17 @@
                 <img src="../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
                 <h1>TOP HEROES</h1>
             </div>
+            <div class="lang-selector">
+                <button onclick="changeLanguage('pt-br')" class="lang-btn active" id="lang-pt">PT</button>
+                <span style="color: var(--accent-color); margin: 0 5px;">|</span>
+                <button onclick="changeLanguage('en-us')" class="lang-btn" id="lang-en">EN</button>
+            </div>
             <ul class="nav-menu">
-                <li><a href="../index.html" class="nav-link">Início</a></li>
-                <li><a href="wiki/index.html" class="nav-link">Wiki</a></li>
-                <li><a href="equipamentos.html" class="nav-link active">Equipamentos</a></li>
-                <li><a href="filas.html" class="nav-link">Filas</a></li>
-                <li><a href="atualizacoes.html" class="nav-link">Atualizações</a></li>
+                <li><a href="../index.html" class="nav-link" data-translate="nav-home">Início</a></li>
+                <li><a href="wiki/index.html" class="nav-link" data-translate="nav-wiki">Wiki</a></li>
+                <li><a href="equipamentos.html" class="nav-link active" data-translate="nav-equipment">Equipamentos</a></li>
+                <li><a href="filas.html" class="nav-link" data-translate="nav-queues">Filas</a></li>
+                <li><a href="atualizacoes.html" class="nav-link" data-translate="nav-updates">Atualizações</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -256,24 +261,24 @@
 
     <main class="main">
         <section class="page-header">
-            <h1 class="page-title">Recomendações de Equipamentos</h1>
-            <p class="page-subtitle">Os melhores sets de equipamentos para cada herói</p>
+            <h1 class="page-title" data-translate="page-equipment-title">Recomendações de Equipamentos</h1>
+            <p class="page-subtitle" data-translate="page-equipment-subtitle">Os melhores sets de equipamentos para cada herói</p>
         </section>
 
         <section class="gear-recommendations">
             <div class="container">
                 <div class="disclaimer">
-                    <p><strong>⚠️ Aviso:</strong> As informações estão sujeitas a alterações a qualquer momento. Os resultados individuais podem diferir. Realize seus próprios testes para confirmar o desempenho sob suas condições pessoais.</p>
+                    <p data-translate="equipment-disclaimer"><strong>⚠️ Aviso:</strong> As informações estão sujeitas a alterações a qualquer momento. Os resultados individuais podem diferir. Realize seus próprios testes para confirmar o desempenho sob suas condições pessoais.</p>
                 </div>
 
                 <!-- League Faction -->
                 <div class="faction-section">
                     <div class="faction-header">
-                        <h2 class="faction-title">🛡️ EQUIPAMENTOS RECOMENDADOS - LEAGUE</h2>
-                        <p class="faction-subtitle">Equipamentos recomendados para heróis da facção League</p>
+                        <h2 class="faction-title" data-translate="league-title">🛡️ EQUIPAMENTOS RECOMENDADOS - LEAGUE</h2>
+                        <p class="faction-subtitle" data-translate="league-subtitle">Equipamentos recomendados para heróis da facção League</p>
                     </div>
 
-                    <div class="alternative-legend">
+                    <div class="alternative-legend" data-translate="alternative-legend">
                         <strong>ℹ️ Legenda:</strong> Heróis marcados com ⚡ no canto superior direito são <strong>Sugestões Alternativas</strong> para o set
                     </div>
 
@@ -284,7 +289,7 @@
                                 <div class="gear-set-icon">🛡️</div>
                                 <div class="gear-set-info">
                                     <h3>Glory of the Knight</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="glory-knight-bonus">
                                         Ataque do Equipamento +40%<br>
                                         HP do Equipamento +80%<br>
                                         Amplificar Dano da Habilidade +8%
@@ -297,7 +302,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Artificer.webp" alt="Artificer"></div>
                                         <div class="hero-name">Artificer</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-skill-amplify">
                                         Amplificar dano da habilidade > bônus de ataque fixo.
                                     </div>
                                 </div>
@@ -306,7 +311,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Bard.webp" alt="Bard"></div>
                                         <div class="hero-name">Bard</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-skill-amplify">
                                         Amplificar dano da habilidade > bônus de ataque fixo.
                                     </div>
                                 </div>
@@ -315,7 +320,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Paragon.webp" alt="Paragon"></div>
                                         <div class="hero-name">Paragon</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-burst-survival">
                                         Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
                                     </div>
                                 </div>
@@ -325,7 +330,7 @@
                                         <div class="hero-name">Rose Princess</div>
                                         <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-nature-dps">
                                         Dará DPS extra contra Nature, mas fraco contra Horde e League.
                                     </div>
                                 </div>
@@ -338,7 +343,7 @@
                                 <div class="gear-set-icon">🩸</div>
                                 <div class="gear-set-info">
                                     <h3>Fury of Blood</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="fury-blood-bonus">
                                         HP do Equipamento +160%<br>
                                         Redução de Dano +6%
                                     </div>
@@ -350,7 +355,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Rose_Princess.webp" alt="Rose Princess"></div>
                                         <div class="hero-name">Rose Princess</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -359,7 +364,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Adjudicator.webp" alt="Adjudicator"></div>
                                         <div class="hero-name">Adjudicator</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -368,7 +373,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Secret_Keeper.webp" alt="Secret Keeper"></div>
                                         <div class="hero-name">Secret Keeper</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -377,7 +382,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Hostess.webp" alt="Hostess"></div>
                                         <div class="hero-name">Hostess</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -396,7 +401,7 @@
                                         <div class="hero-name">Bard</div>
                                         <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -409,7 +414,7 @@
                                 <div class="gear-set-icon">⚔️</div>
                                 <div class="gear-set-info">
                                     <h3>Titan's Might</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="titan-bonus">
                                         Ataque do Equipamento +80%<br>
                                         Aumento de Dano +6%
                                     </div>
@@ -471,17 +476,17 @@
                 <!-- Nature Faction -->
                 <div class="faction-section">
                     <div class="faction-header">
-                        <h2 class="faction-title">🌿 EQUIPAMENTOS RECOMENDADOS - NATURE</h2>
-                        <p class="faction-subtitle">Equipamentos recomendados para heróis da facção Nature</p>
+                        <h2 class="faction-title" data-translate="nature-title">🌿 EQUIPAMENTOS RECOMENDADOS - NATURE</h2>
+                        <p class="faction-subtitle" data-translate="nature-subtitle">Equipamentos recomendados para heróis da facção Nature</p>
                     </div>
 
-                    <div class="alternative-legend">
+                    <div class="alternative-legend" data-translate="alternative-legend">
                         <strong>ℹ️ Legenda:</strong> Heróis marcados com ⚡ no canto superior direito são <strong>Sugestões Alternativas</strong> para o set
                     </div>
 
                     <div class="special-section">
-                        <h3>💡 SUGESTÃO PRINCIPAL</h3>
-                        <p>Para performance PVP otimizada: Coloque toda a equipe em Blood. Isso torna sua equipe mais resistente. A maioria dos heróis Nature usa habilidades que escalam com HP: cura, escudos e estatísticas herdadas. Mais HP aumenta tudo isso de uma vez, que é a ideia principal por trás das equipes Nature: sobreviver mais tempo empilhando saúde.</p>
+                        <h3 data-translate="main-suggestion-title">💡 SUGESTÃO PRINCIPAL</h3>
+                        <p data-translate="main-suggestion-desc">Para performance PVP otimizada: Coloque toda a equipe em Blood. Isso torna sua equipe mais resistente. A maioria dos heróis Nature usa habilidades que escalam com HP: cura, escudos e estatísticas herdadas. Mais HP aumenta tudo isso de uma vez, que é a ideia principal por trás das equipes Nature: sobreviver mais tempo empilhando saúde.</p>
                     </div>
 
                     <div class="gear-sets-grid">
@@ -491,7 +496,7 @@
                                 <div class="gear-set-icon">🛡️</div>
                                 <div class="gear-set-info">
                                     <h3>Glory of the Knight</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="glory-knight-bonus">
                                         Ataque do Equipamento +40%<br>
                                         HP do Equipamento +80%<br>
                                         Amplificar Dano da Habilidade +8%
@@ -505,7 +510,7 @@
                                         <div class="hero-name">Petalis</div>
                                         <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-burst-survival">
                                         Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
                                     </div>
                                 </div>
@@ -515,7 +520,7 @@
                                         <div class="hero-name">Pixie</div>
                                         <div class="alternative-badge" title="Sugestão Alternativa" style="color: #FFD700;">⚡</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-burst-survival">
                                         Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
                                     </div>
                                 </div>
@@ -528,7 +533,7 @@
                                 <div class="gear-set-icon">🩸</div>
                                 <div class="gear-set-info">
                                     <h3>Fury of Blood</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="fury-blood-bonus">
                                         HP do Equipamento +160%<br>
                                         Redução de Dano +6%
                                     </div>
@@ -540,7 +545,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Sage.webp" alt="Sage"></div>
                                         <div class="hero-name">Sage</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -549,7 +554,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Monk.webp" alt="Monk"></div>
                                         <div class="hero-name">Monk</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -558,7 +563,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Treeguard.webp" alt="Treeguard"></div>
                                         <div class="hero-name">Treeguard</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -567,7 +572,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Druid.webp" alt="Druid"></div>
                                         <div class="hero-name">Druid</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -589,7 +594,7 @@
                                 <div class="gear-set-icon">⚔️</div>
                                 <div class="gear-set-info">
                                     <h3>Titan's Might</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="titan-bonus">
                                         Ataque do Equipamento +80%<br>
                                         Aumento de Dano +6%
                                     </div>
@@ -622,7 +627,7 @@
 
                     <!-- Can Wear Anything - Nature -->
                     <div class="special-section">
-                        <h3>🔄 PODE USAR QUALQUER COISA</h3>
+                        <h3 data-translate="alt-legend">🔄 PODE USAR QUALQUER COISA</h3>
                         <div class="heroes-list">
                             <div class="hero-card">
                                 <div class="hero-header">
@@ -630,9 +635,9 @@
                                     <div class="hero-name">Tidecaller</div>
                                 </div>
                                 <div class="hero-description">
-                                    <p><strong>Titan:</strong> Aumenta tanto sua cura quanto dano pessoal.</p>
-                                    <p><strong>Knight:</strong> Escolha mais segura, forte equilíbrio de defesa e consistência.</p>
-                                    <p><strong>Blood:</strong> Aumenta sobrevivência e fortalece seu escudo Monk, permitindo que ela aguente mais ataques.</p>
+                                    <p data-translate="tidecaller-titan"><strong>Titan:</strong> Aumenta tanto sua cura quanto dano pessoal.</p>
+                                    <p data-translate="tidecaller-knight"><strong>Knight:</strong> Escolha mais segura, forte equilíbrio de defesa e consistência.</p>
+                                    <p data-translate="tidecaller-blood"><strong>Blood:</strong> Aumenta sobrevivência e fortalece seu escudo Monk, permitindo que ela aguente mais ataques.</p>
                                 </div>
                             </div>
                             <div class="hero-card">
@@ -641,9 +646,9 @@
                                     <div class="hero-name">Ne Zha</div>
                                 </div>
                                 <div class="hero-description">
-                                    <p><strong>Titan:</strong> Pode ter melhor performance em PVE.</p>
-                                    <p><strong>Knight:</strong> Bom quando atuando como tanque de linha média 3º.</p>
-                                    <p><strong>Blood:</strong> Preferível se ele estiver na linha de frente em PVP.</p>
+                                    <p data-translate="nezha-titan"><strong>Titan:</strong> Pode ter melhor performance em PVE.</p>
+                                    <p data-translate="nezha-knight"><strong>Knight:</strong> Bom quando atuando como tanque de linha média 3º.</p>
+                                    <p data-translate="nezha-blood"><strong>Blood:</strong> Preferível se ele estiver na linha de frente em PVP.</p>
                                 </div>
                             </div>
                         </div>
@@ -653,11 +658,11 @@
                 <!-- Horde Faction -->
                 <div class="faction-section">
                     <div class="faction-header">
-                        <h2 class="faction-title">🔥 EQUIPAMENTOS RECOMENDADOS - HORDE</h2>
-                        <p class="faction-subtitle">Equipamentos recomendados para heróis da facção Horde</p>
+                        <h2 class="faction-title" data-translate="horde-title">🔥 EQUIPAMENTOS RECOMENDADOS - HORDE</h2>
+                        <p class="faction-subtitle" data-translate="horde-subtitle">Equipamentos recomendados para heróis da facção Horde</p>
                     </div>
 
-                    <div class="alternative-legend">
+                    <div class="alternative-legend" data-translate="alternative-legend">
                         <strong>ℹ️ Legenda:</strong> Heróis marcados com ⚡ no canto superior direito são <strong>Sugestões Alternativas</strong> para o set
                     </div>
 
@@ -668,7 +673,7 @@
                                 <div class="gear-set-icon">🛡️</div>
                                 <div class="gear-set-info">
                                     <h3>Glory of the Knight</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="glory-knight-bonus">
                                         Ataque do Equipamento +40%<br>
                                         HP do Equipamento +80%<br>
                                         Amplificar Dano da Habilidade +8%
@@ -681,7 +686,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Witch.webp" alt="Witch"></div>
                                         <div class="hero-name">Witch</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-burst-survival">
                                         Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
                                     </div>
                                 </div>
@@ -690,7 +695,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Storm_Maiden.webp" alt="Storm Maiden"></div>
                                         <div class="hero-name">Storm Maiden</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-burst-survival">
                                         Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
                                     </div>
                                 </div>
@@ -699,7 +704,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Soulmancer.webp" alt="Soulmancer"></div>
                                         <div class="hero-name">Soulmancer</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-burst-survival">
                                         Amplificar dano da habilidade > bônus de ataque fixo. HP aumentado ajuda na sobrevivência.
                                     </div>
                                 </div>
@@ -712,7 +717,7 @@
                                 <div class="gear-set-icon">🩸</div>
                                 <div class="gear-set-info">
                                     <h3>Fury of Blood</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="fury-blood-bonus">
                                         HP do Equipamento +160%<br>
                                         Redução de Dano +6%
                                     </div>
@@ -734,7 +739,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Barbarian.webp" alt="Barbarian"></div>
                                         <div class="hero-name">Barbarian</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -743,7 +748,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Shaman.webp" alt="Shaman"></div>
                                         <div class="hero-name">Shaman</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -762,7 +767,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Beastmaster.webp" alt="Beastmaster"></div>
                                         <div class="hero-name">Beastmaster</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -781,7 +786,7 @@
                                         <div class="hero-avatar"><img src="../assets/heroes/Swordmaster.webp" alt="Swordmaster"></div>
                                         <div class="hero-name">Swordmaster</div>
                                     </div>
-                                    <div class="hero-description">
+                                    <div class="hero-description" data-translate="desc-survival">
                                         Sobrevivência extra.
                                     </div>
                                 </div>
@@ -794,7 +799,7 @@
                                 <div class="gear-set-icon">⚔️</div>
                                 <div class="gear-set-info">
                                     <h3>Titan's Might</h3>
-                                    <div class="gear-set-bonuses">
+                                    <div class="gear-set-bonuses" data-translate="titan-bonus">
                                         Ataque do Equipamento +80%<br>
                                         Aumento de Dano +6%
                                     </div>
@@ -844,7 +849,7 @@
 
                     <!-- Can Wear Anything - Horde -->
                     <div class="special-section">
-                        <h3>🔄 PODE USAR QUALQUER COISA</h3>
+                        <h3 data-translate="alt-legend">🔄 PODE USAR QUALQUER COISA</h3>
                         <div class="heroes-list">
                             <div class="hero-card">
                                 <div class="hero-header">
@@ -852,9 +857,9 @@
                                     <div class="hero-name">Wukong</div>
                                 </div>
                                 <div class="hero-description">
-                                    <p><strong>Titan:</strong> Linha de trás ou meio. Linha de frente não é tão recomendada.</p>
-                                    <p><strong>Knight:</strong> Linha de frente recomendada.</p>
-                                    <p><strong>Blood:</strong> Linha de frente se você precisar de sobrevivência extra.</p>
+                                    <p data-translate="wukong-titan"><strong>Titan:</strong> Linha de trás ou meio. Linha de frente não é tão recomendada.</p>
+                                    <p data-translate="wukong-knight"><strong>Knight:</strong> Linha de frente recomendada.</p>
+                                    <p data-translate="wukong-blood"><strong>Blood:</strong> Linha de frente se você precisar de sobrevivência extra.</p>
                                 </div>
                             </div>
                         </div>

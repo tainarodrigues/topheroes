@@ -94,12 +94,17 @@
                 <img src="../../topheroes-logo.webp" alt="Top Heroes Logo" style="height: 40px; margin-right: 10px;">
                 <h1>TOP HEROES</h1>
             </div>
+            <div class="lang-selector">
+                <button onclick="changeLanguage('pt-br')" class="lang-btn active" id="lang-pt">PT</button>
+                <span style="color: var(--accent-color); margin: 0 5px;">|</span>
+                <button onclick="changeLanguage('en-us')" class="lang-btn" id="lang-en">EN</button>
+            </div>
             <ul class="nav-menu">
-                <li><a href="../../index.html" class="nav-link">Início</a></li>
-                <li><a href="../wiki/index.html" class="nav-link">Wiki</a></li>
-                <li><a href="../equipamentos.html" class="nav-link">Equipamentos</a></li>
-                <li><a href="../filas.html" class="nav-link">Filas</a></li>
-                <li><a href="../atualizacoes.html" class="nav-link active">Atualizações</a></li>
+                <li><a href="../../index.html" class="nav-link" data-translate="nav-home">Início</a></li>
+                <li><a href="../wiki/index.html" class="nav-link" data-translate="nav-wiki">Wiki</a></li>
+                <li><a href="../equipamentos.html" class="nav-link" data-translate="nav-equipment">Equipamentos</a></li>
+                <li><a href="../filas.html" class="nav-link" data-translate="nav-queues">Filas</a></li>
+                <li><a href="../atualizacoes.html" class="nav-link active" data-translate="nav-updates">Atualizações</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
